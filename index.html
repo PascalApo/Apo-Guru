@@ -209,6 +209,7 @@
             font-weight: 600;
             transition: transform 0.15s, background 0.15s;
         }
+        .btn-home::before { content: "← "; opacity: 0.7; }
         .btn-ghost:active, .btn-home:active { transform: scale(0.96); }
         .btn-wiki-nav {
             background: var(--surface-2);
@@ -814,6 +815,91 @@
         .menu-card.consultant-card .menu-card-icon { background: var(--icon-tile-exam); }
         body[data-app-mode="closing"] .mode-einarbeitung-only { display: none !important; }
         body[data-app-mode="einarbeitung"] .mode-closing-only { display: none !important; }
+        .beratung-section-label { color: var(--accent-gold); }
+        .beratung-section-hint {
+            font-size: 12px; color: var(--text-muted); margin: -4px 0 10px 2px; line-height: 1.4;
+        }
+        .menu-card.beratung-card {
+            border-color: rgba(212, 168, 83, 0.35);
+            background: linear-gradient(145deg, var(--surface), var(--accent-gold-soft));
+        }
+        .menu-card.beratung-card .menu-card-icon {
+            background: linear-gradient(145deg, #fffbeb, #fef3c7);
+        }
+        [data-theme="dark"] .menu-card.beratung-card .menu-card-icon {
+            background: linear-gradient(145deg, #451a03, #292524);
+        }
+        .briefing-grid { display: flex; flex-direction: column; gap: 10px; }
+        .briefing-scenario {
+            padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border);
+            background: var(--surface-2); cursor: pointer; text-align: left; width: 100%;
+            font-family: inherit;
+        }
+        .briefing-scenario:hover { border-color: var(--primary); background: var(--success-bg); }
+        .briefing-scenario h4 { margin: 0 0 4px; font-size: 15px; }
+        .briefing-scenario p { margin: 0; font-size: 12px; color: var(--text-muted); }
+        .briefing-doc {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 16px; margin-bottom: 14px;
+        }
+        .briefing-doc h3 { margin: 0 0 12px; font-size: 17px; }
+        .briefing-block { margin-bottom: 14px; }
+        .briefing-block-title {
+            font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--primary); margin-bottom: 8px;
+        }
+        .briefing-block ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; }
+        .briefing-block li { margin-bottom: 6px; }
+        .briefing-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .briefing-actions .btn-main { margin-top: 0; flex: 1; min-width: 120px; }
+        .bwa-result-box {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 14px; margin-top: 14px;
+        }
+        .bwa-kpi-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+        }
+        .bwa-kpi-row:last-child { border-bottom: none; }
+        .bwa-kpi-val { font-weight: 800; color: var(--primary-dark); }
+        .bwa-talk {
+            margin-top: 14px; padding: 12px; border-radius: var(--radius-sm);
+            background: var(--success-bg); border: 1px solid rgba(5,150,105,0.2);
+            font-size: 13px; line-height: 1.55;
+        }
+        .bwa-talk strong { display: block; margin-bottom: 6px; color: var(--primary-dark); }
+        .pipeline-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px;
+        }
+        .pipeline-stat {
+            text-align: center; padding: 12px 8px; border-radius: var(--radius-sm);
+            background: var(--surface-2); border: 1px solid var(--border);
+        }
+        .pipeline-stat-num { font-size: 22px; font-weight: 800; color: var(--primary); }
+        .pipeline-stat-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+        .pipeline-phase-bar { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+        .pipeline-phase-chip {
+            flex: 1; min-width: 52px; text-align: center; padding: 8px 4px;
+            border-radius: var(--radius-sm); font-size: 10px; font-weight: 700;
+            background: var(--surface-2); border: 1px solid var(--border);
+        }
+        .pipeline-phase-chip.has-deals { background: var(--success-bg); border-color: rgba(5,150,105,0.3); }
+        .pipeline-phase-chip .ppc-n { font-size: 16px; display: block; margin-bottom: 2px; }
+        .pipeline-row {
+            display: flex; align-items: center; gap: 10px; padding: 12px;
+            border-radius: var(--radius-md); border: 1px solid var(--border);
+            background: var(--surface-2); margin-bottom: 8px; cursor: pointer;
+        }
+        .pipeline-row:hover { border-color: var(--primary); }
+        .pipeline-ampel {
+            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+        }
+        .pipeline-ampel.ok { background: var(--success); }
+        .pipeline-ampel.warn { background: #f59e0b; }
+        .pipeline-ampel.crit { background: var(--danger); }
+        .pipeline-row-main { flex: 1; min-width: 0; }
+        .pipeline-row-title { font-weight: 700; font-size: 14px; }
+        .pipeline-row-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
         .mode-banner {
             padding: 12px 14px; border-radius: var(--radius-sm); margin-bottom: 16px;
@@ -1207,6 +1293,190 @@
         }
         .kq-star.on { opacity: 1; color: var(--accent-gold); }
         .kq-empty { font-size: 12px; color: var(--text-muted); }
+        .menu-quick-actions {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+            margin-bottom: 14px;
+        }
+        .menu-quick-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 4px; padding: 12px 6px; min-height: 72px;
+            border-radius: var(--radius-md); border: 1px solid var(--border);
+            background: var(--surface-2); cursor: pointer; font-family: inherit;
+            transition: transform 0.15s, border-color 0.2s, background 0.2s;
+        }
+        .menu-quick-btn:hover { border-color: var(--primary); background: var(--success-bg); }
+        .menu-quick-btn:active { transform: scale(0.97); }
+        .menu-quick-btn.primary {
+            border-color: rgba(5,150,105,0.35);
+            background: linear-gradient(145deg, var(--success-bg), var(--surface));
+        }
+        .menu-quick-icon { font-size: 20px; line-height: 1; }
+        .menu-quick-label { font-size: 11px; font-weight: 700; color: var(--text-main); text-align: center; line-height: 1.25; }
+        .menu-jump-nav {
+            display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px;
+            margin-bottom: 14px; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .menu-jump-nav::-webkit-scrollbar { display: none; }
+        .menu-jump-chip {
+            flex-shrink: 0; padding: 8px 14px; border-radius: var(--radius-pill);
+            border: 1px solid var(--border); background: var(--surface);
+            font-size: 12px; font-weight: 700; color: var(--text-muted);
+            cursor: pointer; font-family: inherit; white-space: nowrap;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .menu-jump-chip:hover, .menu-jump-chip:focus-visible {
+            border-color: var(--primary); color: var(--primary-dark); background: var(--success-bg);
+        }
+        .menu-section-box {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 12px; margin-bottom: 14px;
+            scroll-margin-top: 12px;
+        }
+        .menu-section-box.beratung-box {
+            border-color: rgba(212,168,83,0.3);
+            background: linear-gradient(180deg, var(--surface-2), var(--surface));
+        }
+        .menu-section-box.closing-box {
+            border-color: rgba(212,168,83,0.25);
+        }
+        .menu-section-box .menu-section-label { margin-top: 0; }
+        .menu-section-box .menu-grid { margin-top: 4px; }
+        .menu-section-box .beratung-section-hint { margin-bottom: 8px; }
+        .menu-status-panel {
+            border: 1px solid var(--border); border-radius: var(--radius-md);
+            margin-bottom: 14px; overflow: hidden; background: var(--surface-2);
+            scroll-margin-top: 12px;
+        }
+        .menu-status-toggle {
+            width: 100%; display: flex; align-items: center; gap: 8px;
+            padding: 12px 14px; border: none; background: transparent;
+            cursor: pointer; font-family: inherit; text-align: left;
+        }
+        .menu-status-toggle > span:first-child {
+            font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--text-muted); flex: 1;
+        }
+        .menu-status-summary {
+            font-size: 12px; font-weight: 700; color: var(--primary-dark);
+        }
+        .menu-status-chevron {
+            font-size: 10px; color: var(--text-muted); transition: transform 0.2s;
+        }
+        .menu-status-panel.collapsed .menu-status-chevron { transform: rotate(-90deg); }
+        .menu-status-panel.collapsed .menu-status-body { display: none; }
+        .menu-status-body { padding: 0 14px 14px; }
+        .menu-status-body .input-group { margin-bottom: 12px; }
+        .menu-status-body .progress-panel,
+        .menu-status-body .weakness-panel {
+            margin: 0; padding: 12px; border-radius: var(--radius-sm);
+            border: 1px solid var(--border); background: var(--surface);
+        }
+        .menu-status-body .weakness-panel { margin-top: 10px; }
+        .mode-hint {
+            font-size: 11px; color: var(--text-muted); text-align: center;
+            margin: -8px 0 12px; line-height: 1.35;
+        }
+        .nav-context {
+            font-size: 11px; color: var(--text-muted); margin: -8px 0 14px; line-height: 1.4;
+        }
+        .menu-tiles-toolbar {
+            display: flex; gap: 8px; margin-bottom: 8px;
+        }
+        .menu-tiles-edit-btn, .menu-tiles-reset-btn {
+            flex: 1; padding: 10px 12px; border-radius: var(--radius-sm);
+            border: 1px solid var(--border); background: var(--surface-2);
+            font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit;
+            color: var(--text-main);
+        }
+        .menu-tiles-edit-btn:hover, .menu-tiles-reset-btn:hover { border-color: var(--primary); background: var(--success-bg); }
+        body.menu-edit-mode .menu-tiles-edit-btn {
+            border-color: var(--primary); background: var(--success-bg); color: var(--primary-dark);
+        }
+        .menu-tiles-reset-btn { flex: 0 0 auto; color: var(--danger); border-color: rgba(220,38,38,0.25); }
+        .menu-tiles-hint {
+            font-size: 11px; color: var(--text-muted); margin: 0 0 12px 2px; line-height: 1.45;
+        }
+        #menu-tiles-root { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+        .menu-cat {
+            border: 1px solid var(--border); border-radius: var(--radius-md);
+            background: var(--surface); overflow: hidden;
+            box-shadow: var(--shadow-sm); scroll-margin-top: 12px;
+        }
+        .menu-cat:hover { border-color: rgba(5,150,105,0.25); }
+        .menu-cat.collapsed .menu-cat-body { display: none; }
+        .menu-cat.collapsed .menu-cat-chevron { transform: rotate(-90deg); }
+        .menu-cat.menu-cat-hidden-draft { opacity: 0.55; border-style: dashed; }
+        .menu-cat.cat-lernen { border-color: rgba(5,150,105,0.25); }
+        .menu-cat.cat-wissen { border-color: rgba(99,102,241,0.25); }
+        .menu-cat.cat-arbeit { border-color: rgba(212,168,83,0.3); }
+        .menu-cat-head {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 12px 12px 10px; width: 100%;
+            border: none; background: var(--surface-2); cursor: pointer;
+            font-family: inherit; text-align: left;
+        }
+        body.menu-edit-mode .menu-cat-head { cursor: default; }
+        .menu-cat-icon {
+            width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--icon-tile-mod); flex-shrink: 0;
+        }
+        .menu-cat-icon svg { width: 20px; height: 20px; stroke: var(--icon-stroke); fill: none; stroke-width: 2; }
+        .menu-cat.cat-lernen .menu-cat-icon { background: var(--icon-tile-exam); }
+        .menu-cat.cat-wissen .menu-cat-icon { background: var(--icon-tile-wiki); }
+        .menu-cat.cat-arbeit .menu-cat-icon { background: linear-gradient(145deg, #fffbeb, #fef3c7); }
+        [data-theme="dark"] .menu-cat.cat-arbeit .menu-cat-icon { background: linear-gradient(145deg, #451a03, #292524); }
+        .menu-cat-text { flex: 1; min-width: 0; }
+        .menu-cat-title {
+            margin: 0; font-size: 14px; font-weight: 700; color: var(--text-main);
+            line-height: 1.3; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+        }
+        .menu-cat-title .menu-status-summary {
+            font-size: 10px; font-weight: 700; color: var(--primary-dark);
+        }
+        .menu-cat-count {
+            font-size: 10px; font-weight: 700; color: var(--text-muted);
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 2px 7px; border-radius: var(--radius-pill);
+        }
+        .menu-cat-desc {
+            margin: 3px 0 0; font-size: 12px; color: var(--text-muted); line-height: 1.35;
+        }
+        .menu-cat-chevron {
+            font-size: 10px; color: var(--text-muted); transition: transform 0.2s; flex-shrink: 0;
+        }
+        .menu-cat-controls {
+            display: none; align-items: center; gap: 4px; flex-shrink: 0;
+        }
+        body.menu-edit-mode .menu-cat-controls { display: flex; }
+        body.menu-edit-mode .menu-cat-chevron { display: none; }
+        .menu-cat-ctrl, .menu-item-ctrl {
+            width: 32px; height: 32px; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--surface);
+            font-size: 14px; cursor: pointer; font-family: inherit; color: var(--text-main);
+            display: flex; align-items: center; justify-content: center; padding: 0;
+        }
+        .menu-cat-ctrl:hover, .menu-item-ctrl:hover { border-color: var(--primary); background: var(--success-bg); }
+        .menu-cat-ctrl.danger, .menu-item-ctrl.danger { color: var(--danger); }
+        .menu-cat-body { padding: 0 12px 12px; }
+        .menu-cat-items { display: flex; flex-direction: column; gap: 10px; }
+        .menu-cat-items .menu-card { margin: 0; box-shadow: var(--shadow-sm); }
+        .menu-cat-panel { margin-bottom: 10px; }
+        .menu-cat-panel .menu-status-inner { padding: 0; }
+        .menu-cat-panel .input-group { margin-bottom: 12px; }
+        .menu-cat-panel .progress-panel,
+        .menu-cat-panel .weakness-panel {
+            margin: 0; padding: 12px; border-radius: var(--radius-sm);
+            border: 1px solid var(--border); background: var(--surface-2);
+        }
+        .menu-cat-panel .weakness-panel { margin-top: 10px; }
+        .menu-item-edit-row {
+            display: none; gap: 4px; margin-bottom: 4px; justify-content: flex-end;
+        }
+        body.menu-edit-mode .menu-item-edit-row { display: flex; }
+        .menu-item-hidden-draft { opacity: 0.5; }
+        .menu-tile-open-btn { width: 100%; margin-top: 0; }
         .backup-panel {
             margin-top: 20px; padding: 14px; border-radius: var(--radius-md);
             border: 1px solid var(--border); background: var(--surface-2);
@@ -1262,6 +1532,9 @@
                 <button type="button" class="mode-btn active" data-mode="einarbeitung" id="btn-mode-einarbeitung">Einarbeitung</button>
             </div>
         </div>
+        <p class="mode-hint" id="mode-hint">Lernen &amp; Üben — für den Einstieg</p>
+        <div class="menu-quick-actions" id="menu-quick-actions"></div>
+        <nav class="menu-jump-nav" id="menu-jump-nav" aria-label="Bereiche"></nav>
         <div class="global-search-wrap" id="global-search-wrap-menu">
             <label class="global-search-label" for="global-search-menu">Wissen durchsuchen</label>
             <input type="search" id="global-search-menu" class="global-search-input"
@@ -1287,86 +1560,13 @@
                 <button type="button" class="btn-pwa btn-pwa-ghost" onclick="dismissPWA()">Später</button>
             </div>
         </div>
-        <div class="input-group mode-einarbeitung-only">
-            <label class="input-label" for="username"><span class="label-icon" data-icon="user"></span>Dein Name</label>
-            <input type="text" id="username" class="input-field" placeholder="Kürzel – nur lokal auf diesem Gerät" autocomplete="name">
+        <div class="menu-tiles-toolbar">
+            <button type="button" class="menu-tiles-edit-btn" id="btn-menu-edit" onclick="toggleMenuEditMode()">⚙️ Kacheln anpassen</button>
+            <button type="button" class="menu-tiles-reset-btn" id="btn-menu-reset" onclick="resetMenuLayout()" style="display:none;">Zurücksetzen</button>
         </div>
-        <div id="progress-panel" class="progress-panel mode-einarbeitung-only">
-            <div class="progress-panel-title">DEIN LERNFORTSCHRITT</div>
-            <div class="progress-overall" id="progress-overall-text">0 / 6 Module geschafft</div>
-            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-overall-bar"></div></div>
-            <p class="progress-hint" id="progress-hint">Modul gilt ab 70 % als geschafft · Selbsttest separat</p>
-        </div>
-        <div id="weakness-panel" class="weakness-panel mode-einarbeitung-only">
-            <div class="progress-panel-title">DEINE SCHWACHSTELLEN</div>
-            <div id="weakness-list"></div>
-            <button type="button" class="btn-weakness" id="btn-weakness-train" onclick="prepWeaknessGame()" style="display:none;">Schwächen üben (max. 15 Fragen)</button>
-            <button type="button" class="weakness-mastered-toggle" id="btn-weakness-mastered-toggle" onclick="toggleMasteredWeaknessList()" style="display:none;"></button>
-            <button type="button" class="weakness-mastered-toggle" id="btn-weakness-reset-mastered" onclick="resetAllMasteredWeaknesses()" style="display:none;">Alle erledigten zurücksetzen</button>
-        </div>
-        <p class="menu-section-label mode-closing-only">Closing · Arbeitsmodus</p>
-        <div class="menu-grid mode-closing-only">
-            <div class="menu-card consultant-card" onclick="showDeals()">
-                <div class="menu-card-icon" data-icon="briefcase"></div>
-                <div><h3>Mandat-Tracker</h3><p>Anonyme Slots (M-01…) – nur Phase &amp; DD (Risikoprüfung), keine Namen.</p></div>
-            </div>
-            <div class="menu-card consultant-card" onclick="showObjections()">
-                <div class="menu-card-icon" data-icon="speech"></div>
-                <div><h3>Einwand-Bibliothek</h3><p>Fertige Antworten – nichts eingeben nötig.</p></div>
-            </div>
-            <div class="menu-card consultant-card" onclick="showProvision()">
-                <div class="menu-card-icon" data-icon="finance"></div>
-                <div><h3>Provision-Rechner</h3><p>Sitzungsrechner – speichert keine Zahlen.</p></div>
-            </div>
-        </div>
-        <p class="menu-section-label mode-einarbeitung-only">Einarbeitung · Lernen</p>
-        <div class="menu-grid mode-einarbeitung-only">
-            <div class="menu-card consultant-card" onclick="showRadar()">
-                <div class="menu-card-icon" data-icon="radar"></div>
-                <div><h3>Personal Radar</h3><p>Eigene Lern-Routine – Focus &amp; Reflexion.</p></div>
-            </div>
-        </div>
-        <p class="menu-section-label mode-einarbeitung-only">Lernen &amp; Wissen</p>
-        <div class="menu-grid mode-einarbeitung-only">
-            <div class="menu-card wiki-main-card" onclick="showWiki()">
-                <div class="menu-card-icon" data-icon="wiki"></div>
-                <div><h3>Fachhandbuch Apothekenübernahme</h3><p>Dein Nachschlagewerk für Beratung, Due Diligence und Übergabe.</p></div>
-            </div>
-            <div class="menu-card glossary-card" onclick="showGlossary()">
-                <div class="menu-card-icon" data-icon="glossary"></div>
-                <div><h3>Apotheken- &amp; BWA-Glossar</h3><p>Abkürzungen &amp; Fachbegriffe auf einen Blick.</p></div>
-            </div>
-            <div class="menu-card" id="menu-mod-0" onclick="prepGame(0)">
-                <div class="menu-card-icon" data-icon="law"></div>
-                <div><h3>Modul 1: Recht <span class="mod-badge open" id="badge-mod-0"></span></h3><p id="sub-mod-0">Fremdbesitz, 1+3 Regel, ApBetrO.</p></div>
-            </div>
-            <div class="menu-card" id="menu-mod-1" onclick="prepGame(1)">
-                <div class="menu-card-icon" data-icon="ledger"></div>
-                <div><h3>Modul 2: Bilanz <span class="mod-badge open" id="badge-mod-1"></span></h3><p id="sub-mod-1">Aktiva, Passiva, Warenlager-Logik.</p></div>
-            </div>
-            <div class="menu-card" id="menu-mod-2" onclick="prepGame(2)">
-                <div class="menu-card-icon" data-icon="location"></div>
-                <div><h3>Modul 3: Übergabe <span class="mod-badge open" id="badge-mod-2"></span></h3><p id="sub-mod-2">Asset Deal, Due Diligence, § 613a BGB.</p></div>
-            </div>
-            <div class="menu-card" id="menu-mod-3" onclick="prepGame(3)">
-                <div class="menu-card-icon" data-icon="chart"></div>
-                <div><h3>Modul 4: BWA <span class="mod-badge open" id="badge-mod-3"></span></h3><p id="sub-mod-3">AMPreisV, Skonti, Fixhonorar-Reform.</p></div>
-            </div>
-            <div class="menu-card" id="menu-mod-4" onclick="prepGame(4)">
-                <div class="menu-card-icon" data-icon="finance"></div>
-                <div><h3>Modul 5: Wirtschaft <span class="mod-badge open" id="badge-mod-4"></span></h3><p id="sub-mod-4">EBITDA, Unternehmerlohn, Rating.</p></div>
-            </div>
-            <div class="menu-card" id="menu-mod-5" onclick="prepGame(5)">
-                <div class="menu-card-icon" data-icon="deal"></div>
-                <div><h3>Modul 6: Closing <span class="mod-badge open" id="badge-mod-5"></span></h3><p id="sub-mod-5">Bewertung, Kaufvertrag, Closing.</p></div>
-            </div>
-            <div class="menu-card exam-card" id="menu-exam" onclick="prepGame('exam')">
-                <div class="menu-card-icon" data-icon="target"></div>
-                <div><h3>Selbsttest <span class="mod-badge open" id="badge-exam"></span></h3><p id="sub-exam">25 Fragen · max. 3 Fehler erlaubt.</p></div>
-            </div>
-        </div>
-        <button class="admin-btn-small mode-einarbeitung-only" onclick="showAdmin()">📊 Meine Statistik</button>
-        <p class="app-version">Apotheken-Guro v4.1</p>
+        <p class="menu-tiles-hint" id="menu-tiles-hint" style="display:none;">Kategorien &amp; Einträge mit ↑↓ sortieren · ✎ Text anpassen · Kategorie antippen zum Ein-/Ausklappen</p>
+        <div id="menu-tiles-root"></div>
+        <p class="app-version">Apotheken-Guro v4.5</p>
     </div>
 
     <div id="view-wiki" class="view">
@@ -1530,6 +1730,65 @@
                 <div class="provision-step-value" id="prov-total-val">–</div>
             </div>
         </div>
+    </div>
+
+    <div id="view-briefing" class="view">
+        <div class="nav-bar">
+            <h2>Sitzungs-Briefing</h2>
+            <button class="btn-home" type="button" onclick="goHome()">Menü</button>
+        </div>
+        <p class="privacy-hint">Keine Mandatsdaten nötig – wähle die Situation, erhalte Struktur fürs Gespräch. Text kopierbar für externe Notizen.</p>
+        <div id="briefing-picker">
+            <div class="briefing-grid" id="briefing-scenarios"></div>
+        </div>
+        <div id="briefing-detail" style="display:none;">
+            <button type="button" class="btn-secondary" style="width:100%;margin-bottom:12px;padding:10px;" onclick="closeBriefingDetail()">← Andere Situation wählen</button>
+            <div class="briefing-doc" id="briefing-doc"></div>
+            <div class="briefing-actions">
+                <button type="button" class="btn-main primary" onclick="copyBriefingText()">Text kopieren</button>
+                <button type="button" class="btn-main" onclick="printBriefing()">Drucken / PDF</button>
+                <button type="button" class="btn-main" id="briefing-wiki-btn" onclick="openBriefingWiki()">Fachhandbuch</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-bwa-tool" class="view">
+        <div class="nav-bar">
+            <h2>BWA-Erklär-Rechner</h2>
+            <button class="btn-home" type="button" onclick="goHome()">Menü</button>
+        </div>
+        <p class="privacy-hint">Sitzungsrechner – Zahlen werden <strong>nicht gespeichert</strong>. Nur Übungs- oder Gesprächswerte, keine echten Mandatsdaten archivieren.</p>
+        <div class="input-group">
+            <label class="input-label" for="bwa-umsatz">Umsatz (€)</label>
+            <input type="number" class="input-field" id="bwa-umsatz" inputmode="decimal" placeholder="z. B. 3.200.000" oninput="calcBwaExplain()">
+        </div>
+        <div class="input-group">
+            <label class="input-label" for="bwa-we">Wareneinsatz (€)</label>
+            <input type="number" class="input-field" id="bwa-we" inputmode="decimal" placeholder="z. B. 2.400.000" oninput="calcBwaExplain()">
+        </div>
+        <div class="input-group">
+            <label class="input-label" for="bwa-personal">Personalkosten (€, optional)</label>
+            <input type="number" class="input-field" id="bwa-personal" inputmode="decimal" placeholder="z. B. 420.000" oninput="calcBwaExplain()">
+        </div>
+        <div class="input-group">
+            <label class="input-label" for="bwa-ebitda-adj">EBITDA-Bereinigung (€, optional)</label>
+            <input type="number" class="input-field" id="bwa-ebitda-adj" inputmode="decimal" placeholder="Einmaleffekte addieren (+) oder abziehen (−)" oninput="calcBwaExplain()">
+        </div>
+        <div style="display:flex;gap:8px;">
+            <button class="btn-main primary" type="button" style="flex:1;" onclick="calcBwaExplain()">Berechnen</button>
+            <button class="btn-main" type="button" style="flex:0 0 auto;width:auto;margin-top:0;padding:12px 16px;" onclick="clearBwaTool()">Leeren</button>
+        </div>
+        <div id="bwa-result" style="display:none;"></div>
+    </div>
+
+    <div id="view-pipeline" class="view">
+        <div class="nav-bar">
+            <h2>Deal-Übersicht</h2>
+            <button class="btn-home" type="button" onclick="goHome()">Menü</button>
+        </div>
+        <p class="privacy-hint">Anonyme Mandats-Slots – Pipeline auf einen Blick. Keine Namen oder Umsätze.</p>
+        <div id="pipeline-content"></div>
+        <button type="button" class="btn-main primary" style="margin-top:14px;" onclick="showDeals()">Mandat-Tracker öffnen</button>
     </div>
 
     <div id="view-radar" class="view">
@@ -1973,7 +2232,7 @@
     ];
 
     // --- APP LOGIK ---
-    const APP_VERSION = "4.1";
+    const APP_VERSION = "4.5";
     const BRAND_NAME = "Apotheken-Guro";
     const EXAM_MAX_ERRORS = 3;
     const MODULE_PASS_PERCENT = 70;
@@ -1991,6 +2250,8 @@
     const STORAGE_DEALS = "apo_deals_data";
     const STORAGE_WEAKNESSES = "apo_weaknesses";
     const STORAGE_FAVORITES = "apo_knowledge_favorites";
+    const STORAGE_MENU_STATUS_COLLAPSED = "apo_menu_status_collapsed";
+    const STORAGE_MENU_LAYOUT = "apo_menu_layout";
     const EXAM_WEAKNESS_COUNT = 15;
     const EXAM_TOTAL_COUNT = 25;
 
@@ -2086,8 +2347,8 @@
 
     let currentDealId = null;
 
-    const VIEWS_EINARBEITUNG = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-radar"];
-    const VIEWS_CLOSING = ["view-menu", "view-wiki", "view-glossary", "view-deals", "view-deal", "view-objections", "view-provision"];
+    const VIEWS_EINARBEITUNG = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-radar", "view-briefing", "view-bwa-tool", "view-pipeline"];
+    const VIEWS_CLOSING = ["view-menu", "view-wiki", "view-glossary", "view-deals", "view-deal", "view-objections", "view-provision", "view-briefing", "view-bwa-tool", "view-pipeline"];
     const GLOBAL_SEARCH_SLOTS = ["menu", "wiki", "glossary"];
 
     const NEXT_ACTIONS = [
@@ -2100,6 +2361,156 @@
         { id: "behoerde", label: "Behörde / Kammer" },
         { id: "internal", label: "Interne Abstimmung" }
     ];
+
+    const BRIEFING_SCENARIOS = [
+        {
+            id: "seller-first",
+            title: "Erstgespräch Verkäufer",
+            subtitle: "Motivation, Timing & erste Einschätzung",
+            wikiModule: 0,
+            goals: [
+                "Verkaufsmotivation und Zeitplan verstehen – ohne Druck aufzubauen.",
+                "Grobe Objektstruktur klären (Standort, Rx/OTC-Mix, Filialen).",
+                "Nächsten Schritt vereinbaren (NDA, Unterlagen, Zweittermin)."
+            ],
+            questions: [
+                "Was ist der Anlass für den Verkauf – Ruhestand, Gesundheit, Filialisierung?",
+                "Gibt es bereits Interessenten oder laufende Gespräche?",
+                "Welche Unterlagen liegen vor (BWA 3 Jahre, Mietvertrag, Erlaubnis)?",
+                "Wie sieht der gewünschte Zeitplan bis zur Übergabe aus?",
+                "Gibt es Mitarbeiter, Heimverträge oder besondere Abhängigkeiten?"
+            ],
+            redFlags: [
+                "Unklare Verkaufsmotivation oder Zeitdruck ohne Erklärung.",
+                "Keine aktuellen BWAs oder verweigerte NDA vor sensiblen Details.",
+                "Starker Umsatzrückgang ohne plausible Erklärung.",
+                "Mietvertrag kurz vor Auslauf ohne Verlängerungsoption."
+            ],
+            closing: [
+                "Zusammenfassung der Motivation und des Timings spiegeln.",
+                "NDA und Unterlagenliste als nächsten Schritt vorschlagen.",
+                "Keine Kaufpreis-Zusage im Erstgespräch – Erwartungen managen."
+            ]
+        },
+        {
+            id: "buyer-first",
+            title: "Gespräch Käufer",
+            subtitle: "Passung, Finanzierung & Entscheidungsfähigkeit",
+            wikiModule: 5,
+            goals: [
+                "Käuferprofil und Finanzierungsrahmen klären.",
+                "Erwartungen an Standort, Umsatz und Rendite abgleichen.",
+                "Entscheidungsweg und Timeline auf Käuferseite verstehen."
+            ],
+            questions: [
+                "Welche Apothekentypen passen (Stadt/Land, Rx-lastig, Heimverträge)?",
+                "Wie sieht die Finanzierungsstruktur aus (Eigenkapital, Bank, KfW)?",
+                "Wer entscheidet final – allein, mit Partner, mit Steuerberater?",
+                "Welche DD-Themen sind für Sie besonders kritisch?",
+                "Bis wann soll der Übergang abgeschlossen sein?"
+            ],
+            redFlags: [
+                "Unrealistische Renditeerwartung ohne Bezug zu EBITDA.",
+                "Keine Finanzierungsindikation trotz fortgeschrittener Phase.",
+                "Entscheider fehlt im Gespräch trotz LOI/Verhandlung.",
+                "Käufer will Due Diligence überspringen."
+            ],
+            closing: [
+                "Passende Objektprofile benennen (ohne konkrete Mandate).",
+                "Nächster Schritt: Objektunterlagen nach NDA oder Bankgespräch.",
+                "Realistische Timeline und DD-Pflicht betonen."
+            ]
+        },
+        {
+            id: "bank",
+            title: "Banktermin",
+            subtitle: "Kapitaldienstfähigkeit & Unterlagen",
+            wikiModule: 4,
+            goals: [
+                "EBITDA und Bereinigungen bankfähig darstellen.",
+                "Kapitaldienstfähigkeit (Zins + Tilgung) plausibel machen.",
+                "Offene DD-Punkte transparent benennen – keine Überraschungen."
+            ],
+            questions: [
+                "Welches EBITDA (bereinigt) liegt der Finanzierung zugrunde?",
+                "Wie hoch sind geplante Zins, Tilgung und Laufzeit?",
+                "Welche Sicherheiten und Eigenkapitalquote sind vorgesehen?",
+                "Gibt es KfW- oder sonderprogrammfähige Strukturen?",
+                "Welche Unterlagen fehlen noch für die Kreditentscheidung?"
+            ],
+            redFlags: [
+                "EBITDA ohne Bereinigung von Privatentnahmen / Einmaleffekten.",
+                "Mietvertrag kürzer als geplante Finanzierungslaufzeit.",
+                "Retaxationsquote hoch ohne Rückstellungen.",
+                "Ungeklärte § 75 AO (Steuerhaftung) oder fehlende Steuer-DD."
+            ],
+            closing: [
+                "Kapitaldienst-Rechnung kurz zusammenfassen.",
+                "Fehlende Unterlagen mit Fristen listen.",
+                "Nächsten Bank- oder DD-Termin fixieren."
+            ]
+        },
+        {
+            id: "dd-review",
+            title: "DD-Review",
+            subtitle: "Risiken, Lücken & nächste Schritte",
+            wikiModule: 2,
+            goals: [
+                "DD-Fortschritt und kritische offene Punkte priorisieren.",
+                "Risiken für Kaufpreis, Vertrag oder Abbruch bewerten.",
+                "Verantwortlichkeiten und Fristen für offene Themen klären."
+            ],
+            questions: [
+                "Welche DD-Kategorien sind noch unvollständig (Top 3)?",
+                "Gibt es Deal-Breaker (Erlaubnis, Miete, Retaxation, § 75 AO)?",
+                "Sind Bereinigungen in der BWA dokumentiert und nachvollziehbar?",
+                "Wie wirken sich offene Punkte auf Kaufpreis oder Garantien aus?",
+                "Wer liefert fehlende Unterlagen bis wann?"
+            ],
+            redFlags: [
+                "DD unter 50 % kurz vor Bank- oder Notartermin.",
+                "Steuer-DD oder § 75 AO nicht geprüft.",
+                "Heimverträge / Konkurrenzschutz ungeklärt.",
+                "IT, Abrechnung oder Inventur nicht terminiert."
+            ],
+            closing: [
+                "Offene Punkte nach Risiko sortiert zusammenfassen.",
+                "Kaufpreisanpassung oder Kaufpreisdepot thematisieren falls nötig.",
+                "Nächstes Review-Datum und Verantwortliche festlegen."
+            ]
+        },
+        {
+            id: "price",
+            title: "Preisverhandlung",
+            subtitle: "Ertragswert, Argumentation & Struktur",
+            wikiModule: 5,
+            goals: [
+                "Gemeinsame Bewertungslogik herstellen (EBITDA-Multiple, Substanz).",
+                "Preisabweichungen mit Fakten statt Emotionen diskutieren.",
+                "Strukturoptionen (Earn-out, Depot, Inventur) vorbereiten."
+            ],
+            questions: [
+                "Welches bereinigte EBITDA liegt beiden Seiten zugrunde?",
+                "Welches Multiple / welcher Ertragswert wird erwartet?",
+                "Wie werden Einmaleffekte und Privatentnahmen behandelt?",
+                "Welche Rolle spielen Inventur, Goodwill und Lager?",
+                "Gibt es Spielraum über Struktur statt reinem Kaufpreis?"
+            ],
+            redFlags: [
+                "Verkäufer will nur Substanzwert, Käufer nur Ertragswert – ohne Moderation.",
+                "Keine schriftliche EBITDA-Bereinigung als Verhandlungsbasis.",
+                "Preis ohne Bankindikation oder DD-Abschluss fixiert.",
+                "Earn-out ohne messbare KPIs vereinbart."
+            ],
+            closing: [
+                "Gemeinsame Zahlenbasis schriftlich fixieren.",
+                "Verbleibende Differenz und nächste Verhandlungsrunde definieren.",
+                "Notar / Vertragsentwurf erst nach Einigung auf Kernpunkte."
+            ]
+        }
+    ];
+
+    let currentBriefingId = null;
     const OBJECTIONS = [
         { tag: "Preis", q: "Der Kaufpreis ist zu hoch – ich bekomme das woanders günstiger.", r: "Verständlich. Lassen Sie uns den Ertragswert transparent aufschlüsseln: EBITDA-Multiple, bereinigte BWA, Substanzwert. Der Preis reflektiert den nachhaltigen Kundenstamm und die Standortqualität – nicht nur Inventarwert." },
         { tag: "Preis", q: "Ich will nur den Substanzwert zahlen, kein Goodwill.", r: "Substanzwert deckt nur Sachwerte ab. Der Firmenwert (Goodwill) ist der ökonomische Kern bei Apotheken: Kundenstamm, Standort, Heimverträge, Erlaubnis. Banken finanzieren primär nach Ertragswert – nicht nach Buchwert." },
@@ -2138,7 +2549,9 @@
         speech: '<svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>',
         radar: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><path d="M12 3v4M12 17v4"/></svg>',
         deal: '<svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M9 3h6M9 21h6M12 7v10"/></svg>',
-        briefcase: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>'
+        briefcase: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>',
+        briefing: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>',
+        pipeline: '<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><path d="M7 17V11M12 17V7M17 17v-6"/></svg>'
     };
 
     function injectIcons() {
@@ -2262,6 +2675,479 @@
         "EBITDA, Unternehmerlohn, Rating.",
         "Bewertung, Kaufvertrag, Closing."
     ];
+
+    const MENU_TILE_MOD_ICONS = ["law", "ledger", "location", "chart", "finance", "deal"];
+    const MENU_CATEGORIES = {
+        "cat-lernen": {
+            modes: ["einarbeitung"],
+            icon: "target",
+            defaultTitle: "Lernmodule",
+            defaultDesc: "Lernstand, Quiz-Module, Selbsttest & Radar",
+            defaultItems: ["lernstand", "mod-0", "mod-1", "mod-2", "mod-3", "mod-4", "mod-5", "exam", "radar", "admin"]
+        },
+        "cat-wissen": {
+            modes: ["einarbeitung", "closing"],
+            icon: "wiki",
+            defaultTitle: "Wissensmodule",
+            defaultDesc: "Fachhandbuch & Glossar – zum Nachschlagen",
+            defaultItems: ["wiki", "glossary"]
+        },
+        "cat-arbeit": {
+            modes: ["einarbeitung", "closing"],
+            icon: "briefcase",
+            defaultTitle: "Arbeitsmodule",
+            defaultDesc: "Closing-Tools & Beratung im Alltag",
+            defaultItemsEinarbeitung: ["briefing", "bwa", "pipeline"],
+            defaultItemsClosing: ["deals", "objections", "provision", "briefing", "bwa", "pipeline"]
+        }
+    };
+    const DEFAULT_CAT_ORDER = {
+        einarbeitung: ["cat-lernen", "cat-wissen", "cat-arbeit"],
+        closing: ["cat-arbeit", "cat-wissen"]
+    };
+
+    function buildMenuTileCatalog() {
+        const cat = {
+            lernstand: { modes: ["einarbeitung"], type: "panel", icon: "user", defaultTitle: "Dein Lernstand", defaultDesc: "Name, Fortschritt & Schwächen", tileClass: "" },
+            wiki: { modes: ["einarbeitung", "closing"], action: "wiki", icon: "wiki", defaultTitle: "Fachhandbuch Apothekenübernahme", defaultDesc: "Dein Nachschlagewerk für Beratung, Due Diligence und Übergabe.", cardClass: "wiki-main-card", tileClass: "wiki-tile" },
+            glossary: { modes: ["einarbeitung", "closing"], action: "glossary", icon: "glossary", defaultTitle: "Apotheken- & BWA-Glossar", defaultDesc: "Abkürzungen & Fachbegriffe auf einen Blick.", cardClass: "glossary-card", tileClass: "glossary-tile" },
+            exam: { modes: ["einarbeitung"], action: "exam", icon: "target", defaultTitle: "Selbsttest", defaultDesc: "25 Fragen · max. 3 Fehler erlaubt.", cardClass: "exam-card", tileClass: "exam-tile" },
+            radar: { modes: ["einarbeitung"], action: "radar", icon: "radar", defaultTitle: "Personal Radar", defaultDesc: "Lern-Routine – Focus, Aufgaben & Reflexion." },
+            deals: { modes: ["closing"], action: "deals", icon: "briefcase", defaultTitle: "Mandat-Tracker", defaultDesc: "Anonyme Slots – Phase & DD, keine Namen.", cardClass: "consultant-card", tileClass: "consultant-tile" },
+            objections: { modes: ["closing"], action: "objections", icon: "speech", defaultTitle: "Einwand-Bibliothek", defaultDesc: "Fertige Antworten für Gespräche.", cardClass: "consultant-card", tileClass: "consultant-tile" },
+            provision: { modes: ["closing"], action: "provision", icon: "finance", defaultTitle: "Provision-Rechner", defaultDesc: "Sitzungsrechner – keine Speicherung.", cardClass: "consultant-card", tileClass: "consultant-tile" },
+            briefing: { modes: ["einarbeitung", "closing"], action: "briefing", icon: "briefing", defaultTitle: "Sitzungs-Briefing", defaultDesc: "Ziele, Fragen & Red Flags vor dem Termin.", cardClass: "beratung-card", tileClass: "beratung-tile" },
+            bwa: { modes: ["einarbeitung", "closing"], action: "bwa", icon: "chart", defaultTitle: "BWA-Erklär-Rechner", defaultDesc: "Kennzahlen & Formulierung fürs Gespräch.", cardClass: "beratung-card", tileClass: "beratung-tile" },
+            pipeline: { modes: ["einarbeitung", "closing"], action: "pipeline", icon: "pipeline", defaultTitle: "Deal-Übersicht", defaultDesc: "Alle Slots – Phase & DD-Status.", cardClass: "beratung-card", tileClass: "beratung-tile" },
+            admin: { modes: ["einarbeitung"], action: "admin", icon: "chart", defaultTitle: "Meine Statistik", defaultDesc: "Lernverlauf, Team-Fortschritt & Backup." }
+        };
+        for (let i = 0; i < MODULE_COUNT; i++) {
+            cat["mod-" + i] = {
+                modes: ["einarbeitung"],
+                action: "mod-" + i,
+                icon: MENU_TILE_MOD_ICONS[i],
+                defaultTitle: MODULE_TITLES[i],
+                defaultDesc: MODULE_SUBTITLES[i],
+                moduleIdx: i
+            };
+        }
+        return cat;
+    }
+    const MENU_TILE_CATALOG = buildMenuTileCatalog();
+    let menuEditMode = false;
+
+    function getMenuLayoutUserKey() {
+        const el = document.getElementById("username");
+        const v = el ? el.value.trim() : "";
+        if (v) return normalizeUserKey(v);
+        const saved = localStorage.getItem(STORAGE_LAST_USER) || "";
+        return normalizeUserKey(saved) || "_default";
+    }
+
+    function loadAllMenuLayouts() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_MENU_LAYOUT) || "{}"); }
+        catch (e) { return {}; }
+    }
+
+    function getDefaultItemsForCategory(catId, mode) {
+        const c = MENU_CATEGORIES[catId];
+        if (!c) return [];
+        let ids = catId === "cat-arbeit"
+            ? (mode === "closing" ? c.defaultItemsClosing : c.defaultItemsEinarbeitung)
+            : (c.defaultItems || []);
+        return ids.filter(id => MENU_TILE_CATALOG[id] && MENU_TILE_CATALOG[id].modes.includes(mode));
+    }
+
+    function loadMenuLayoutRaw(mode) {
+        const all = loadAllMenuLayouts();
+        const userKey = getMenuLayoutUserKey();
+        const user = all[userKey] || all._default || {};
+        return user[mode] || null;
+    }
+
+    function saveMenuLayout(mode, layout) {
+        const all = loadAllMenuLayouts();
+        const userKey = getMenuLayoutUserKey();
+        if (!all[userKey]) all[userKey] = {};
+        all[userKey][mode] = layout;
+        localStorage.setItem(STORAGE_MENU_LAYOUT, JSON.stringify(all));
+    }
+
+    function buildDefaultCatLayout(mode) {
+        const catOrder = DEFAULT_CAT_ORDER[mode] || [];
+        const items = {};
+        const categories = catOrder.filter(catId => MENU_CATEGORIES[catId]).map((catId, i) => {
+            const itemOrder = getDefaultItemsForCategory(catId, mode);
+            itemOrder.forEach((id, j) => {
+                items[id] = { hidden: false, customTitle: "", customDesc: "" };
+            });
+            return {
+                id: catId,
+                order: i,
+                collapsed: catId !== (mode === "closing" ? "cat-arbeit" : "cat-lernen"),
+                hidden: false,
+                customTitle: "",
+                customDesc: "",
+                itemOrder: itemOrder.slice()
+            };
+        });
+        return { v: 2, categories, items };
+    }
+
+    function migrateLayoutV1ToV2(oldLayout, mode) {
+        const items = {};
+        (oldLayout || []).forEach(x => {
+            if (x.id) items[x.id] = { hidden: !!x.hidden, customTitle: x.customTitle || "", customDesc: x.customDesc || "" };
+        });
+        const layout = buildDefaultCatLayout(mode);
+        layout.items = { ...layout.items, ...items };
+        if (mode === "einarbeitung" && localStorage.getItem(STORAGE_MENU_STATUS_COLLAPSED) === "1") {
+            const lern = layout.categories.find(c => c.id === "cat-lernen");
+            if (lern) lern.collapsed = true;
+            localStorage.removeItem(STORAGE_MENU_STATUS_COLLAPSED);
+        }
+        return layout;
+    }
+
+    function mergeCatLayoutWithDefaults(saved, mode) {
+        const base = buildDefaultCatLayout(mode);
+        if (!saved || saved.v !== 2) return base;
+        const savedCats = {};
+        (saved.categories || []).forEach((c, i) => { savedCats[c.id] = { ...c, order: c.order ?? i }; });
+        const categories = base.categories.map((bc, i) => {
+            const sc = savedCats[bc.id];
+            if (!sc) return bc;
+            const defaultOrder = bc.itemOrder;
+            const savedOrder = (sc.itemOrder || []).filter(id => defaultOrder.includes(id));
+            const itemOrder = savedOrder.concat(defaultOrder.filter(id => !savedOrder.includes(id)));
+            return {
+                id: bc.id,
+                order: sc.order ?? i,
+                collapsed: !!sc.collapsed,
+                hidden: !!sc.hidden,
+                customTitle: sc.customTitle || "",
+                customDesc: sc.customDesc || "",
+                itemOrder
+            };
+        });
+        categories.sort((a, b) => a.order - b.order);
+        categories.forEach((c, i) => { c.order = i; });
+        const items = { ...base.items };
+        Object.keys(saved.items || {}).forEach(id => {
+            if (items[id]) items[id] = { ...items[id], ...saved.items[id] };
+        });
+        return { v: 2, categories, items };
+    }
+
+    function loadMenuLayout(mode) {
+        const raw = loadMenuLayoutRaw(mode);
+        if (Array.isArray(raw)) return migrateLayoutV1ToV2(raw, mode);
+        return mergeCatLayoutWithDefaults(raw, mode);
+    }
+
+    function getMenuCategoryTitle(cat) {
+        const def = MENU_CATEGORIES[cat.id];
+        return (cat.customTitle || "").trim() || (def ? def.defaultTitle : cat.id);
+    }
+
+    function getMenuCategoryDesc(cat) {
+        const def = MENU_CATEGORIES[cat.id];
+        return (cat.customDesc || "").trim() || (def ? def.defaultDesc : "");
+    }
+
+    function getMenuItemTitle(id, meta) {
+        const cat = MENU_TILE_CATALOG[id];
+        return ((meta && meta.customTitle) || "").trim() || (cat ? cat.defaultTitle : id);
+    }
+
+    function getMenuItemDesc(id, meta) {
+        const cat = MENU_TILE_CATALOG[id];
+        return ((meta && meta.customDesc) || "").trim() || (cat ? cat.defaultDesc : "");
+    }
+
+    function renderLernstandTileBody() {
+        return `
+            <div class="menu-status-inner">
+                <div class="input-group">
+                    <label class="input-label" for="username"><span class="label-icon" data-icon="user"></span>Dein Name</label>
+                    <input type="text" id="username" class="input-field" placeholder="Kürzel – nur lokal auf diesem Gerät" autocomplete="name">
+                </div>
+                <div id="progress-panel" class="progress-panel">
+                    <div class="progress-panel-title">DEIN LERNFORTSCHRITT</div>
+                    <div class="progress-overall" id="progress-overall-text">0 / 6 Module geschafft</div>
+                    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-overall-bar"></div></div>
+                    <p class="progress-hint" id="progress-hint">Modul gilt ab 70 % als geschafft · Selbsttest separat</p>
+                </div>
+                <div id="weakness-panel" class="weakness-panel">
+                    <div class="progress-panel-title">DEINE SCHWACHSTELLEN</div>
+                    <div id="weakness-list"></div>
+                    <button type="button" class="btn-weakness" id="btn-weakness-train" onclick="prepWeaknessGame()" style="display:none;">Schwächen üben (max. 15 Fragen)</button>
+                    <button type="button" class="weakness-mastered-toggle" id="btn-weakness-mastered-toggle" onclick="toggleMasteredWeaknessList()" style="display:none;"></button>
+                    <button type="button" class="weakness-mastered-toggle" id="btn-weakness-reset-mastered" onclick="resetAllMasteredWeaknesses()" style="display:none;">Alle erledigten zurücksetzen</button>
+                </div>
+            </div>`;
+    }
+
+    function renderMenuItemCard(id, meta) {
+        const cat = MENU_TILE_CATALOG[id];
+        if (!cat) return "";
+        const title = getMenuItemTitle(id, meta);
+        const desc = getMenuItemDesc(id, meta);
+        if (id === "admin") {
+            return `<button type="button" class="btn-main primary menu-tile-open-btn" onclick="runMenuTileAction('admin')">Statistik öffnen</button>`;
+        }
+        const cardClass = cat.cardClass || "";
+        const cardId = id.startsWith("mod-") ? ` id="menu-mod-${cat.moduleIdx}"` : (id === "exam" ? ' id="menu-exam"' : "");
+        let badge = "";
+        let subId = "";
+        if (id.startsWith("mod-")) {
+            badge = `<span class="mod-badge open" id="badge-mod-${cat.moduleIdx}"></span>`;
+            subId = ` id="sub-mod-${cat.moduleIdx}"`;
+        } else if (id === "exam") {
+            badge = `<span class="mod-badge open" id="badge-exam"></span>`;
+            subId = ' id="sub-exam"';
+        }
+        const editRow = menuEditMode ? `
+            <div class="menu-item-edit-row">
+                <button type="button" class="menu-item-ctrl" title="Nach oben" onclick="moveMenuItem('${id}', -1)">↑</button>
+                <button type="button" class="menu-item-ctrl" title="Nach unten" onclick="moveMenuItem('${id}', 1)">↓</button>
+                <button type="button" class="menu-item-ctrl" title="Text anpassen" onclick="editMenuItemMeta('${id}')">✎</button>
+                <button type="button" class="menu-item-ctrl${meta.hidden ? "" : " danger"}" title="${meta.hidden ? "Einblenden" : "Ausblenden"}" onclick="toggleMenuItemHidden('${id}')">${meta.hidden ? "👁" : "🚫"}</button>
+            </div>` : "";
+        const hiddenCls = meta.hidden && menuEditMode ? " menu-item-hidden-draft" : "";
+        return `${editRow}
+            <div class="menu-card ${cardClass}${hiddenCls}"${cardId} onclick="runMenuTileAction('${id}')">
+                <div class="menu-card-icon" data-icon="${cat.icon}"></div>
+                <div><h3>${escapeHtml(title)} ${badge}</h3><p${subId}>${escapeHtml(desc)}</p></div>
+            </div>`;
+    }
+
+    function renderMenuCategoryItems(catLayout, layout) {
+        const visibleIds = (catLayout.itemOrder || []).filter(id => {
+            const meta = layout.items[id];
+            if (!meta) return false;
+            return !meta.hidden || menuEditMode;
+        });
+        let html = "";
+        visibleIds.forEach(id => {
+            const meta = layout.items[id] || { hidden: false, customTitle: "", customDesc: "" };
+            if (id === "lernstand") {
+                html += `<div class="menu-cat-panel${meta.hidden && menuEditMode ? " menu-item-hidden-draft" : ""}">`;
+                if (menuEditMode) {
+                    html += `<div class="menu-item-edit-row">
+                        <button type="button" class="menu-item-ctrl" title="Nach oben" onclick="moveMenuItem('lernstand', -1)">↑</button>
+                        <button type="button" class="menu-item-ctrl" title="Nach unten" onclick="moveMenuItem('lernstand', 1)">↓</button>
+                        <button type="button" class="menu-item-ctrl danger" title="Ausblenden" onclick="toggleMenuItemHidden('lernstand')">🚫</button>
+                    </div>`;
+                }
+                html += renderLernstandTileBody() + `</div>`;
+            } else {
+                html += renderMenuItemCard(id, meta);
+            }
+        });
+        return `<div class="menu-cat-items">${html}</div>`;
+    }
+
+    function renderMenuCategoryHTML(catLayout, layout) {
+        const def = MENU_CATEGORIES[catLayout.id];
+        if (!def) return "";
+        const title = getMenuCategoryTitle(catLayout);
+        const desc = getMenuCategoryDesc(catLayout);
+        const visibleCount = (catLayout.itemOrder || []).filter(id => !(layout.items[id] && layout.items[id].hidden)).length;
+        const hiddenDraft = catLayout.hidden && menuEditMode;
+        const collapsed = catLayout.collapsed && !menuEditMode;
+        const summaryBadge = catLayout.id === "cat-lernen"
+            ? `<span class="menu-status-summary" id="menu-status-summary"></span>` : "";
+        const hiddenLabel = catLayout.hidden ? " (ausgeblendet)" : "";
+        return `
+            <div class="menu-cat ${catLayout.id}${hiddenDraft ? " menu-cat-hidden-draft" : ""}${collapsed ? " collapsed" : ""}" id="menu-cat-${catLayout.id}" data-cat-id="${catLayout.id}">
+                <div class="menu-cat-head" onclick="onMenuCategoryHeadClick('${catLayout.id}', event)">
+                    <div class="menu-cat-icon" data-icon="${def.icon}"></div>
+                    <div class="menu-cat-text">
+                        <div class="menu-cat-title">${escapeHtml(title)}${hiddenLabel} <span class="menu-cat-count">${visibleCount}</span> ${summaryBadge}</div>
+                        <p class="menu-cat-desc">${escapeHtml(desc)}</p>
+                    </div>
+                    <span class="menu-cat-chevron">▼</span>
+                    <div class="menu-cat-controls">
+                        <button type="button" class="menu-cat-ctrl" title="Nach oben" onclick="event.stopPropagation(); moveMenuCategory('${catLayout.id}', -1)">↑</button>
+                        <button type="button" class="menu-cat-ctrl" title="Nach unten" onclick="event.stopPropagation(); moveMenuCategory('${catLayout.id}', 1)">↓</button>
+                        <button type="button" class="menu-cat-ctrl" title="Kategorie-Text" onclick="event.stopPropagation(); editMenuCategoryMeta('${catLayout.id}')">✎</button>
+                        <button type="button" class="menu-cat-ctrl${catLayout.hidden ? "" : " danger"}" title="${catLayout.hidden ? "Einblenden" : "Ausblenden"}" onclick="event.stopPropagation(); toggleMenuCategoryHidden('${catLayout.id}')">${catLayout.hidden ? "👁" : "🚫"}</button>
+                    </div>
+                </div>
+                <div class="menu-cat-body">
+                    ${renderMenuCategoryItems(catLayout, layout)}
+                </div>
+            </div>`;
+    }
+
+    function renderMenuTiles() {
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        saveMenuLayout(mode, layout);
+        const root = document.getElementById("menu-tiles-root");
+        if (!root) return;
+        const savedName = localStorage.getItem(STORAGE_LAST_USER) || "";
+        const cats = layout.categories.filter(c => !c.hidden || menuEditMode);
+        root.innerHTML = cats.map(c => renderMenuCategoryHTML(c, layout)).join("");
+        injectIcons();
+        const nameInput = document.getElementById("username");
+        if (nameInput && savedName && !nameInput.value) nameInput.value = savedName;
+        if (nameInput && !nameInput._tileBound) {
+            nameInput._tileBound = true;
+            nameInput.addEventListener("input", () => refreshMenuProgress());
+            nameInput.addEventListener("change", () => {
+                localStorage.setItem(STORAGE_LAST_USER, nameInput.value.trim());
+                renderMenuTiles();
+            });
+        }
+        refreshMenuProgress();
+        updateMenuJumpNav();
+    }
+
+    function onMenuCategoryHeadClick(catId, event) {
+        if (menuEditMode) return;
+        if (event.target.closest(".menu-cat-controls")) return;
+        toggleMenuCategory(catId);
+    }
+
+    function toggleMenuCategory(catId) {
+        if (menuEditMode) return;
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const cat = layout.categories.find(x => x.id === catId);
+        if (!cat) return;
+        cat.collapsed = !cat.collapsed;
+        saveMenuLayout(mode, layout);
+        const el = document.getElementById("menu-cat-" + catId);
+        if (el) el.classList.toggle("collapsed", cat.collapsed);
+    }
+
+    function toggleMenuEditMode() {
+        menuEditMode = !menuEditMode;
+        document.body.classList.toggle("menu-edit-mode", menuEditMode);
+        const btn = document.getElementById("btn-menu-edit");
+        const reset = document.getElementById("btn-menu-reset");
+        const hint = document.getElementById("menu-tiles-hint");
+        if (btn) btn.textContent = menuEditMode ? "✓ Fertig" : "⚙️ Kacheln anpassen";
+        if (reset) reset.style.display = menuEditMode ? "" : "none";
+        if (hint) hint.style.display = menuEditMode ? "" : "none";
+        renderMenuTiles();
+    }
+
+    function moveMenuCategory(catId, dir) {
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const idx = layout.categories.findIndex(x => x.id === catId);
+        const swap = idx + dir;
+        if (idx < 0 || swap < 0 || swap >= layout.categories.length) return;
+        const tmp = layout.categories[idx].order;
+        layout.categories[idx].order = layout.categories[swap].order;
+        layout.categories[swap].order = tmp;
+        layout.categories.sort((a, b) => a.order - b.order);
+        layout.categories.forEach((c, i) => { c.order = i; });
+        saveMenuLayout(mode, layout);
+        renderMenuTiles();
+    }
+
+    function findCategoryForItem(layout, itemId) {
+        return layout.categories.find(c => (c.itemOrder || []).includes(itemId));
+    }
+
+    function moveMenuItem(itemId, dir) {
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const cat = findCategoryForItem(layout, itemId);
+        if (!cat || !cat.itemOrder) return;
+        const idx = cat.itemOrder.indexOf(itemId);
+        const swap = idx + dir;
+        if (idx < 0 || swap < 0 || swap >= cat.itemOrder.length) return;
+        const tmp = cat.itemOrder[idx];
+        cat.itemOrder[idx] = cat.itemOrder[swap];
+        cat.itemOrder[swap] = tmp;
+        saveMenuLayout(mode, layout);
+        renderMenuTiles();
+    }
+
+    function toggleMenuCategoryHidden(catId) {
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const cat = layout.categories.find(x => x.id === catId);
+        if (!cat) return;
+        cat.hidden = !cat.hidden;
+        saveMenuLayout(mode, layout);
+        renderMenuTiles();
+    }
+
+    function toggleMenuItemHidden(itemId) {
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        if (!layout.items[itemId]) layout.items[itemId] = { hidden: false, customTitle: "", customDesc: "" };
+        layout.items[itemId].hidden = !layout.items[itemId].hidden;
+        saveMenuLayout(mode, layout);
+        renderMenuTiles();
+    }
+
+    function editMenuCategoryMeta(catId) {
+        if (!menuEditMode) return;
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const cat = layout.categories.find(x => x.id === catId);
+        const def = MENU_CATEGORIES[catId];
+        if (!cat || !def) return;
+        const title = prompt("Kategorie-Titel:", cat.customTitle || def.defaultTitle);
+        if (title === null) return;
+        const desc = prompt("Kategorie-Beschreibung:", cat.customDesc || def.defaultDesc);
+        if (desc === null) return;
+        cat.customTitle = title.trim();
+        cat.customDesc = desc.trim();
+        saveMenuLayout(mode, layout);
+        renderMenuTiles();
+    }
+
+    function editMenuItemMeta(itemId) {
+        if (!menuEditMode) return;
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const meta = layout.items[itemId] || { hidden: false, customTitle: "", customDesc: "" };
+        const def = MENU_TILE_CATALOG[itemId];
+        if (!def) return;
+        const title = prompt("Titel:", meta.customTitle || def.defaultTitle);
+        if (title === null) return;
+        const desc = prompt("Beschreibung:", meta.customDesc || def.defaultDesc);
+        if (desc === null) return;
+        layout.items[itemId] = meta;
+        meta.customTitle = title.trim();
+        meta.customDesc = desc.trim();
+        saveMenuLayout(mode, layout);
+        renderMenuTiles();
+    }
+
+    function resetMenuLayout() {
+        if (!confirm("Kachel-Anordnung für diesen Benutzer und Modus zurücksetzen?")) return;
+        const mode = getAppMode();
+        const all = loadAllMenuLayouts();
+        const userKey = getMenuLayoutUserKey();
+        if (all[userKey]) delete all[userKey][mode];
+        localStorage.setItem(STORAGE_MENU_LAYOUT, JSON.stringify(all));
+        renderMenuTiles();
+    }
+
+    function runMenuTileAction(id) {
+        if (menuEditMode) return;
+        if (id === "wiki") showWiki();
+        else if (id === "glossary") showGlossary();
+        else if (id === "exam") prepGame("exam");
+        else if (id === "radar") showRadar();
+        else if (id === "deals") showDeals();
+        else if (id === "objections") showObjections();
+        else if (id === "provision") showProvision();
+        else if (id === "briefing") showBriefing();
+        else if (id === "bwa") showBwaTool();
+        else if (id === "pipeline") showPipeline();
+        else if (id === "admin") showAdmin();
+        else if (id.startsWith("mod-")) prepGame(parseInt(id.split("-")[1], 10));
+    }
 
     function normalizeUserKey(name) {
         return (name || "").trim().toLowerCase();
@@ -2751,20 +3637,29 @@
     }
 
     function refreshMenuProgress() {
-        const displayName = document.getElementById("username").value.trim();
+        const usernameEl = document.getElementById("username");
+        const displayName = usernameEl ? usernameEl.value.trim() : "";
         const panel = document.getElementById("progress-panel");
         if (!displayName) {
-            panel.classList.remove("visible");
+            if (panel) panel.classList.remove("visible");
             for (let i = 0; i < MODULE_COUNT; i++) {
-                document.getElementById("badge-mod-" + i).innerText = "";
-                document.getElementById("badge-mod-" + i).className = "mod-badge open";
-                document.getElementById("sub-mod-" + i).innerText = MODULE_SUBTITLES[i];
-                document.getElementById("menu-mod-" + i).classList.remove("module-done");
+                const badge = document.getElementById("badge-mod-" + i);
+                const card = document.getElementById("menu-mod-" + i);
+                const sub = document.getElementById("sub-mod-" + i);
+                if (badge) { badge.innerText = ""; badge.className = "mod-badge open"; }
+                if (sub) sub.innerText = MODULE_SUBTITLES[i];
+                if (card) card.classList.remove("module-done");
             }
-            document.getElementById("badge-exam").innerText = "";
-            document.getElementById("sub-exam").innerText = "25 Fragen · max. 3 Fehler erlaubt.";
+            const examBadge = document.getElementById("badge-exam");
+            const subExam = document.getElementById("sub-exam");
+            if (examBadge) { examBadge.innerText = ""; examBadge.className = "mod-badge open"; }
+            if (subExam) subExam.innerText = "25 Fragen · max. 3 Fehler erlaubt.";
+            const menuExam = document.getElementById("menu-exam");
+            if (menuExam) menuExam.classList.remove("module-done");
             refreshWeaknessPanel();
             refreshKnowledgeQuickPanel();
+            updateMenuStatusSummary();
+            updateMenuQuickActions();
             return;
         }
 
@@ -2772,7 +3667,7 @@
         const weakCount = getUserWeaknesses(displayName, 1).length;
         const examWeakHint = weakCount ? " · bis zu 15 Fragen aus deinen Schwächen" : "";
         const modulesPassed = p.modules.filter(Boolean).length;
-        panel.classList.add("visible");
+        if (panel) panel.classList.add("visible");
         document.getElementById("progress-overall-text").innerText =
             modulesPassed + " / " + MODULE_COUNT + " Module geschafft" + (p.examPassed ? " · Selbsttest ✅" : "");
         document.getElementById("progress-overall-bar").style.width = (modulesPassed / MODULE_COUNT * 100) + "%";
@@ -2784,37 +3679,142 @@
             const badge = document.getElementById("badge-mod-" + i);
             const card = document.getElementById("menu-mod-" + i);
             const sub = document.getElementById("sub-mod-" + i);
+            if (!badge) continue;
             if (p.modules[i]) {
                 badge.innerText = "✅";
                 badge.className = "mod-badge done";
-                card.classList.add("module-done");
-                sub.innerText = "Geschafft · Bester Lauf: " + (p.modulesBest[i] || 0) + " %";
+                if (card) card.classList.add("module-done");
+                if (sub) sub.innerText = "Geschafft · Bester Lauf: " + (p.modulesBest[i] || 0) + " %";
             } else {
                 badge.innerText = p.modulesBest[i] ? p.modulesBest[i] + "%" : "—";
                 badge.className = "mod-badge open";
-                card.classList.remove("module-done");
-                sub.innerText = p.modulesBest[i]
+                if (card) card.classList.remove("module-done");
+                if (sub) sub.innerText = p.modulesBest[i]
                     ? "Noch nicht geschafft (ab " + MODULE_PASS_PERCENT + " % nötig) · Bisher: " + p.modulesBest[i] + " %"
                     : MODULE_SUBTITLES[i];
             }
         }
 
         const examBadge = document.getElementById("badge-exam");
-        if (p.examPassed) {
-            examBadge.innerText = "✅";
-            examBadge.className = "mod-badge done";
-            document.getElementById("sub-exam").innerText = "Selbsttest geschafft.";
-            document.getElementById("menu-exam").classList.add("module-done");
-        } else {
-            examBadge.innerText = modulesPassed >= MODULE_COUNT ? "!" : "—";
-            examBadge.className = "mod-badge open";
-            document.getElementById("menu-exam").classList.remove("module-done");
-            document.getElementById("sub-exam").innerText = modulesPassed >= MODULE_COUNT
-                ? "Alle Module geschafft – Selbsttest starten" + examWeakHint + "."
-                : "25 Fragen · max. 3 Fehler (" + modulesPassed + "/" + MODULE_COUNT + " Module)" + examWeakHint + ".";
+        const menuExam = document.getElementById("menu-exam");
+        const subExam = document.getElementById("sub-exam");
+        if (examBadge) {
+            if (p.examPassed) {
+                examBadge.innerText = "✅";
+                examBadge.className = "mod-badge done";
+                if (subExam) subExam.innerText = "Selbsttest geschafft.";
+                if (menuExam) menuExam.classList.add("module-done");
+            } else {
+                examBadge.innerText = modulesPassed >= MODULE_COUNT ? "!" : "—";
+                examBadge.className = "mod-badge open";
+                if (menuExam) menuExam.classList.remove("module-done");
+                if (subExam) subExam.innerText = modulesPassed >= MODULE_COUNT
+                    ? "Alle Module geschafft – Selbsttest starten" + examWeakHint + "."
+                    : "25 Fragen · max. 3 Fehler (" + modulesPassed + "/" + MODULE_COUNT + " Module)" + examWeakHint + ".";
+            }
         }
         refreshWeaknessPanel();
         refreshKnowledgeQuickPanel();
+        updateMenuStatusSummary();
+        updateMenuQuickActions();
+    }
+
+    function updateMenuStatusSummary() {
+        const el = document.getElementById("menu-status-summary");
+        if (!el) return;
+        const usernameEl = document.getElementById("username");
+        const name = usernameEl ? usernameEl.value.trim() : "";
+        if (!name) {
+            el.textContent = "Name eingeben";
+            return;
+        }
+        const p = getUserProgress(name);
+        const passed = p.modules.filter(Boolean).length;
+        const weak = getUserWeaknesses(name, 1).length;
+        let txt = passed + "/" + MODULE_COUNT + " Module";
+        if (p.examPassed) txt += " · Test ✅";
+        else if (passed >= MODULE_COUNT) txt += " · Test offen";
+        if (weak) txt += " · " + weak + " Schwächen";
+        el.textContent = txt;
+    }
+
+    function getNextLearningActionKey() {
+        const usernameEl = document.getElementById("username");
+        const name = usernameEl ? usernameEl.value.trim() : "";
+        if (!name) return { key: "mod-0", icon: "🎯", label: "Modul 1", primary: true };
+        const p = getUserProgress(name);
+        for (let i = 0; i < MODULE_COUNT; i++) {
+            if (!p.modules[i]) {
+                return { key: "mod-" + i, icon: "🎯", label: "Modul " + (i + 1), primary: true };
+            }
+        }
+        if (!p.examPassed) {
+            return { key: "exam", icon: "✅", label: "Selbsttest", primary: true };
+        }
+        const weak = getUserWeaknesses(name, 1).length;
+        if (weak) {
+            return { key: "weakness", icon: "🔁", label: "Schwächen", primary: true };
+        }
+        return { key: "wiki", icon: "📖", label: "Handbuch", primary: false };
+    }
+
+    function runMenuQuickAction(key) {
+        if (key === "deals") showDeals();
+        else if (key === "briefing") showBriefing();
+        else if (key === "pipeline") showPipeline();
+        else if (key === "wiki") showWiki();
+        else if (key === "glossary") showGlossary();
+        else if (key === "exam") prepGame("exam");
+        else if (key === "weakness") prepWeaknessGame();
+        else if (key.startsWith("mod-")) prepGame(parseInt(key.split("-")[1], 10));
+    }
+
+    function updateMenuQuickActions() {
+        const el = document.getElementById("menu-quick-actions");
+        if (!el) return;
+        const mode = getAppMode();
+        let items;
+        if (mode === "closing") {
+            items = [
+                { key: "deals", icon: "💼", label: "Mandate", primary: true },
+                { key: "briefing", icon: "📋", label: "Briefing", primary: false },
+                { key: "pipeline", icon: "📊", label: "Pipeline", primary: false }
+            ];
+        } else {
+            const next = getNextLearningActionKey();
+            items = [
+                next,
+                { key: "wiki", icon: "📖", label: "Handbuch", primary: false },
+                { key: "glossary", icon: "📗", label: "Glossar", primary: false }
+            ];
+        }
+        el.innerHTML = items.map(it => `
+            <button type="button" class="menu-quick-btn${it.primary ? " primary" : ""}" onclick="runMenuQuickAction('${it.key}')">
+                <span class="menu-quick-icon">${it.icon}</span>
+                <span class="menu-quick-label">${escapeHtml(it.label)}</span>
+            </button>
+        `).join("");
+    }
+
+    function updateMenuJumpNav() {
+        const el = document.getElementById("menu-jump-nav");
+        if (!el) return;
+        const mode = getAppMode();
+        const layout = loadMenuLayout(mode);
+        const cats = layout.categories.filter(c => !c.hidden);
+        el.innerHTML = cats.map(cat => {
+            const title = getMenuCategoryTitle(cat);
+            return `<button type="button" class="menu-jump-chip" onclick="scrollToMenuCategory('${cat.id}')">${escapeHtml(title)}</button>`;
+        }).join("");
+    }
+
+    function scrollToMenuCategory(catId) {
+        const target = document.getElementById("menu-cat-" + catId);
+        if (!target) return;
+        if (target.classList.contains("collapsed")) {
+            toggleMenuCategory(catId);
+        }
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function isExam() { return activeModulIdx === 'exam'; }
@@ -2838,7 +3838,7 @@
         }
     }
 
-    const VIEW_IDS = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-objections", "view-provision", "view-radar", "view-deals", "view-deal"];
+    const VIEW_IDS = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-objections", "view-provision", "view-radar", "view-deals", "view-deal", "view-briefing", "view-bwa-tool", "view-pipeline"];
     let currentViewId = "view-menu";
 
     function getAppMode() {
@@ -2856,6 +3856,7 @@
             return;
         }
         if (currentViewId === "view-provision" && viewId !== "view-provision") clearProvisionSession();
+        if (currentViewId === "view-bwa-tool" && viewId !== "view-bwa-tool") clearBwaSession();
         VIEW_IDS.forEach(id => {
             const el = document.getElementById(id);
             el.classList.remove("view-active");
@@ -2878,9 +3879,10 @@
         clearInterval(timerInterval);
         closeGlobalSearchResults();
         showView("view-menu");
-        refreshMenuProgress();
+        renderMenuTiles();
         maybeShowInstallBanner();
         updateModeUI();
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function hideAll() {
@@ -3759,17 +4761,23 @@
         const heroBadge = document.getElementById("hero-badge");
         const heroTitle = document.getElementById("hero-title");
         const heroSub = document.getElementById("hero-sub");
+        const modeHint = document.getElementById("mode-hint");
         if (mode === "closing") {
             heroBadge.textContent = "Consultant · Closing";
             heroTitle.textContent = "Apotheken-Guro";
             heroSub.textContent = "Closing-Tools für den Einsatz – ohne Mandatsdaten in der App.";
-            banner.innerHTML = "<strong>Closing-Modus</strong> Einwand-Bibliothek, DD-Checkliste (Risikoprüfung), Rechner. Keine Kundennamen oder Umsätze – arbeitsrelevante Details extern führen.";
+            banner.innerHTML = "<strong>Closing-Modus</strong> Mandate &amp; Tools oben · Beratung darunter · keine Kundendaten.";
+            if (modeHint) modeHint.textContent = "Arbeitsmodus — Mandate, Einwände, Pipeline";
         } else {
             heroBadge.textContent = "Apotheke · Übernahme";
             heroTitle.textContent = "Apotheken-Guro";
             heroSub.textContent = "Lern-Trainer für Apothekenübernahmen – Fachhandbuch, Quiz und Glossar in deinem Tempo.";
-            banner.innerHTML = "<strong>Einarbeitungs-Modus</strong> Lernen, üben, nachschlagen. Kein Closing-Tool – Fokus auf Wissensaufbau.";
+            banner.innerHTML = "<strong>Einarbeitungs-Modus</strong> Lernen zuerst · Beratung separat darunter.";
+            if (modeHint) modeHint.textContent = "Lernmodus — Handbuch, Module, Selbsttest";
         }
+        updateMenuQuickActions();
+        updateMenuJumpNav();
+        renderMenuTiles();
     }
 
     function setAppMode(mode) {
@@ -3802,6 +4810,273 @@
         loadRadarUI();
         showView("view-radar");
     }
+
+    // ═══ Beratung im Alltag ═══
+    function showBriefing() {
+        currentBriefingId = null;
+        document.getElementById("briefing-picker").style.display = "";
+        document.getElementById("briefing-detail").style.display = "none";
+        renderBriefingScenarios();
+        showView("view-briefing");
+    }
+
+    function renderBriefingScenarios() {
+        const el = document.getElementById("briefing-scenarios");
+        el.innerHTML = BRIEFING_SCENARIOS.map(s => `
+            <button type="button" class="briefing-scenario" onclick="openBriefingScenario('${s.id}')">
+                <h4>${escapeHtml(s.title)}</h4>
+                <p>${escapeHtml(s.subtitle)}</p>
+            </button>
+        `).join("");
+    }
+
+    function openBriefingScenario(id) {
+        const s = BRIEFING_SCENARIOS.find(x => x.id === id);
+        if (!s) return;
+        currentBriefingId = id;
+        document.getElementById("briefing-picker").style.display = "none";
+        document.getElementById("briefing-detail").style.display = "";
+        document.getElementById("briefing-doc").innerHTML = renderBriefingDoc(s);
+        const wikiBtn = document.getElementById("briefing-wiki-btn");
+        if (wikiBtn) wikiBtn.style.display = s.wikiModule != null ? "" : "none";
+    }
+
+    function renderBriefingDoc(s) {
+        const block = (title, items) => `
+            <div class="briefing-block">
+                <div class="briefing-block-title">${escapeHtml(title)}</div>
+                <ul>${items.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>
+            </div>`;
+        return `
+            <h3>${escapeHtml(s.title)}</h3>
+            <p style="margin:0 0 14px;font-size:13px;color:var(--text-muted);">${escapeHtml(s.subtitle)}</p>
+            ${block("Gesprächsziele", s.goals)}
+            ${block("Pflichtfragen", s.questions)}
+            ${block("Red Flags", s.redFlags)}
+            ${block("Abschluss & nächste Schritte", s.closing)}
+        `;
+    }
+
+    function getBriefingPlainText() {
+        const s = BRIEFING_SCENARIOS.find(x => x.id === currentBriefingId);
+        if (!s) return "";
+        const section = (title, items) => title + "\n" + items.map(i => "• " + i).join("\n") + "\n\n";
+        return [
+            "Apotheken-Guro · Sitzungs-Briefing",
+            s.title + " – " + s.subtitle,
+            "",
+            section("Gesprächsziele", s.goals),
+            section("Pflichtfragen", s.questions),
+            section("Red Flags", s.redFlags),
+            section("Abschluss & nächste Schritte", s.closing)
+        ].join("\n").trim();
+    }
+
+    function closeBriefingDetail() {
+        currentBriefingId = null;
+        document.getElementById("briefing-picker").style.display = "";
+        document.getElementById("briefing-detail").style.display = "none";
+    }
+
+    function copyBriefingText() {
+        const text = getBriefingPlainText();
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => alert("Briefing in die Zwischenablage kopiert.")).catch(() => fallbackCopy(text));
+        } else {
+            fallbackCopy(text);
+        }
+    }
+
+    function fallbackCopy(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand("copy");
+            alert("Briefing in die Zwischenablage kopiert.");
+        } catch (e) {
+            alert("Kopieren nicht möglich – Text manuell markieren.");
+        }
+        document.body.removeChild(ta);
+    }
+
+    function printBriefing() {
+        const s = BRIEFING_SCENARIOS.find(x => x.id === currentBriefingId);
+        if (!s) return;
+        const w = window.open("", "_blank");
+        if (!w) { alert("Pop-up blockiert – bitte erlauben oder Text kopieren."); return; }
+        w.document.write(`<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Briefing – ${escapeHtml(s.title)}</title>
+            <style>body{font-family:Segoe UI,sans-serif;padding:24px;max-width:720px;margin:0 auto;line-height:1.5;color:#111}
+            h1{font-size:20px;margin:0 0 4px}p.sub{color:#555;font-size:13px;margin:0 0 20px}h2{font-size:14px;margin:18px 0 8px;text-transform:uppercase;letter-spacing:.04em;color:#333}
+            ul{margin:0;padding-left:20px}li{margin-bottom:6px;font-size:13px}.foot{margin-top:24px;font-size:11px;color:#888}</style></head><body>
+            <h1>${escapeHtml(s.title)}</h1><p class="sub">${escapeHtml(s.subtitle)}</p>
+            ${renderBriefingDoc(s).replace(/class="briefing-block-title"/g, 'style="font-weight:700;margin-bottom:6px"').replace(/class="briefing-block"/g, "").replace(/<h3[^>]*>.*?<\/h3>/, "").replace(/<p style="margin:0 0 14px[^"]*"[^>]*>.*?<\/p>/, "")}
+            <p class="foot">Apotheken-Guro · Sitzungs-Briefing · ${new Date().toLocaleDateString("de-DE")}</p></body></html>`);
+        w.document.close();
+        w.focus();
+        setTimeout(() => w.print(), 300);
+    }
+
+    function openBriefingWiki() {
+        const s = BRIEFING_SCENARIOS.find(x => x.id === currentBriefingId);
+        if (!s || s.wikiModule == null) return;
+        openWikiForModule(s.wikiModule, false);
+    }
+
+    function clearBwaTool() {
+        document.getElementById("bwa-umsatz").value = "";
+        document.getElementById("bwa-we").value = "";
+        document.getElementById("bwa-personal").value = "";
+        document.getElementById("bwa-ebitda-adj").value = "";
+        document.getElementById("bwa-result").style.display = "none";
+    }
+
+    function clearBwaSession() {
+        clearBwaTool();
+    }
+
+    function showBwaTool() {
+        clearBwaTool();
+        showView("view-bwa-tool");
+    }
+
+    function calcBwaExplain() {
+        const umsatz = parseFloat(document.getElementById("bwa-umsatz").value) || 0;
+        const we = parseFloat(document.getElementById("bwa-we").value) || 0;
+        const personal = parseFloat(document.getElementById("bwa-personal").value) || 0;
+        const adj = parseFloat(document.getElementById("bwa-ebitda-adj").value) || 0;
+        const resultEl = document.getElementById("bwa-result");
+        if (!umsatz || umsatz <= 0) {
+            resultEl.style.display = "none";
+            return;
+        }
+        const rohertrag = umsatz - we;
+        const rohQuote = umsatz ? (rohertrag / umsatz * 100) : 0;
+        const ebitdaBase = rohertrag - personal;
+        const ebitda = ebitdaBase + adj;
+        const ebitdaQuote = umsatz ? (ebitda / umsatz * 100) : 0;
+        const weQuote = umsatz ? (we / umsatz * 100) : 0;
+        const persQuote = umsatz && personal ? (personal / umsatz * 100) : null;
+
+        let talk = "";
+        if (rohQuote < 18) {
+            talk = "Die Rohertragsquote liegt unter dem typischen Apotheken-Band (ca. 18–22 %). Das kann an Rx-Anteil, Skonti oder Sortiment liegen – in der DD genauer segmentieren (Rx/OTC, GKV/PKV).";
+        } else if (rohQuote > 24) {
+            talk = "Die Rohertragsquote ist überdurchschnittlich – prüfen, ob Skonti, Hochpreiser oder Einmaleffekte die Quote verzerren. Bank und Käufer wollen nachhaltige, nicht nur optimierte Zahlen.";
+        } else {
+            talk = "Die Rohertragsquote liegt im üblichen Korridor. Als Nächstes EBITDA bereinigen: Privatentnahmen, Einmaleffekte und nicht betriebsnotwendige Kosten transparent ausweisen.";
+        }
+        if (persQuote != null && persQuote > 14) {
+            talk += " Personalkosten über 14 % vom Umsatz – Effizienzpotenzial oder Unterbesetzungsrisiko klären.";
+        } else if (persQuote != null && persQuote < 9) {
+            talk += " Personalkostenquote niedrig – prüfen, ob Überstunden oder fehlende FTEs in der DD sichtbar werden.";
+        }
+        if (adj !== 0) {
+            talk += " Die EBITDA-Bereinigung sollte im Datenraum nachvollziehbar dokumentiert sein – jede Position einzeln begründen.";
+        }
+        if (ebitdaQuote < 5 && personal > 0) {
+            talk += " EBITDA-Marge unter 5 % – Kapitaldienstfähigkeit kritisch prüfen; ggf. Kaufpreis, Struktur oder Earn-out diskutieren.";
+        }
+
+        const kpi = (label, val) => `<div class="bwa-kpi-row"><span>${escapeHtml(label)}</span><span class="bwa-kpi-val">${val}</span></div>`;
+        resultEl.innerHTML = `
+            <div class="bwa-result-box">
+                ${kpi("Rohertrag", fmtEuro(rohertrag))}
+                ${kpi("Rohertragsquote", rohQuote.toFixed(1).replace(".", ",") + " %")}
+                ${kpi("Wareneinsatzquote", weQuote.toFixed(1).replace(".", ",") + " %")}
+                ${personal ? kpi("Personalkostenquote", persQuote.toFixed(1).replace(".", ",") + " %") : ""}
+                ${kpi("EBITDA (vereinfacht)", fmtEuro(ebitda))}
+                ${kpi("EBITDA-Marge", ebitdaQuote.toFixed(1).replace(".", ",") + " %")}
+            </div>
+            <div class="bwa-talk"><strong>So formulieren Sie es im Gespräch:</strong>${escapeHtml(talk)}</div>
+            <p style="font-size:11px;color:var(--text-muted);margin:10px 0 0;">Vereinfachte Berechnung (Rohertrag − Personal ± Bereinigung). Für Bank und Kaufvertrag vollständige BWA und Bereinigungsliste verwenden.</p>
+        `;
+        resultEl.style.display = "block";
+    }
+
+    function getDealAmpel(deal) {
+        if (deal.phase === "done") return "ok";
+        const prog = getDDProgress(deal);
+        if ((deal.phase === "dd" || deal.phase === "bank" || deal.phase === "closing") && prog.pct < 35) return "crit";
+        if (!deal.nextDate && deal.phase !== "nda" && deal.phase !== "done") return "warn";
+        if (deal.nextDate) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const nd = new Date(deal.nextDate + "T12:00:00");
+            const diff = Math.round((nd - today) / 86400000);
+            if (diff < 0) return "crit";
+            if (diff <= 3 && prog.pct < 60) return "warn";
+        }
+        if (prog.pct < 50 && (deal.phase === "dd" || deal.phase === "closing")) return "warn";
+        return "ok";
+    }
+
+    function getAmpelLabel(ampel) {
+        if (ampel === "crit") return "Kritisch";
+        if (ampel === "warn") return "Achtung";
+        return "OK";
+    }
+
+    function showPipeline() {
+        renderPipeline();
+        showView("view-pipeline");
+    }
+
+    function renderPipeline() {
+        const data = loadDealsData();
+        const deals = data.deals || [];
+        const el = document.getElementById("pipeline-content");
+        if (!deals.length) {
+            el.innerHTML = '<div class="deal-empty">Noch keine Mandats-Slots.<br>Lege im Mandat-Tracker anonyme Slots an (M-01 …).</div>';
+            return;
+        }
+        const phaseCounts = {};
+        DEAL_PHASES.forEach(p => { phaseCounts[p.id] = 0; });
+        deals.forEach(d => { if (phaseCounts[d.phase] != null) phaseCounts[d.phase]++; });
+        const active = deals.filter(d => d.phase !== "done").length;
+        const avgDd = Math.round(deals.reduce((s, d) => s + getDDProgress(d).pct, 0) / deals.length);
+        const critCount = deals.filter(d => getDealAmpel(d) === "crit").length;
+
+        el.innerHTML = `
+            <div class="pipeline-stats">
+                <div class="pipeline-stat"><div class="pipeline-stat-num">${deals.length}</div><div class="pipeline-stat-label">Slots gesamt</div></div>
+                <div class="pipeline-stat"><div class="pipeline-stat-num">${active}</div><div class="pipeline-stat-label">Aktiv</div></div>
+                <div class="pipeline-stat"><div class="pipeline-stat-num">${avgDd} %</div><div class="pipeline-stat-label">Ø DD</div></div>
+                <div class="pipeline-stat"><div class="pipeline-stat-num">${critCount}</div><div class="pipeline-stat-label">Kritisch</div></div>
+            </div>
+            <div class="pipeline-phase-bar">
+                ${DEAL_PHASES.map(p => `
+                    <div class="pipeline-phase-chip${phaseCounts[p.id] ? " has-deals" : ""}">
+                        <span class="ppc-n">${phaseCounts[p.id]}</span>
+                        ${escapeHtml(p.label)}
+                    </div>
+                `).join("")}
+            </div>
+            ${deals.slice().sort((a, b) => {
+                const ampOrder = { crit: 0, warn: 1, ok: 2 };
+                return (ampOrder[getDealAmpel(a)] || 9) - (ampOrder[getDealAmpel(b)] || 9);
+            }).map(d => {
+                const ampel = getDealAmpel(d);
+                const prog = getDDProgress(d);
+                const action = getNextActionLabel(d.nextAction);
+                return `
+                <div class="pipeline-row" onclick="openDeal('${d.id}')">
+                    <div class="pipeline-ampel ${ampel}" title="${escapeHtml(getAmpelLabel(ampel))}"></div>
+                    <div class="pipeline-row-main">
+                        <div class="pipeline-row-title">${escapeHtml(d.code || "M-??")} · ${escapeHtml(getPhaseLabel(d.phase))}</div>
+                        <div class="pipeline-row-meta">
+                            DD ${prog.pct} %${d.nextDate ? " · Termin " + formatDealDate(d.nextDate) : ""}${action ? " · " + escapeHtml(action) : ""}
+                        </div>
+                    </div>
+                </div>`;
+            }).join("")}
+        `;
+    }
+
     // ═══ Deal-Cockpit & DD-Checkliste ═══
     function migrateDeal(deal, index) {
         return {
@@ -4350,13 +5625,9 @@
         document.getElementById("btn-mode-closing").addEventListener("click", () => setAppMode("closing"));
         document.getElementById("btn-mode-einarbeitung").addEventListener("click", () => setAppMode("einarbeitung"));
 
-        const savedUser = localStorage.getItem(STORAGE_LAST_USER);
-        if (savedUser) document.getElementById("username").value = savedUser;
-        document.getElementById("username").addEventListener("input", () => {
-            refreshMenuProgress();
-        });
-        refreshMenuProgress();
+        renderMenuTiles();
         refreshKnowledgeQuickPanel();
+        updateMenuQuickActions();
         maybeShowInstallBanner();
 
         document.body.addEventListener("click", () => {
@@ -4405,7 +5676,7 @@
 
         if (!("serviceWorker" in navigator)) return;
 
-        const cacheName = "apotheken-guro-v4.1";
+        const cacheName = "apotheken-guro-v4.5";
         const pageToCache = startUrl.href;
         const iconToCache = new URL("apotheken-guro-icon.png", startUrl).href;
         const swSource = `
