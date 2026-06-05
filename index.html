@@ -755,20 +755,291 @@
             100% { transform: scale(1.05); }
         }
 
+        /* ═══ Apo-Guru Erweiterung: Lock, Mode, Consultant-Module ═══ */
+        #lock-screen {
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--body-bg);
+            background-image: var(--body-gradient);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 24px;
+            padding-top: calc(24px + env(safe-area-inset-top, 0px));
+        }
+        #lock-screen.hidden { display: none; }
+        .lock-logo {
+            width: 72px; height: 72px; border-radius: 20px;
+            background: var(--success-bg); border: 1px solid var(--border-strong);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; font-weight: 800; color: var(--primary-dark);
+            margin-bottom: 18px;
+        }
+        .lock-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+        .lock-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; text-align: center; }
+
+        .mode-toggle {
+            display: flex; flex: 1;
+            background: var(--surface-2);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-pill);
+            padding: 3px; gap: 2px;
+        }
+        .mode-btn {
+            flex: 1; border: none; background: transparent;
+            color: var(--text-muted); font-size: 11px; font-weight: 700;
+            padding: 8px 6px; border-radius: var(--radius-pill);
+            cursor: pointer; transition: background 0.2s, color 0.2s;
+        }
+        .mode-btn.active { background: var(--primary); color: #fff; }
+
+        .menu-section-label {
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 16px 0 8px 2px;
+        }
+        .menu-card.consultant-card { border-color: rgba(212, 168, 83, 0.35); }
+        .menu-card.consultant-card .menu-card-icon { background: var(--icon-tile-exam); }
+        body[data-app-mode="closing"] .mode-einarbeitung-only { display: none !important; }
+        body[data-app-mode="einarbeitung"] .mode-closing-only { display: none !important; }
+
+        .mode-banner {
+            padding: 12px 14px; border-radius: var(--radius-sm); margin-bottom: 16px;
+            font-size: 12px; line-height: 1.5; border: 1px solid var(--border);
+        }
+        body[data-app-mode="einarbeitung"] .mode-banner { background: var(--success-bg); border-color: rgba(5,150,105,0.25); }
+        body[data-app-mode="closing"] .mode-banner { background: var(--accent-gold-soft); border-color: rgba(212,168,83,0.35); }
+        .mode-banner strong { display: block; font-size: 13px; margin-bottom: 4px; }
+        body[data-app-mode="closing"] .hero { background: linear-gradient(145deg, #451a03 0%, #78350f 40%, #92400e 100%); }
+        body[data-app-mode="einarbeitung"] .hero { background: var(--hero-gradient); }
+        .privacy-hint {
+            font-size: 12px; color: var(--text-muted); line-height: 1.45;
+            padding: 10px 12px; background: var(--surface-2);
+            border-radius: var(--radius-sm); border: 1px dashed var(--border-strong);
+            margin-bottom: 14px;
+        }
+        .deal-code-display {
+            font-size: 22px; font-weight: 800; letter-spacing: 0.04em;
+            color: var(--primary-dark); margin-bottom: 4px;
+        }
+        .deal-code-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+
+        .guru-search { width: 100%; margin-bottom: 12px; }
+        .objection-item, .guru-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px; overflow: hidden;
+        }
+        .objection-header, .guru-card-header {
+            padding: 13px 14px; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 10px; font-size: 14px; font-weight: 600;
+        }
+        .objection-header:active, .guru-card-header:active { background: var(--surface-3); }
+        .objection-tag {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            padding: 3px 8px; border-radius: var(--radius-pill);
+            background: var(--accent-gold-soft); color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+        .objection-body { display: none; padding: 0 14px 14px; font-size: 13px; line-height: 1.55; color: var(--text-muted); }
+        .objection-body.open { display: block; }
+        .objection-response {
+            margin-top: 8px; padding: 10px 12px;
+            background: var(--success-bg);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--primary);
+            color: var(--text-main);
+        }
+        .objection-response strong { font-size: 10px; text-transform: uppercase; color: var(--primary-dark); }
+
+        .provision-flow { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+        .provision-step {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 14px 16px;
+            display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center;
+        }
+        .provision-step-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--surface-3); color: var(--text-muted);
+            font-size: 12px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .provision-step-body { min-width: 0; }
+        .provision-step-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+        .provision-step-formula { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        .provision-step-value { font-size: 17px; font-weight: 800; text-align: right; white-space: nowrap; }
+        .provision-step.result {
+            background: var(--success-bg); border-color: rgba(5,150,105,0.3);
+            grid-template-columns: 28px 1fr auto;
+        }
+        .provision-step.result .provision-step-num { background: var(--primary); color: #fff; }
+        .provision-step.result .provision-step-value { font-size: 24px; color: var(--primary-dark); }
+        .provision-arrow { text-align: center; color: var(--text-muted); font-size: 16px; line-height: 1; }
+        .provision-hint {
+            font-size: 12px; color: var(--text-muted); line-height: 1.5;
+            padding: 12px 14px; background: var(--surface-2);
+            border-radius: var(--radius-sm); border: 1px dashed var(--border-strong);
+            margin-bottom: 14px;
+        }
+
+        .radar-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+        .radar-tab {
+            flex: 1; padding: 9px; border: 1px solid var(--border);
+            border-radius: var(--radius-sm); background: var(--surface-2);
+            color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer;
+        }
+        .radar-tab.active { background: var(--success-bg); color: var(--primary-dark); border-color: rgba(5,150,105,0.3); }
+        .radar-pane { display: none; }
+        .radar-pane.active { display: block; }
+        .task-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 11px; background: var(--surface-2);
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+        }
+        .task-check {
+            width: 20px; height: 20px; border-radius: 6px;
+            border: 2px solid var(--border-strong); flex-shrink: 0;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 11px; margin-top: 1px;
+        }
+        .task-check.done { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .task-text.done { text-decoration: line-through; color: var(--text-muted); }
+        .task-del { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; }
+        .reflection-entry {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 12px; margin-bottom: 8px;
+        }
+        .reflection-date { font-size: 11px; color: var(--primary-dark); font-weight: 700; margin-bottom: 4px; }
+        .reflection-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        textarea.input-field { resize: vertical; min-height: 80px; font-family: inherit; }
+
+        /* Deal-Cockpit & DD-Checkliste */
+        .deal-list { display: flex; flex-direction: column; gap: 10px; }
+        .deal-card {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 14px; cursor: pointer;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+        .deal-card:active { transform: scale(0.98); }
+        .deal-card:hover { border-color: rgba(5,150,105,0.35); }
+        .deal-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+        .deal-card-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+        .deal-phase {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.02em;
+            padding: 4px 8px; border-radius: var(--radius-pill); flex-shrink: 0;
+            background: var(--accent-gold-soft); color: var(--accent-gold);
+            line-height: 1.35; text-align: right; max-width: 62%;
+        }
+        .tab-hint, .field-hint {
+            font-weight: 500; color: var(--text-muted); text-transform: none; letter-spacing: 0;
+        }
+        .deal-phase.phase-dd { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .deal-phase.phase-bank { background: rgba(139,92,246,0.15); color: #8b5cf6; }
+        .deal-phase.phase-closing { background: var(--success-bg); color: var(--primary-dark); }
+        .deal-phase.phase-done { background: var(--surface-3); color: var(--text-muted); }
+        .deal-meta { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
+        .deal-dd-bar { margin-top: 10px; }
+        .deal-dd-label { font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .deal-actions-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+        .btn-inline {
+            padding: 9px 14px; border-radius: var(--radius-pill);
+            border: 1px solid var(--border-strong); background: var(--surface-2);
+            font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-main);
+        }
+        .btn-inline:active { transform: scale(0.97); }
+        .btn-inline.primary-inline { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .deal-detail-header { margin-bottom: 16px; }
+        .deal-detail-header h3 { font-size: 18px; margin: 0 0 4px 0; }
+        .deal-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+        .deal-tab {
+            flex: 1; padding: 9px; border: 1px solid var(--border);
+            border-radius: var(--radius-sm); background: var(--surface-2);
+            color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer;
+        }
+        .deal-tab.active { background: var(--success-bg); color: var(--primary-dark); border-color: rgba(5,150,105,0.3); }
+        .deal-pane { display: none; }
+        .deal-pane.active { display: block; }
+        .dd-category {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); margin-bottom: 10px; overflow: hidden;
+        }
+        .dd-cat-header {
+            padding: 12px 14px; font-size: 13px; font-weight: 700;
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--surface-3);
+        }
+        .dd-cat-count { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+        .dd-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 11px 14px; border-top: 1px solid var(--border);
+            font-size: 13px; line-height: 1.4;
+        }
+        .dd-check {
+            width: 20px; height: 20px; border-radius: 6px;
+            border: 2px solid var(--border-strong); flex-shrink: 0;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 11px; margin-top: 1px;
+        }
+        .dd-check.done { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .dd-item.done .dd-label { text-decoration: line-through; color: var(--text-muted); }
+        .dd-progress-panel {
+            background: var(--success-bg); border: 1px solid rgba(5,150,105,0.25);
+            border-radius: var(--radius-sm); padding: 14px; margin-bottom: 14px;
+        }
+        .dd-progress-panel .progress-bar-wrap { margin-top: 8px; }
+        .deal-empty {
+            text-align: center; padding: 32px 16px; color: var(--text-muted);
+            font-size: 14px; line-height: 1.5;
+        }
+
+        .chat-wrap { display: flex; flex-direction: column; min-height: 55vh; }
+        .chat-messages {
+            flex: 1; overflow-y: auto; overscroll-behavior-y: contain;
+            display: flex; flex-direction: column; gap: 10px;
+            padding: 8px 0 12px; min-height: 200px; max-height: 50vh;
+        }
+        .chat-bubble {
+            max-width: 88%; padding: 11px 14px; border-radius: 16px;
+            font-size: 14px; line-height: 1.5; word-break: break-word;
+        }
+        .chat-bubble.user { align-self: flex-end; background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
+        .chat-bubble.assistant { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+        .chat-bubble.system { align-self: flex-start; background: var(--danger-bg); color: var(--danger); font-size: 13px; }
+        .chat-input-row { display: flex; gap: 8px; margin-top: 10px; }
+        .chat-input-row .input-field { flex: 1; }
+        .chat-input-row .btn-main { width: auto; padding: 12px 16px; margin-top: 0; }
+        .api-hint { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.45; }
+        .api-hint a { color: var(--primary-dark); }
+
         @media (min-width: 420px) {
             body { padding: 24px; align-items: center; }
         }
     </style>
 </head>
-<body>
+<body data-app-mode="einarbeitung">
 
-<div class="container" id="app">
+<!-- Passwortschutz (Apo-Guru) -->
+<div id="lock-screen">
+    <div class="lock-logo">AG</div>
+    <div class="lock-title" id="lock-title">Apo-Guru</div>
+    <div class="lock-sub" id="lock-sub">Passwort eingeben, um fortzufahren</div>
+    <div class="input-group" style="width:100%;max-width:320px;">
+        <input type="password" class="input-field" id="lock-input" placeholder="Passwort" autocomplete="current-password">
+    </div>
+    <button class="btn-main primary" style="max-width:320px;margin-top:12px;" id="lock-btn" type="button">Entsperren</button>
+    <p id="lock-error" style="color:var(--danger);font-size:13px;margin-top:12px;display:none;"></p>
+</div>
+
+<div class="container" id="app" style="display:none;">
     <div id="view-menu" class="view view-active">
         <header class="hero">
-            <span class="hero-badge">Apotheke · M&A</span>
-            <h1>M&A Lern-Trainer</h1>
-            <p class="hero-sub">Dein persönliches Üben für den Apotheken-M&A-Alltag – in deinem Tempo.</p>
+            <span class="hero-badge" id="hero-badge">Apotheke · M&A</span>
+            <h1 id="hero-title">M&A Lern-Trainer</h1>
+            <p class="hero-sub" id="hero-sub">Dein persönliches Üben für den Apotheken-M&A-Alltag – in deinem Tempo.</p>
         </header>
+        <div class="mode-banner" id="mode-banner"></div>
         <div class="settings-bar">
             <button type="button" id="btn-theme" class="setting-chip" aria-pressed="false" onclick="toggleTheme()">
                 <span class="chip-icon" id="theme-icon" data-icon="moon"></span>
@@ -778,6 +1049,10 @@
                 <span class="chip-icon" id="sound-icon" data-icon="sound-on"></span>
                 <span id="sound-label">Ton an</span>
             </button>
+            <div class="mode-toggle">
+                <button type="button" class="mode-btn" data-mode="closing" id="btn-mode-closing">Closing</button>
+                <button type="button" class="mode-btn active" data-mode="einarbeitung" id="btn-mode-einarbeitung">Einarbeitung</button>
+            </div>
         </div>
         <div id="pwa-install-banner" class="pwa-install-banner">
             <strong>📲 Als App installieren</strong>
@@ -787,17 +1062,48 @@
                 <button type="button" class="btn-pwa btn-pwa-ghost" onclick="dismissPWA()">Später</button>
             </div>
         </div>
-        <div class="input-group">
+        <div class="input-group mode-einarbeitung-only">
             <label class="input-label" for="username"><span class="label-icon" data-icon="user"></span>Dein Name</label>
             <input type="text" id="username" class="input-field" placeholder="Kürzel – nur lokal auf diesem Gerät" autocomplete="name">
         </div>
-        <div id="progress-panel" class="progress-panel">
+        <div id="progress-panel" class="progress-panel mode-einarbeitung-only">
             <div class="progress-panel-title">DEIN LERNFORTSCHRITT</div>
-            <div class="progress-overall" id="progress-overall-text">0 / 5 Module geschafft</div>
+            <div class="progress-overall" id="progress-overall-text">0 / 6 Module geschafft</div>
             <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-overall-bar"></div></div>
             <p class="progress-hint" id="progress-hint">Modul gilt ab 70 % als geschafft · Selbsttest separat</p>
         </div>
-        <div class="menu-grid">
+        <p class="menu-section-label mode-closing-only">Closing · Arbeitsmodus</p>
+        <div class="menu-grid mode-closing-only">
+            <div class="menu-card consultant-card" onclick="showDeals()">
+                <div class="menu-card-icon" data-icon="briefcase"></div>
+                <div><h3>Mandat-Tracker</h3><p>Anonyme Slots (M-01…) – nur Phase &amp; DD (Risikoprüfung), keine Namen.</p></div>
+            </div>
+            <div class="menu-card consultant-card" onclick="showObjections()">
+                <div class="menu-card-icon" data-icon="speech"></div>
+                <div><h3>Einwand-Bibliothek</h3><p>Fertige Antworten – nichts eingeben nötig.</p></div>
+            </div>
+            <div class="menu-card consultant-card" onclick="showProvision()">
+                <div class="menu-card-icon" data-icon="finance"></div>
+                <div><h3>Provision-Rechner</h3><p>Sitzungsrechner – speichert keine Zahlen.</p></div>
+            </div>
+            <div class="menu-card consultant-card" onclick="showChat()">
+                <div class="menu-card-icon" data-icon="chat"></div>
+                <div><h3>KI-Sparring</h3><p>Allgemeine M&amp;A-Fragen – keine Mandatsdaten.</p></div>
+            </div>
+        </div>
+        <p class="menu-section-label mode-einarbeitung-only">Einarbeitung · Lernen</p>
+        <div class="menu-grid mode-einarbeitung-only">
+            <div class="menu-card consultant-card" onclick="showRadar()">
+                <div class="menu-card-icon" data-icon="radar"></div>
+                <div><h3>Personal Radar</h3><p>Eigene Lern-Routine – Focus &amp; Reflexion.</p></div>
+            </div>
+            <div class="menu-card consultant-card" onclick="showChat()">
+                <div class="menu-card-icon" data-icon="chat"></div>
+                <div><h3>KI-Tutor</h3><p>Erklärt Konzepte aus Wiki &amp; Modulen.</p></div>
+            </div>
+        </div>
+        <p class="menu-section-label mode-einarbeitung-only">Lernen &amp; Wissen</p>
+        <div class="menu-grid mode-einarbeitung-only">
             <div class="menu-card wiki-main-card" onclick="showWiki()">
                 <div class="menu-card-icon" data-icon="wiki"></div>
                 <div><h3>M&A Wissensdatenbank</h3><p>Dein Nachschlage-Handbuch für den Job.</p></div>
@@ -826,13 +1132,17 @@
                 <div class="menu-card-icon" data-icon="finance"></div>
                 <div><h3>Modul 5: Wirtschaft <span class="mod-badge open" id="badge-mod-4"></span></h3><p id="sub-mod-4">EBITDA, Unternehmerlohn, Rating.</p></div>
             </div>
+            <div class="menu-card" id="menu-mod-5" onclick="prepGame(5)">
+                <div class="menu-card-icon" data-icon="deal"></div>
+                <div><h3>Modul 6: Closing <span class="mod-badge open" id="badge-mod-5"></span></h3><p id="sub-mod-5">Bewertung, Kaufvertrag, Closing.</p></div>
+            </div>
             <div class="menu-card exam-card" id="menu-exam" onclick="prepGame('exam')">
                 <div class="menu-card-icon" data-icon="target"></div>
                 <div><h3>Selbsttest <span class="mod-badge open" id="badge-exam"></span></h3><p id="sub-exam">25 Zufallsfragen · max. 3 Fehler erlaubt.</p></div>
             </div>
         </div>
-        <button class="admin-btn-small" onclick="showAdmin()">📊 Meine Statistik</button>
-        <p class="app-version">M&A Lern-Trainer v2.6 · 90 Fragen · Glossar · nur auf diesem Gerät</p>
+        <button class="admin-btn-small mode-einarbeitung-only" onclick="showAdmin()">📊 Meine Statistik</button>
+        <p class="app-version">Apo-Guru v3.3 · Einarbeitung &amp; Closing getrennt</p>
     </div>
 
     <div id="view-wiki" class="view">
@@ -899,7 +1209,7 @@
         <div style="overflow-x:auto;">
             <table class="team-table" id="admin-team">
                 <thead>
-                    <tr><th class="name-col">Profil</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>Test</th></tr>
+                    <tr><th class="name-col">Profil</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>Test</th></tr>
                 </thead>
                 <tbody id="admin-team-body"></tbody>
             </table>
@@ -910,115 +1220,271 @@
         </div>
         <button class="admin-btn-small" style="color:red; margin-top:20px;" onclick="clearAllData()">ALLE DATEN LÖSCHEN</button>
     </div>
+
+    <div id="view-objections" class="view">
+        <div class="nav-bar"><h2>Einwand-Bibliothek</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <input type="search" class="input-field guru-search" id="obj-search" placeholder="Einwand suchen…" oninput="filterObjections()">
+        <div id="objections-content"></div>
+    </div>
+
+    <div id="view-provision" class="view">
+        <div class="nav-bar"><h2>Provision-Rechner</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <p class="privacy-hint">Sitzungsrechner: Zahlen werden <strong>nicht gespeichert</strong> und beim Verlassen gelöscht. Reale Mandatsdaten bitte außerhalb der App führen.</p>
+        <p class="provision-hint">
+            <strong>So rechnet sich deine Provision:</strong><br>
+            1. Umsatz Vorjahr × 2% = <em>Honorar</em><br>
+            2. Honorar × 15% = <em>deine Provision</em>
+        </p>
+        <div class="input-group">
+            <label class="input-label" for="prov-umsatz">Umsatz Vorjahr (€)</label>
+            <input type="number" class="input-field" id="prov-umsatz" inputmode="decimal" placeholder="z.B. 3.500.000" oninput="calcProvision()">
+        </div>
+        <button class="btn-main primary" type="button" onclick="calcProvision()">Berechnen</button>
+        <div class="provision-flow" id="prov-result" style="display:none;">
+            <div class="provision-step">
+                <div class="provision-step-num">1</div>
+                <div class="provision-step-body">
+                    <div class="provision-step-title">Honorar</div>
+                    <div class="provision-step-formula" id="prov-formula-honorar">Umsatz × 2%</div>
+                </div>
+                <div class="provision-step-value" id="prov-honorar-val">–</div>
+            </div>
+            <div class="provision-arrow">↓</div>
+            <div class="provision-step">
+                <div class="provision-step-num">2</div>
+                <div class="provision-step-body">
+                    <div class="provision-step-title">Honorarprovision (15%)</div>
+                    <div class="provision-step-formula" id="prov-formula-provision">Honorar × 15%</div>
+                </div>
+                <div class="provision-step-value" id="prov-provision-val">–</div>
+            </div>
+            <div class="provision-arrow">=</div>
+            <div class="provision-step result">
+                <div class="provision-step-num">✓</div>
+                <div class="provision-step-body">
+                    <div class="provision-step-title">Deine Provision</div>
+                    <div class="provision-step-formula">Ergebnis Schritt 2</div>
+                </div>
+                <div class="provision-step-value" id="prov-total-val">–</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-radar" class="view">
+        <div class="nav-bar"><h2>Personal Radar</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <div class="radar-tabs">
+            <button type="button" class="radar-tab active" data-tab="focus" onclick="switchRadarTab('focus')">Daily Focus</button>
+            <button type="button" class="radar-tab" data-tab="tasks" onclick="switchRadarTab('tasks')">Aufgaben</button>
+            <button type="button" class="radar-tab" data-tab="reflections" onclick="switchRadarTab('reflections')">Reflexionen</button>
+        </div>
+        <div class="radar-pane active" id="radar-pane-focus">
+            <div class="input-group">
+                <label class="input-label" for="radar-focus">Heutiger Fokus</label>
+                <textarea class="input-field" id="radar-focus" placeholder="Was ist heute deine #1 Priorität?"></textarea>
+            </div>
+            <button class="btn-main primary" type="button" onclick="saveRadarFocus()">Speichern</button>
+        </div>
+        <div class="radar-pane" id="radar-pane-tasks">
+            <div style="display:flex;gap:8px;margin-bottom:12px;">
+                <input type="text" class="input-field" id="task-input" placeholder="Neue Aufgabe…" style="flex:1;">
+                <button class="btn-main primary" type="button" style="width:auto;margin-top:0;padding:12px 16px;" onclick="addRadarTask()">+</button>
+            </div>
+            <div id="task-list"></div>
+        </div>
+        <div class="radar-pane" id="radar-pane-reflections">
+            <div class="input-group">
+                <textarea class="input-field" id="refl-input" placeholder="Was lief gut? Was verbessern?"></textarea>
+            </div>
+            <button class="btn-main primary" type="button" onclick="addReflection()">Reflexion speichern</button>
+            <div id="refl-list" style="margin-top:14px;"></div>
+        </div>
+    </div>
+
+    <div id="view-deals" class="view">
+        <div class="nav-bar"><h2>Mandat-Tracker</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <p class="privacy-hint">Anonyme Mandats-Slots (M-01, M-02 …). <strong>Keine Namen, Umsätze oder Notizen</strong> – nur Phase, Termin und DD-Fortschritt (Due Diligence = Risikoprüfung). Details führst du extern (CRM, Notizen-App).</p>
+        <button class="btn-main primary" type="button" onclick="createNewDeal()" style="margin-bottom:14px;">+ Neuer Slot</button>
+        <div id="deals-list" class="deal-list"></div>
+    </div>
+
+    <div id="view-deal" class="view">
+        <div class="nav-bar">
+            <h2 id="deal-nav-title">Mandat</h2>
+            <button class="btn-home" type="button" onclick="showDeals()">Zurück</button>
+        </div>
+        <div class="deal-detail-header">
+            <h3 id="deal-detail-name">–</h3>
+            <span class="deal-phase" id="deal-detail-phase-pill">–</span>
+        </div>
+        <div class="deal-tabs">
+            <button type="button" class="deal-tab active" data-tab="stamm" onclick="switchDealTab('stamm')">Status</button>
+            <button type="button" class="deal-tab" data-tab="dd" onclick="switchDealTab('dd')">DD-Checkliste <span class="tab-hint">(Due Diligence)</span></button>
+        </div>
+        <div class="deal-pane active" id="deal-pane-stamm">
+            <div class="deal-code-display" id="deal-code-display">M-01</div>
+            <p class="deal-code-sub">Anonymer Slot – Zuordnung zu echten Mandaten nur in deinem externen System.</p>
+            <div class="input-group">
+                <label class="input-label" for="deal-phase">Phase</label>
+                <select class="input-field" id="deal-phase"></select>
+                <p class="field-hint" style="margin:6px 0 0;font-size:11px;line-height:1.45;">NDA = Vertraulichkeit · LOI = Absichtserklärung · DD = Risikoprüfung · Closing = Übergabe</p>
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="deal-next-date">Nächster Termin (optional)</label>
+                <input type="date" class="input-field" id="deal-next-date">
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="deal-next-action">Nächste Aktion (Auswahl)</label>
+                <select class="input-field" id="deal-next-action"></select>
+            </div>
+            <button class="btn-main primary" type="button" onclick="saveCurrentDeal()">Speichern</button>
+            <div class="deal-actions-row">
+                <button type="button" class="btn-inline" onclick="switchDealTab('dd')">✓ DD-Checkliste (Risikoprüfung)</button>
+                <button type="button" class="btn-inline" onclick="deleteCurrentDeal()" style="color:var(--danger);border-color:rgba(220,38,38,0.3);">🗑 Slot löschen</button>
+            </div>
+        </div>
+        <div class="deal-pane" id="deal-pane-dd">
+            <div class="dd-progress-panel">
+                <div class="deal-dd-label"><span>DD-Fortschritt <span class="tab-hint">(Due Diligence)</span></span><span id="deal-dd-pct">0 %</span></div>
+                <div class="progress-bar-wrap"><div class="progress-bar-fill" id="deal-dd-bar" style="width:0%"></div></div>
+            </div>
+            <div id="deal-dd-checklist"></div>
+            <div class="deal-actions-row" style="margin-top:16px;">
+                <button type="button" class="btn-inline" onclick="exportDDReport()">📥 Als Text exportieren</button>
+                <button type="button" class="btn-inline primary-inline" onclick="printDDReport()">🖨 PDF / Drucken</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-chat" class="view">
+        <div class="nav-bar"><h2 id="chat-nav-title">KI-Assistent</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <p class="privacy-hint" id="chat-privacy-hint"></p>
+        <p class="api-hint">Gemini API-Key von <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> (Free Tier). Wird nur lokal gespeichert.</p>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <input type="password" class="input-field" id="gemini-key" placeholder="Gemini API-Key" style="flex:1;">
+            <button class="btn-main primary" type="button" style="width:auto;margin-top:0;padding:12px 14px;" onclick="saveGeminiKey()">OK</button>
+        </div>
+        <div class="chat-wrap">
+            <div class="chat-messages" id="chat-msgs"></div>
+            <p id="chat-typing" style="display:none;font-size:12px;color:var(--text-muted);">Analysiere…</p>
+            <div class="chat-input-row">
+                <input type="text" class="input-field" id="chat-input" placeholder="Frage zum Apotheken-M&A…">
+                <button class="btn-main primary" type="button" onclick="sendGeminiChat()">→</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-    // --- DIE 90 FRAGEN DATENBANK (5×18) ---
+    // --- FRAGEN-DATENBANK (6×15 = 90, dedupliziert + Transferfragen) ---
+    const MODULE_COUNT = 6;
     const db = [
-        // M1
+        // M1: Recht & Compliance
         [
-            {q:"Welches Gesetz regelt das Fremdbesitzverbot?", a:["ApBetrO", "ApoG", "AMG"], c:1, exp:"Das Apothekengesetz (ApoG) schreibt vor, dass nur Apotheker Inhaber sein dürfen."},
-            {q:"Wie viele Filialen sind maximal erlaubt?", a:["Keine", "1 Haupt + 2 Filialen", "1 Haupt + 3 Filialen"], c:2, exp:"Die 1+3 Regelung gilt seit 2004."},
-            {q:"Mindestfläche einer Hauptapotheke?", a:["60 qm", "110 qm", "150 qm"], c:1, exp:"Laut ApBetrO sind 110 qm Pflicht (inkl. Labor, Nachtdienst etc.)."},
-            {q:"Darf eine GmbH eine Apotheke betreiben?", a:["Ja", "Nein", "Nur in Berlin"], c:1, exp:"Nein, die Rechtsform GmbH ist für öffentliche Apotheken unzulässig."},
-            {q:"Was ist das räumliche Nähegebot?", a:["Max 5km", "Selber oder angrenzender Kreis", "Gleiches Bundesland"], c:1, exp:"Filialen müssen im selben oder benachbarten Landkreis liegen."},
-            {q:"Wer erteilt die Betriebserlaubnis?", a:["BfArM", "Landesbehörde/Kammer", "Gemeinde"], c:1, exp:"Dies ist Ländersache (z.B. Regierungspräsidium)."},
-            {q:"Was passiert im Todesfall des Inhabers?", a:["Erlaubnis erlischt sofort", "Erben können 12 Monate verwalten lassen", "Sohn übernimmt automatisch"], c:1, exp:"Erben dürfen befristet einen Verwalter einsetzen."},
-            {q:"Ist eine Apotheken-OHG mit einem Investor möglich?", a:["Ja", "Nein, alle Partner müssen Apotheker sein", "Ja, bis 49%"], c:1, exp:"Das Fremdbesitzverbot verbietet reine Kapitalgeber."},
-            {q:"Welcher Raum ist KEINE Pflicht?", a:["Labor", "Rezeptur", "Drive-In Schalter"], c:2, exp:"Drive-In ist Komfort, kein gesetzlicher Standardraum."},
-            {q:"Versandhandels-Erlaubnis erforderlich?", a:["Nein, jede darf", "Ja, nach § 11a ApoG", "Nur für Großhandel"], c:1, exp:"Versand benötigt eine explizite Zusatzerlaubnis."},
-            {q:"Wie oft muss eine Revision stattfinden?", a:["Jeden Monat", "In der Regel alle 2-3 Jahre", "Nur bei Inhaberwechsel"], c:1, exp:"Die Pharmazieräte prüfen regelmäßig unangekündigt."},
-            {q:"Leiterpflicht bedeutet?", a:["Inhaber muss 24h vor Ort sein", "Persönliche Leitung in eigener Verantwortung", "Immer per Handy erreichbar"], c:1, exp:"Der Apotheker muss den Betrieb eigenverantwortlich führen."},
-            {q:"Gilt Konkurrenzschutz automatisch?", a:["Ja, durch ApoG", "Nein, muss im Mietvertrag stehen", "Ja, im Umkreis von 500m"], c:1, exp:"Konkurrenzschutz ist rein zivilrechtliche Vereinbarungssache."},
-            {q:"Darf man Filialen in anderen Bundesländern haben?", a:["Nie", "Ja, wenn sie im angrenzenden Kreis liegen", "Ja, unbegrenzt"], c:1, exp:"Ja, sofern die Landkreise direkt aneinandergrenzen (z.B. Hessen/Bayern)."},
-            {q:"Was regelt die ApBetrO primär?", a:["Preise", "Den technischen/pharmazeutischen Betrieb", "Steuern"], c:1, exp:"Die Apothekenbetriebsordnung setzt Qualitätsstandards."},
-            {q:"Wer muss in jeder Filialapotheke benannt werden?", a:["Der Vermieter", "Ein verantwortlicher Apotheker", "Der Großhandel"], c:1, exp:"§ 2 Abs. 5 ApoG: Der Betreiber benennt schriftlich einen Apotheker mit Leitungsaufgaben."},
-            {q:"Seit wann gilt die 1+3-Regel für Filialen?", a:["Seit 1990", "Seit 1.1.2004", "Seit 2020"], c:1, exp:"Seit dem Apothekenreformgesetz 2003 (in Kraft 1.1.2004) sind bis zu drei Filialen möglich."},
-            {q:"Für Versand von Rx-Arzneimitteln braucht die Apotheke…", a:["Nur eine Webseite", "Eine Zusatzerlaubnis nach § 11a ApoG", "Eine Handwerkskarte"], c:1, exp:"Versandhandel ist erlaubnispflichtig und gesondert zu beantragen."}
+            {q:"Welches Gesetz regelt das Fremdbesitzverbot?", a:["ApBetrO", "ApoG", "AMG"], c:1, exp:"ApoG: Nur Apotheker dürfen öffentliche Apotheken besitzen. Fremdbesitz durch Nicht-Apotheker ist unzulässig."},
+            {q:"Wie viele Filialen sind maximal erlaubt?", a:["Keine", "1 Haupt + 2 Filialen", "1 Haupt + 3 Filialen"], c:2, exp:"1+3-Regel seit 1.1.2004. Jede Filiale braucht volle Erlaubnisvoraussetzungen."},
+            {q:"Mindestfläche der Kernbetriebsräume laut ApBetrO?", a:["60 qm", "110 qm", "150 qm"], c:1, exp:"110 qm inkl. Offizin, Labor, Lager, Nachtdienst – Pflicht für die Betriebserlaubnis."},
+            {q:"Ein Investor bietet 40 % Kapital gegen stille Beteiligung in einer Apotheken-GmbH. Ihre Bewertung?", a:["Zulässig bei Minderheitsbeteiligung", "Unzulässig – Fremdbesitzverbot", "Nur mit Kammergenehmigung"], c:1, exp:"Reine Kapitalgeber dürfen nicht wirtschaftlicher Inhaber sein. Struktur: apothekerische Personengesellschaft (OHG/PartG)."},
+            {q:"Was ist das räumliche Nähegebot?", a:["Max. 5 km Entfernung", "Selber oder angrenzender Kreis", "Gleiches Bundesland"], c:1, exp:"§ 2 Abs. 4 ApoG: Haupt- und Filialapotheken im selben oder benachbarten Kreis."},
+            {q:"Wer erteilt die Betriebserlaubnis?", a:["BfArM", "Landesbehörde/Kammer", "IHK"], c:1, exp:"Ländersache (z. B. Regierungspräsidium, Gesundheitsamt). Ohne Erlaubnis kein legaler Betrieb."},
+            {q:"Was passiert im Todesfall des Inhabers?", a:["Erlaubnis erlischt sofort", "Erben können bis 12 Monate verwalten lassen", "Erbfolge automatisch"], c:1, exp:"Befristete Weiterführung durch bestellten Apotheker-Verwalter – behördliche Anzeige erforderlich."},
+            {q:"Apotheken-OHG mit einem nicht-apothekerischen Investor?", a:["Bis 49 % erlaubt", "Unzulässig – alle Gesellschafter müssen Apotheker sein", "Nur mit Bürgschaft"], c:1, exp:"Fremdbesitzverbot gilt auch bei Personengesellschaften: nur approbierte Apotheker als Gesellschafter."},
+            {q:"Versand von Rx-Arzneimitteln erfordert…", a:["Nur Impressum auf der Website", "Zusatzerlaubnis nach § 11a ApoG", "Gewerbeanmeldung"], c:1, exp:"Versandhandel ist erlaubnispflichtig – gesondert zu beantragen und in der DD zu prüfen."},
+            {q:"Wie oft findet eine Kammer-Revision statt?", a:["Monatlich", "Regelmäßig, typisch alle 2–3 Jahre", "Nur bei Inhaberwechsel"], c:1, exp:"Apothekerkammer prüft unangekündigt – Compliance-Risiko bei Mängeln."},
+            {q:"Leiterpflicht bedeutet…", a:["24h-Anwesenheitspflicht", "Persönliche fachliche Leitung in eigener Verantwortung", "Delegierbar an PTA"], c:1, exp:"Apotheker trägt die Betriebsverantwortung – nicht delegierbar an Nicht-Apotheker."},
+            {q:"Filialapotheke in angrenzendem Kreis eines anderen Bundeslandes?", a:["Nie erlaubt", "Erlaubt bei angrenzenden Kreisen", "Nur im selben Bundesland"], c:1, exp:"Grenzüberschreitend möglich, wenn Landkreise direkt angrenzen (z. B. Hessen/Bayern)."},
+            {q:"Was regelt die ApBetrO primär?", a:["Arzneimittelpreise", "Technisch-pharmazeutischen Betrieb", "Steuerpflicht"], c:1, exp:"ApBetrO = Qualitäts- und Betriebsstandards (Räume, Hygiene, Ausstattung)."},
+            {q:"In der DD fehlt die §-11a-Versanderlaubnis, Umsatz zeigt 8 % Versandanteil. Ihr Vorgehen?", a:["Irrelevant bei geringem Anteil", "Risiko in DD-Report, Erlaubnis vor Closing klären", "Nur Verkäufer haftet rückwirkend"], c:1, exp:"Illegaler Versand = behördliches und wirtschaftliches Risiko. Vor Kaufvertrag klären oder Kaufpreis anpassen."},
+            {q:"Filialapotheke: Verantwortlicher Apotheker kündigt 4 Wochen vor Closing. Konsequenz?", a:["Keine – Inhaber reicht", "Sofort Ersatz benennen, sonst Erlaubnisrisiko", "Nur interne Angelegenheit"], c:1, exp:"§ 2 Abs. 5 ApoG: Schriftliche Benennung je Filiale Pflicht. Lücke gefährdet Betriebserlaubnis."}
         ],
-        // M2
+        // M2: Bilanz & Buchführung
         [
-            {q:"Wo stehen GKV-Forderungen in der Bilanz?", a:["Anlagevermögen", "Umlaufvermögen", "Fremdkapital"], c:1, exp:"Forderungen sind kurzfristige Werte (Umlaufvermögen)."},
-            {q:"Was ist ein Aktivtausch?", a:["Kauf von Einrichtung auf Kredit", "Bar-Einkauf von Waren", "Gewinnentnahme"], c:1, exp:"Kasse sinkt, Warenlager steigt -> Beides Aktivseite."},
-            {q:"Umsatz wird gebucht im...", a:["Soll (links)", "Haben (rechts)", "Anhang"], c:1, exp:"Erlöse mehren das Eigenkapital und stehen im Haben."},
-            {q:"Was ist das Niederstwertprinzip?", a:["Billigste Ware zuerst verkaufen", "Abschreibung auf den niedrigeren Marktwert", "Miete drücken"], c:1, exp:"Vorsichtsprinzip: Lager muss bei Verfall abgewertet werden."},
-            {q:"Was zeigt die Passivseite?", a:["Was wir besitzen", "Wer uns das Geld geliehen hat", "Offene Rezepte"], c:1, exp:"Mittelherkunft: Eigen- und Fremdkapital."},
-            {q:"AfA bedeutet?", a:["Apotheken-Fach-Ausschuss", "Absetzung für Abnutzung", "Anzahlung für Anlage"], c:1, exp:"Abschreibung auf Sachanlagen."},
-            {q:"Ein Kommissionierer ist...", a:["Umlaufvermögen", "Sachanlage (Anlagevermögen)", "Verbindlichkeit"], c:1, exp:"Er dient dem Betrieb dauerhaft."},
-            {q:"Bilanzverlängerung entsteht durch...", a:["Barzahlung", "Kauf auf Ziel (Kredit)", "Privatentnahme"], c:1, exp:"Aktiva (Lager) und Passiva (Schulden) steigen zeitgleich."},
-            {q:"Wo findet man den Gewinn?", a:["Nur auf dem Konto", "In der GuV und als Teil des Eigenkapitals", "Im Anlagevermögen"], c:1, exp:"Der Jahresüberschuss mehrt die Passivseite."},
-            {q:"Was ist Inventur?", a:["Waren bestellen", "Körperliche Bestandsaufnahme zum Stichtag", "Rezeptabrechnung"], c:1, exp:"Zählen und Bewerten aller Bestände."},
-            {q:"Verbindlichkeiten aus LuL sind...", a:["Geld von Kunden", "Schulden beim Großhandel", "Lohnnebenkosten"], c:1, exp:"Lieferung und Leistung (Warenrechnungen)."},
-            {q:"Was sind Rückstellungen?", a:["Sparbuch", "Verpflichtungen für ungewisse Schulden", "Warenreservierung"], c:1, exp:"Vorsorge für z.B. Steuern oder Retaxationen."},
-            {q:"Liquidität 1. Grades?", a:["Lager / Schulden", "Flüssige Mittel / kurzfristige Schulden", "Umsatz / Miete"], c:1, exp:"Zeigt die sofortige Zahlungsfähigkeit."},
-            {q:"Skonto beim Einkauf mindert...", a:["Den Umsatz", "Den Wareneinsatz", "Die Miete"], c:1, exp:"Skonto macht den Einkauf billiger."},
-            {q:"Die Bilanzsumme ist...", a:["Der Jahresumsatz", "Die Summe aller Aktiva (muss gleich Passiva sein)", "Der Kontostand"], c:1, exp:"Aktiva = Passiva."},
-            {q:"Das Eigenkapital steht in der Bilanz auf der…", a:["Aktivseite", "Passivseite", "GuV"], c:1, exp:"Eigenkapital = Mittelherkunft des Eigentümers (Passiva)."},
-            {q:"Barzahlung einer LuL-Rechnung führt zu…", a:["Bilanzverlängerung", "Bilanzverkürzung", "Keiner Veränderung"], c:1, exp:"Kasse und Verbindlichkeiten sinken gleichermaßen."},
-            {q:"Rückstellungen für Retaxationen sind typisch, weil…", a:["Retaxationen sicher eintreten", "Mögliche Kassenrückforderungen ungewiss sind", "Das Finanzamt es verlangt"], c:1, exp:"Vorsorge für ungewisse Verpflichtungen (Vorsichtsprinzip)."}
+            {q:"Wo stehen GKV-Forderungen in der Bilanz?", a:["Anlagevermögen", "Umlaufvermögen", "Fremdkapital"], c:1, exp:"Offene Kassenforderungen = kurzfristig, typisch hoher Anteil im Apothekenbetrieb."},
+            {q:"Was ist ein Aktivtausch?", a:["Kauf auf Kredit", "Bar-Einkauf von Waren", "Privatentnahme"], c:1, exp:"Nur Aktivseite betroffen: Kasse sinkt, Warenlager steigt – Bilanzsumme unverändert."},
+            {q:"Umsatzerlöse werden gebucht im…", a:["Soll", "Haben", "Anhang"], c:1, exp:"Erlöse mehren das Eigenkapital – Buchung im Haben der GuV."},
+            {q:"Niederstwertprinzip bei Vorräten bedeutet…", a:["FIFO-Verkaufsreihenfolge", "Bewertung höchstens mit niedrigerem beizulegendem Wert", "Niedrigster Einkaufspreis gilt"], c:1, exp:"Vorsichtsprinzip: Verfall oder Überbestand → Abschreibung auf Marktwert."},
+            {q:"Die Passivseite der Bilanz zeigt…", a:["Mittelverwendung", "Mittelherkunft (EK + FK)", "Offene Rezepte"], c:1, exp:"Wer das Vermögen finanziert hat: Eigen- und Fremdkapital."},
+            {q:"AfA (Absetzung für Abnutzung) ist…", a:["Apotheken-Fachausschuss", "Planmäßige Wertminderung von Anlagegütern", "Anzahlung"], c:1, exp:"Aufwand in GuV, Wertreduktion der Sachanlagen in der Bilanz."},
+            {q:"Ein Kommissionierer ist…", a:["Umlaufvermögen", "Anlagevermögen", "Verbindlichkeit"], c:1, exp:"Dauerhaft genutzte Einrichtung – gehört zum Anlagevermögen."},
+            {q:"Bilanzverlängerung entsteht durch…", a:["Barzahlung von Schulden", "Wareneinkauf auf Ziel", "Privatentnahme"], c:1, exp:"Lager und Verbindlichkeiten steigen gleichzeitig – Bilanzsumme wächst."},
+            {q:"Der Jahresüberschuss steht…", a:["Nur auf dem Bankkonto", "In GuV und im Eigenkapital der Bilanz", "Im Anlagevermögen"], c:1, exp:"Gewinn erhöht die Passivseite (Eigenkapital)."},
+            {q:"Inventur im Apothekenbetrieb ist…", a:["Warenbestellung", "Körperliche Bestandsaufnahme zum Stichtag", "Rezeptabrechnung"], c:1, exp:"Pflicht mindestens jährlich – Grundlage für Bilanz und Übergabepreis."},
+            {q:"Verbindlichkeiten aus LuL sind…", a:["Kundenforderungen", "Schulden beim Großhandel", "Lohnsteuer"], c:1, exp:"Offene Warenrechnungen – kurzfristiges Fremdkapital."},
+            {q:"Rückstellungen für Retaxationen, weil…", a:["Retaxationen sicher eintreten", "Kassenrückforderungen ungewiss sind (Vorsichtsprinzip)", "Das Finanzamt es vorschreibt"], c:1, exp:"Ungewisse Verbindlichkeiten → Passivposten in der Bilanz."},
+            {q:"Liquidität 1. Grades in Apotheken ist oft niedrig, weil…", a:["Kein Umsatz vorhanden", "Kapital im Lager und GKV-Forderungen gebunden ist", "Zu viel Eigenkapital"], c:1, exp:"Flüssige Mittel ÷ kurzfr. Verbindlichkeiten – Geld steckt selten auf dem Konto."},
+            {q:"Übergangsinventur: Lager 180.000 € über 3-Jahres-Durchschnitt. Ihre Schlussfolgerung?", a:["Kaufpreis unverändert", "Bewertung prüfen, Kaufpreisanpassung verhandeln", "Nur steuerlich relevant"], c:1, exp:"Überhöhtes Lager kann Kaufpreis und Working Capital belasten. Stichtagswert verifizieren."},
+            {q:"Keine Retaxationsrückstellung, Quote 2,8 % vom Rx-Umsatz (Benchmark 0,8 %). Maßnahme?", a:["Ignorieren – BWA reicht", "EBITDA bereinigen, Rückstellung in DD fordern", "Nur Verkäuferproblem nach Closing"], c:1, exp:"Unterbewertete Verbindlichkeiten verfälschen Ertragswert. Kaufpreis oder Garantie anpassen."}
         ],
-        // M3 (Kurzversionen für den Platz, fachlich identisch)
+        // M3: Übergabe & Standort
         [
-            {q:"Was ist ein Asset Deal?", a:["Verkauf von GmbH-Anteilen", "Einzelübertragung aller Wirtschaftsgüter", "Börsengang"], c:1, exp:"Apotheken werden meist als Einzelwerte übertragen."},
-            {q:"§ 613a BGB schützt...", a:["Den Vermieter", "Die Mitarbeiter", "Die Krankenkassen"], c:1, exp:"Betriebsübergang: Arbeitsverträge bleiben bestehen."},
-            {q:"Due Diligence (DD) ist eine...", a:["Feier", "Tiefgehende Risikoprüfung", "Behördenmeldung"], c:1, exp:"Der Käufer prüft die Apotheke 'auf Herz und Nieren'."},
-            {q:"Ein NDA dient der...", a:["Finanzierung", "Geheimhaltung", "Steuerersparnis"], c:1, exp:"Schutz vor Unruhe im Team/Markt."},
-            {q:"LoI bedeutet?", a:["Lohn-oder-Incentive", "Letter of Intent (Absichtserklärung)", "Lager-ohne-Inventur"], c:1, exp:"Vorstufe zum Kaufvertrag."},
-            {q:"Konkurrenzschutzklausel?", a:["Verbot für Versand", "Vermieter darf keine 2. Apotheke im Haus zulassen", "Gesetzlicher Schutz"], c:1, exp:"Wichtig für Standortsicherung im Ärztehaus."},
-            {q:"Heimverträge sind oft...", a:["Ewig gültig", "Personengebunden (Risiko!)", "Gesetzlich Pflicht"], c:1, exp:"Können beim Inhaberwechsel wegbrechen."},
-            {q:"Was ist der Firmenwert?", a:["Preis der Regale", "Ideeller Wert (Goodwill)", "Umsatz mal 2"], c:1, exp:"Wert über dem Substanzwert."},
-            {q:"Wer haftet für Steuerschulden des Alten?", a:["Niemand", "Der Erwerber (§75 AO)", "Die Kammer"], c:1, exp:"Betriebsübernehmerhaftung beachten!"},
-            {q:"Mietvertrag-Laufzeit ideal?", a:["1 Jahr", "5-10 Jahre + Optionen", "Monatlich kündbar"], c:1, exp:"Langfristige Sicherheit ist nötig für Kredite."},
-            {q:"Schriftformheilungsklausel?", a:["Gegen Krankheiten", "Sichert Mietverträge gegen Formfehler", "Für Rezepte"], c:1, exp:"Verhindert vorzeitige Kündbarkeit alter Verträge."},
-            {q:"Behördenmeldung Inhaberwechsel an...", a:["Nur Arbeitsamt", "Gesundheitsamt/Pharmazierat", "Finanzamt"], c:1, exp:"Neue Betriebserlaubnis ist zwingend."},
-            {q:"Wer macht die Standortanalyse?", a:["Makler/Berater", "Architekt", "Hausmeister"], c:0, exp:"Spezialisierte Vermittler prüfen Frequenzen."},
-            {q:"Wann wird das Lager gezählt?", a:["Beim LoI", "In der Nacht der Übergabe", "Ein Jahr später"], c:1, exp:"Stichtagsinventur ist kaufentscheidend."},
-            {q:"Wichtigster Punkt bei DD?", a:["Farbe der Kasse", "Mietvertrag & Personalkosten", "Anzahl der Parkplätze"], c:1, exp:"Fixkosten bestimmen die Tragfähigkeit."},
-            {q:"Bei Apothekenübernahmen ist üblich…", a:["Share Deal (GmbH-Anteile)", "Asset Deal (Einzelwirtschaftsgüter)", "Börsengang"], c:1, exp:"Wegen Apothekenerlaubnis und Fremdbesitz wird meist der Betrieb als Assets verkauft."},
-            {q:"Ohne Kündigung der Mitarbeiter bei Betriebsübergang gilt…", a:["§ 613a BGB", "§ 75 AO", "AMPreisV"], c:0, exp:"Arbeitsverhältnisse gehen mit allen Rechten/Pflichten auf den Erwerber über."},
-            {q:"Die Warenbestandsinventur zur Übergabe erfolgt…", a:["Ein Jahr nach Kauf", "Zum Stichtag der wirtschaftlichen Übergabe", "Nur steuerlich nach 3 Monaten"], c:1, exp:"Stichtagsinventur sichert Kaufpreis und Lagerwert."}
+            {q:"Bei Apothekenübernahmen ist üblich…", a:["Share Deal (GmbH-Anteile)", "Asset Deal (Einzelwirtschaftsgüter)", "Börsengang"], c:1, exp:"Erlaubnis personengebunden + Fremdbesitz → Übertragung einzelner Wirtschaftsgüter."},
+            {q:"Ein NDA dient der…", a:["Finanzierungszusage", "Geheimhaltung vor Datenübergabe", "Steueroptimierung"], c:1, exp:"Schützt Verkäufer vor Marktunruhe – Pflicht vor Exposé und BWA-Weitergabe."},
+            {q:"LoI (Letter of Intent) ist…", a:["Verbindlicher Kaufvertrag", "Unverbindliche Absichtserklärung zu Preis und Struktur", "Lagerprotokoll"], c:1, exp:"Vorstufe zum Kaufvertrag: Konditionen, Fristen, Exklusivität."},
+            {q:"Due Diligence umfasst…", a:["Feierliche Übergabe", "Systematische Risiko- und Plausibilitätsprüfung", "Nur Behördenanzeige"], c:1, exp:"BWA, Mietvertrag, Personal, Verträge, Retaxationen, IT – vor verbindlicher Preisfindung."},
+            {q:"§ 613a BGB bei Betriebsübergang bedeutet…", a:["Automatische Kündigung aller MA", "Arbeitsverhältnisse gehen auf Erwerber über", "Nur Gehalt wird übernommen"], c:1, exp:"Betriebsübergang: Rechte und Pflichten aus AV übertragen – Kündigungsschutz beachten."},
+            {q:"Heim- und Pflegeheimverträge sind häufig…", a:["Unbefristet übertragbar", "Personen- oder vertragsgebunden", "Gesetzlich automatisch"], c:1, exp:"Umsatzrisiko nach Inhaberwechsel – Vertragsliste und Kündigungsfristen in DD."},
+            {q:"Firmenwert (Goodwill) ist…", a:["Buchwert der Regale", "Ertragswert über dem Substanzwert", "Umsatz × 2"], c:1, exp:"Kundenstamm, Standort, Ertragskraft – Kern des Kaufpreises."},
+            {q:"§ 75 AO – Betriebsübernehmerhaftung:", a:["Keine Steuerhaftung", "Erwerber haftet für Steuerschulden des Vorgängers", "Nur Finanzamt haftet"], c:1, exp:"Haftung bis Höhe des übernommenen Betriebsvermögens – steuerliche DD und Freistellung im KV."},
+            {q:"Schriftformheilungsklausel im Mietvertrag…", a:["Schützt vor Krankheitsausfall", "Verhindert Kündbarkeit wegen Formfehlern", "Gilt nur für Rezepte"], c:1, exp:"Sichert alte Mietverträge gegen formbedingte Kündigungsrisiken."},
+            {q:"Stichtagsinventur bei Übergabe erfolgt…", a:["Ein Jahr nach Kauf", "Zum wirtschaftlichen Übergabestichtag", "Nur auf Verkäuferwunsch"], c:1, exp:"Grundlage für Kaufpreisanpassung und Übernahmebilanz – vertraglich regeln."},
+            {q:"Ärztehaus: Kein Konkurrenzschutz, Mietvertrag endet in 18 Monaten. Priorität vor Banktermin?", a:["Kaufpreis senken", "Verlängerung + Konkurrenzschutz verhandeln", "Nur Personal prüfen"], c:1, exp:"Standortsicherheit ist finanzierungsrelevant. Ohne Planungssicherheit kein belastbares Rating."},
+            {q:"Käufer will alle Mitarbeiter vor Closing kündigen. Ihre Beratung?", a:["Zulässig und üblich", "§ 613a: Übergang greift – arbeitsrechtliche Risiken", "Nur bei Filialen relevant"], c:1, exp:"Massenkündigung vor Übergang ist rechtlich riskant. Frühzeitig Arbeitsrechtler einbinden."},
+            {q:"Pflegeheim-Liefervertrag (12 % Umsatz) läuft auf Verkäufername. Risiko?", a:["Automatische Übertragung", "Umsatzbruch möglich – Vertrag in DD und KV sichern", "Nur kosmetisches Risiko"], c:1, exp:"Personengebundene Verträge gehören in DD-Liste mit Kündigungsfristen und Übernahmeklauseln."},
+            {q:"Verkäufer verweigert Steuerunterlagen der letzten 5 Jahre. Bewertung?", a:["Unproblematisch", "§-75-AO-Risiko – Freistellungsklausel und Kaufpreisabschlag", "Nur Steuerberater des Verkäufers zuständig"], c:1, exp:"Betriebsübernehmerhaftung macht steuerliche Transparenz zur Closing-Bedingung."},
+            {q:"Behördenmeldung bei Inhaberwechsel erfolgt an…", a:["Nur Arbeitsagentur", "Gesundheitsbehörde/Apothekerkammer", "Nur Finanzamt"], c:1, exp:"Neue Betriebserlaubnis und Kammeranzeige – ohne sie kein legaler Betriebsstart."}
         ],
-        // M4
+        // M4: BWA & Honorierung
         [
-            {q:"Gesetzliche Marge Rx?", a:["8,35€ Fixum", "3,0 % + Fixum", "15 %"], c:1, exp:"AMPreisV schreibt 3% Deckelung vor."},
-            {q:"Was sind Kickbacks?", a:["Trinkgeld", "Nachträgliche Boni vom Großhandel", "Strafzahlungen"], c:1, exp:"Verbessern den realen Rohertrag."},
-            {q:"Größter Kostenblock?", a:["Miete", "Personalkosten", "Strom"], c:1, exp:"Personal liegt meist bei 10-14% vom Umsatz."},
-            {q:"Packungsfixum 2027?", a:["8,35 €", "9,50 €", "12,00 €"], c:1, exp:"Steigt laut Reform stufenweise."},
-            {q:"Rohertragsquote Formel?", a:["Umsatz / Miete", "(Rohertrag / Umsatz) * 100", "Gewinn + AfA"], c:1, exp:"Zeigt die Handelsspanne."},
-            {q:"Kassenabschlag ist ein...", a:["Bonus für Apotheker", "Zwangsrabatt an die GKV", "Skonto"], c:1, exp:"Wird direkt bei der Abrechnung abgezogen."},
-            {q:"Was ist ein 'Hochpreiser'?", a:["Teure Kosmetik", "Arzneimittel mit sehr hohem Einkaufspreis", "Apotheke in München"], c:1, exp:"Senken optisch die prozentuale Spanne."},
-            {q:"BGH-Urteil 2024 zu Skonti?", a:["Skonti sind verboten", "Dürfen AMPreisV-Mindestpreis nicht unterschreiten", "Unbegrenzt erlaubt"], c:1, exp:"Eingeschränkte Einkaufsvorteile bei Rx."},
-            {q:"EBT bedeutet?", a:["Ergebnis vor Steuern", "Einkauf-bei-Teuer", "Einnahmen-Brutto-Total"], c:0, exp:"Earnings Before Taxes."},
-            {q:"Retaxation ist...", a:["Steuerrückzahlung", "Zahlungsverweigerung der Kasse bei Fehlern", "Rabatt"], c:1, exp:"Hohes Risiko für den Rohertrag."},
-            {q:"Raumkosten beinhalten...", a:["Nur Kaltmiete", "Miete, NK, Reinigung, Strom", "Personalkosten"], c:1, exp:"Alles rund um die Immobilie."},
-            {q:"OTC-Quote hoch bedeutet...", a:["Schlechter Gewinn", "Tendenziell höhere Marge", "Mehr Arbeit"], c:1, exp:"Im OTC-Bereich ist die Kalkulation frei."},
-            {q:"Skonto-Verlust durch...", a:["Gutes Verhandeln", "Schlechte Liquidität/Zahlungsverzug", "Hohen Umsatz"], c:1, exp:"Nur wer pünktlich zahlt, zieht Skonto."},
-            {q:"Was ist die Handelsspanne?", a:["Regalbreite", "Differenz zw. Netto-EK und Netto-VK", "Miete"], c:1, exp:"Wichtigste Ertragskennzahl."},
-            {q:"Notdienstpauschale kommt aus dem...", a:["Finanzamt", "Notdienstfonds (Strukturförderung)", "Vom Kunden"], c:1, exp:"Pauschale pro Dienst zur Unterstützung."},
-            {q:"Das Packungsfixum steigt laut AMPreisV-Reform ab 1.7.2026 auf…", a:["8,35 €", "9,00 €", "9,50 €"], c:1, exp:"Stufe 1: 9,00 € ab Juli 2026; Stufe 2: 9,50 € ab Januar 2027."},
-            {q:"Der gesetzliche Kassenabschlag steigt ab 1.1.2027 auf…", a:["1,77 €", "2,07 €", "3,00 €"], c:1, exp:"Erhöhung mindert den Nettoeffekt der Fixumerhöhung (SGB V)."},
-            {q:"Die prozentuale Vergütung für Rx ist gedeckelt auf…", a:["5 %", "3 % des Abgabepreises", "15 %"], c:1, exp:"AMPreisV: zusätzlich zum Packungsfixum maximal 3 %."}
+            {q:"Gesetzliche Rx-Vergütung nach AMPreisV?", a:["Nur 15 % Marge", "Packungsfixum + max. 3 %", "Freie Kalkulation"], c:1, exp:"Fixum plus gedeckelte prozentuale Vergütung – Rx nicht frei kalkulierbar."},
+            {q:"Rückvergütungen vom Großhandel sind…", a:["Trinkgelder", "Nachträgliche Boni, die den EK senken", "Strafzahlungen der Kasse"], c:1, exp:"Verbessern realen Rohertrag – buchhalterisch korrekt erfassen."},
+            {q:"Größter fixer Kostenblock in vielen Apotheken?", a:["Strom", "Personalkosten", "Werbung"], c:1, exp:"Oft 10–14 % vom Umsatz – stark konzeptabhängig, DD-relevant."},
+            {q:"Rohertragsquote berechnet sich als…", a:["Umsatz / Miete", "(Rohertrag / Umsatz) × 100", "Gewinn / AfA"], c:1, exp:"Wichtigste Margenkennzahl im Apothekencontrolling."},
+            {q:"Kassenabschlag (SGB V) ist…", a:["Freiwilliger Rabatt", "Gesetzlicher Zwangsrabatt an die GKV", "Skonto des Großhandels"], c:1, exp:"Wird bei Abrechnung einbehalten – mindert Netto-Honorar pro Packung."},
+            {q:"Ein Rx-Hochpreiser…", a:["Teures OTC-Produkt", "Rx mit sehr hohem EK, senkt optisch die Quote", "Apotheke in Großstadt"], c:1, exp:"Hoher EK → prozentuale Spanne sinkt, obwohl absoluter Rohertrag steigen kann."},
+            {q:"BGH-Rechtsprechung 2024 zu Rx-Skonti:", a:["Skonti vollständig verboten", "Dürfen AMPreisV-Mindestabgabepreis nicht unterschreiten", "Unbegrenzt übertragbar"], c:1, exp:"Einkaufsvorteile bei Rx begrenzt – Mindestabgabepreis beachten."},
+            {q:"Retaxation bedeutet…", a:["Steuererstattung", "Kassenrückforderung wegen Abrechnungsfehlern", "Kundenrabatt"], c:1, exp:"Schmälert Rohertrag – Quote in DD und BWA prüfen."},
+            {q:"Raumkosten umfassen…", a:["Nur Kaltmiete", "Miete, NK, Reinigung, Strom", "Personalkosten"], c:1, exp:"Immobilienbezogene Kosten – nicht mit Personal verwechseln."},
+            {q:"Hohe OTC-Quote tendiert zu…", a:["Niedrigerer Marge", "Höherer freier Marge", "Mehr Retaxationen"], c:1, exp:"OTC frei kalkulierbar – stützt Gesamtrentabilität."},
+            {q:"Handelsspanne ist…", a:["Regalbreite", "Differenz Netto-EK und Netto-VK", "Miete pro qm"], c:1, exp:"Kerngröße der Ertragskraft – Rohertrag pro verkaufter Einheit."},
+            {q:"Packungsfixum ab 1.1.2027 (AMPreisV-Reform)?", a:["8,35 €", "9,50 €", "12,00 €"], c:1, exp:"Stufe 1: 9,00 € ab 1.7.2026; Stufe 2: 9,50 € ab 1.1.2027."},
+            {q:"Kassenabschlag ab 1.1.2027 (geplant)?", a:["1,77 €", "2,07 €", "3,00 €"], c:1, exp:"Erhöhung mindert Nettoeffekt der Fixumerhöhung – in Prognosen einrechnen."},
+            {q:"Rohertragsquote sinkt von 28 % auf 24 %, Umsatz steigt. Erklärung?", a:["Schlechtere Wirtschaftlichkeit", "Mehr Rx-Hochpreiser – struktureller Effekt", "Buchungsfehler"], c:1, exp:"Hochpreiser drücken die Quote optisch – mit Käufer segmentiert erklären."},
+            {q:"Verkäufer: 'Fixum steigt auf 9,50 € – deutlich mehr Honorar.' Ihre Antwort?", a:["Stimmt vollständig", "Nettoeffekt rechnen: Fixum minus steigender Kassenabschlag", "Nur für OTC relevant"], c:1, exp:"Consultant rechnet Netto pro Packung vor – nicht nur Brutto-Fixum kommunizieren."}
         ],
-        // M5
+        // M5: Wirtschaftlichkeit & Finanzierung
         [
-            {q:"Kalkulatorischer Unternehmerlohn?", a:["Gehalt Chef", "Fiktiver Betrag für Lebenshaltung", "Mindestlohn"], c:1, exp:"Zieht die Bank vom Cashflow ab."},
-            {q:"EBITDA?", a:["Einnahmen total", "Gewinn vor Zinsen, Steuern, AfA", "Eigenkapital"], c:1, exp:"Maß für operative Ertragskraft."},
-            {q:"Tragfähigkeit prüfen bedeutet...", a:["Regale testen", "Reicht Cashflow für Zins, Tilgung & Leben?", "Mitarbeiter zählen"], c:1, exp:"Kernfrage jeder Finanzierung."},
-            {q:"Standardlaufzeit Apo-Kredit?", a:["3 Jahre", "10 Jahre (120 Monate)", "30 Jahre"], c:1, exp:"Branchenstandard für Investitionsdarlehen."},
-            {q:"KfW-Darlehen bieten...", a:["Nur hohe Zinsen", "Haftungsfreistellungen & günstige Zinsen", "Geschenktes Geld"], c:1, exp:"Wichtig für Existenzgründer."},
-            {q:"Verschuldungsfaktor ideal?", a:["Über 10", "Unter 3,5 - 4,5 x EBITDA", "Egal"], c:1, exp:"Wichtige Kennzahl im Bank-Rating."},
-            {q:"Substanzwert vs. Ertragswert?", a:["Substanz ist wichtiger", "Ertragswert ist kaufentscheidend", "Beide sind gleich"], c:1, exp:"Käufer zahlen für zukünftige Gewinne."},
-            {q:"Was mindert die Kapitaldienstfähigkeit?", a:["Hoher Umsatz", "Hohe private Entnahmen/Luxus", "Skonti"], c:1, exp:"Privatverbrauch schmälert Tilgungskraft."},
-            {q:"PKV-Patienten sind...", a:["Riskant", "Margenstark (kein Kassenabschlag)", "Teuer"], c:1, exp:"Privatversicherte bringen besseren Rohertrag."},
-            {q:"Was ist ein Kontokorrentrahmen?", a:["Festkredit", "Flexibler Dispo für Wareneinkauf", "Bausparvertrag"], c:1, exp:"Sichert die laufende Liquidität."},
-            {q:"Bereinigtes EBITDA?", a:["Höherer Umsatz", "EBITDA korrigiert um Einmaleffekte", "Steuererklärung"], c:1, exp:"Macht die BWA vergleichbar."},
-            {q:"Bank-Rating beeinflusst...", a:["Die Wandfarbe", "Den Zinssatz", "Die Anzahl der Kunden"], c:1, exp:"Gutes Rating = billiger Kredit."},
-            {q:"Tilgungsrate berechnet man...", a:["Monatlich", "Jährlich", "Beides üblich"], c:2, exp:"Meist monatliche Annuität."},
-            {q:"Warum persönliche Bürgschaft?", a:["Bank-Willkür", "Apo-Werte sind flüchtig (Warenlager)", "Vorschrift der Kammer"], c:1, exp:"Bank fordert Haftung des Unternehmers."},
-            {q:"Zinserhöhung führt zu...", a:["Höheren Kaufpreisen", "Niedrigeren bezahlbaren Kaufpreisen", "Mehr Umsatz"], c:1, exp:"Finanzierung wird teurer -> Spielraum sinkt."},
-            {q:"Kapitaldienst besteht aus…", a:["Nur Zinsen", "Zins und Tilgung", "Nur Umsatz"], c:1, exp:"Die Bank prüft, ob der Cashflow Zins+Tilgung trägt."},
-            {q:"Bereinigtes EBITDA wird genutzt, um…", a:["Steuern zu sparen", "Einmaleffekte für Käufer/Bank auszublenden", "Personal zu kündigen"], c:1, exp:"Macht BWA und Ertragskraft vergleichbar (z. B. bei Übernahme)."},
-            {q:"Typische Laufzeit eines Apotheken-Investitionskredits?", a:["3 Jahre", "Ca. 10 Jahre", "30 Jahre"], c:1, exp:"Häufig ca. 120 Monate – abhängig von Bank und Objekt."}
+            {q:"Kalkulatorischer Unternehmerlohn ist…", a:["Gehalt des Inhabers", "Fiktiver Abzug für private Lebenshaltung in der Bankrechnung", "Mindestlohn"], c:1, exp:"Bank zieht ihn vom verfügbaren Cashflow ab – nicht identisch mit Gehalt."},
+            {q:"EBITDA misst…", a:["Gesamtumsatz", "Operatives Ergebnis vor Zinsen, Steuern, AfA", "Eigenkapitalquote"], c:1, exp:"Standardkennzahl für Bankbewertung und Kaufpreisfindung."},
+            {q:"Kapitaldienstfähigkeit prüft, ob…", a:["Regale tragfähig sind", "Cashflow Zins + Tilgung + Unternehmerlohn trägt", "Genug Mitarbeiter vorhanden sind"], c:1, exp:"Kernfrage jeder Finanzierung – vor Kaufpreisverpflichtung klären."},
+            {q:"Typische Laufzeit Apotheken-Investitionskredit?", a:["3 Jahre", "Ca. 10 Jahre (120 Monate)", "30 Jahre"], c:1, exp:"Branchenüblich – abhängig von Bank, Objekt und Bonität."},
+            {q:"KfW-/Förderdarlehen bieten…", a:["Nur höhere Zinsen", "Günstigere Konditionen und Haftungsfreistellungen", "Zuschüsse ohne Rückzahlung"], c:1, exp:"Relevant für Existenzgründer und strukturierte Finanzierung."},
+            {q:"Verschuldungsfaktor (FK/EBITDA) – Bank-Orientierung?", a:["Über 10× üblich", "Ca. 3,5–4,5× als Obergrenze", "Irrelevant"], c:1, exp:"Individuell je Bank – wichtige Rating-Kennzahl."},
+            {q:"Kaufpreis folgt meist dem…", a:["Substanzwert", "Ertragswert", "Inventarwert"], c:1, exp:"Käufer zahlen für zukünftige Überschüsse, nicht nur für Sachwerte."},
+            {q:"Hohe private Entnahmen mindern…", a:["Den Umsatz", "Die Tilgungskraft / Kapitaldienstfähigkeit", "Die Retaxationsquote"], c:1, exp:"Privatverbrauch reduziert verfügbaren Cashflow für die Bank."},
+            {q:"Hoher PKV-Anteil ist tendenziell…", a:["Risikoreich", "Margenstärker (kein Kassenabschlag auf Rx)", "Umsatzneutral"], c:1, exp:"PKV-Rx ohne GKV-Abschlag – in BWA-Segmentierung bewerten."},
+            {q:"Kontokorrent/Dispo dient…", a:["Immobilienkauf", "Liquidität für Wareneinkauf", "Altersvorsorge"], c:1, exp:"Flexibler Rahmen – Zinsen höher als beim Investitionskredit."},
+            {q:"Bank-Rating beeinflusst primär…", a:["Sortiment", "Zinssatz und Covenant-Auflagen", "Revisionsintervall"], c:1, exp:"Bonität bestimmt Konditionen und Reporting-Pflichten."},
+            {q:"Persönliche Bürgschaft ist üblich, weil…", a:["Gesetzlich vorgeschrieben", "Apothekenwerte (v. a. Lager) volatil sind", "Kammer es verlangt"], c:1, exp:"Bank sichert sich über den Unternehmer ab – Verhandlungspunkt."},
+            {q:"Steigende Zinsen führen zu…", a:["Höherem maximal finanzierbarem Kaufpreis", "Niedrigerem maximal finanzierbarem Kaufpreis", "Keiner Auswirkung"], c:1, exp:"Kapitaldienst steigt – Käufer-Raum sinkt, Verhandlungsposition verschiebt sich."},
+            {q:"BWA: Einmaliger Rechtsstreit 90.000 € im Sonderaufwand. Vorgehen?", a:["In EBITDA belassen", "Bereinigen mit Nachweis – für Bank und Käufer", "Ignorieren"], c:1, exp:"Einmaleffekte herausrechnen macht Ertragskraft vergleichbar – Belege in DD."},
+            {q:"Bereinigtes EBITDA 420.000 €, Multiple 4,5×, Unternehmerlohn 80.000 €, Kapitaldienst 95.000 €. Ergebnis?", a:["Finanzierung sicher tragfähig", "Verfügbarer Cashflow nach Kapitaldienst und Unternehmerlohn prüfen", "Multiple irrelevant"], c:1, exp:"Ertragswert ≠ Finanzierbarkeit. Consultant rechnet Cashflow nach allen Abzügen."}
+        ],
+        // M6: Bewertung & Closing
+        [
+            {q:"Kaufpreisallokation (Asset Deal) ist wichtig, weil…", a:["Nur optisch", "Steuerliche Behandlung von GWG vs. Goodwill unterschiedlich ist", "Nur Notar relevant"], c:1, exp:"Aufteilung auf Einrichtung, Lager, Patientenstamm – AfA und Steuerfolgen."},
+            {q:"§-75-AO-Freistellung im Kaufvertrag soll…", a:["Miete regeln", "Erwerber von Alt-Steuerschulden freistellen", "Personal übernehmen"], c:1, exp:"Verkäufer haftet für bekannte Steuerrisiken – Standardklausel bei Übernahme."},
+            {q:"Garantie für Retaxationen deckt typischerweise…", a:["Nur OTC", "Unbekannte Alt-Retaxationen bis zur Closing-Periode", "Zukünftige Umsätze"], c:1, exp:"Verkäufergarantie für vor Closing entstandene Abrechnungsrisiken."},
+            {q:"EBITDA-Multiple in der Apothekenbewertung…", a:["Ist gesetzlich fix", "Orientierungsgröße – abhängig von Objekt, Region, Risiko", "Gilt nur für Ketten"], c:1, exp:"Kein Einheitsmultiple – DD-Qualität und Nachhaltigkeit bestimmen Spanne."},
+            {q:"Earn-out-Struktur ist sinnvoll, wenn…", a:["Käufer kein Geld hat", "Umsatz unsicher/personengebunden und Verkäufer mitwirkt", "Behörde es verlangt"], c:1, exp:"Kaufpreisanteil an künftige Ergebnisse gekoppelt – bei Heimvertragsrisiko."},
+            {q:"Kaufpreisdepot (Escrow) dient…", a:["Mietkaution", "Absicherung von Garantieansprüchen nach Closing", "Lohnzahlung"], c:1, exp:"Teil des Kaufpreises wird zurückbehalten – z. B. für Retaxations- oder Garantiefälle."},
+            {q:"Closing-Checkliste: Vor Schlüsselübergabe zwingend…", a:["Nur Kasse melden", "Neue Betriebserlaubnis und Kammeranmeldung", "Nur Inventur"], c:1, exp:"Behördliche Freigabe und Erlaubnis – ohne sie kein legaler Betrieb."},
+            {q:"Informationspflicht bei § 613a BGB:", a:["Keine", "Betroffene Arbeitnehmer rechtzeitig informieren", "Nur Betriebsrat"], c:1, exp:"Arbeitsrechtliche Pflichten vor Übergang – Fehler gefährden Team und Betrieb."},
+            {q:"Wirtschaftlichkeitsprüfung bei Inhaberwechsel…", a:["Gibt es bundesweit einheitlich", "Ist landesrechtlich unterschiedlich geregelt", "Entfällt bei Asset Deal"], c:1, exp:"Je nach Bundesland Standort- und Wirtschaftlichkeitsprüfung – früh klären."},
+            {q:"IT-DD bei Apotheken umfasst…", a:["Nur Drucker", "Warenwirtschaft, Abrechnung, Retaxationshistorie, E-Rezept", "Nur Website"], c:1, exp:"Software und Abrechnungsqualität = operatives Kernrisiko."},
+            {q:"Inventurmechanik im Kaufvertrag regelt…", a:["Nur Farbe der Regale", "Stichtag, Bewertung, Kaufpreisanpassung bei Abweichung", "Personalboni"], c:1, exp:"Vertraglich festlegen: wer zählt, welcher Wertansatz, Adjustments."},
+            {q:"Bank-Covenant ist…", a:["Mietvertragsklausel", "Finanzielle Kennzahl-Verpflichtung gegenüber der Bank", "NDA"], c:1, exp:"z. B. Mindest-EBITDA, Schuldendienstdeckung – Verletzung = Kündigungsrisiko."},
+            {q:"Verkäufer fordert 2,8 Mio. € (Substanz), Käufer bietet 2,0 Mio. € (Ertragswert). Moderation?", a:["Mittelwert ohne Prüfung", "Bereinigtes EBITDA, Multiple, Finanzierbarkeit transparent gegenüberstellen", "Verkäufer hat immer recht"], c:1, exp:"Consultant vermittelt mit Zahlen: Ertragswert, Banklimit, Risikoabschläge."},
+            {q:"Closing verzögert: Krankenkassenabmeldung Altinhaber offen. Konsequenz?", a:["Unwichtig", "Rx-Abrechnung blockiert – Closing-Bedingung einhalten", "Nur internes Problem"], c:1, exp:"Operativer Start ohne saubere Kassenübernahme unmöglich – in Checkliste."},
+            {q:"DD-Abschlussbericht vor Unterschrift: Red Flag ist…", a:["Neue Einrichtung", "Steigende Retaxationen + fehlende Rückstellungen + kurzer Mietvertrag", "Hoher PKV-Anteil"], c:1, exp:"Kombination operativer und standortlicher Risiken → Kaufpreis, Garantien oder Abbruch."}
         ]
     ];
 
@@ -1126,6 +1592,40 @@
             {h:"PKV-Anteil", p:"Privatversicherte Patienten: kein gesetzlicher Kassenabschlag auf Rx – oft margenstärker, aber kleinerer Anteil."},
             {h:"Zinsumfeld & Kaufpreis", p:"Steigende Zinsen erhöhen den Kapitaldienst – maximal tragfähiger Kaufpreis sinkt, Verhandlungsspielraum verschiebt sich."},
             {h:"Rating der Bank", p:"Bonität bestimmt Zinssatz, Beleihungsgrenze und Covenant-Auflagen (z. B. Kennzahlenreporting)."}
+        ]},
+        {t:"📐 Bewertung & Kaufpreis", c:[
+            {h:"Ertragswertverfahren", p:"Kaufpreis orientiert sich an kapitalisierten zukünftigen Überschüssen – meist auf Basis bereinigten EBITDA × Multiple. Branchenüblich, aber objektabhängig."},
+            {h:"Substanzwert", p:"Summe aus Inventar, Einrichtung, Forderungen abzüglich Schulden. Deckt Sachwerte ab – allein selten kaufpreisbestimmend."},
+            {h:"EBITDA-Multiple", p:"Orientierungsgröße: bereinigtes EBITDA × Faktor (z. B. 3,5–5,5× je nach Risiko, Region, Nachhaltigkeit). Kein gesetzlicher Standard."},
+            {h:"Bereinigungen", list:[
+                "Einmalige Rechts- oder Sanierungskosten",
+                "Überhöhte Privatentnahmen des Verkäufers",
+                "Nicht nachhaltige Sondererträge",
+                "Fehlende Retaxationsrückstellungen"
+            ]},
+            {h:"Goodwill-Allokation", p:"Kaufpreisanteil über Substanzwert = Firmenwert. Steuerliche und bilanzielle Behandlung vom Steuerberater klären."},
+            {h:"Earn-out", p:"Kaufpreisanteil an künftige Kennzahlen gekoppelt – bei unsicherem Kundenstamm oder personengebundenen Verträgen."}
+        ]},
+        {t:"📝 Kaufvertrag & Closing", c:[
+            {h:"Kaufvertragsanatomie", list:[
+                "Kaufgegenstand und Kaufpreis (inkl. Allokation)",
+                "Garantien und Freistellungen (Steuern, Retaxationen)",
+                "Inventurmechanik und Kaufpreisanpassung",
+                "Non-Compete / Wettbewerbsverbot",
+                "Conditions Precedent (Bank, Behörde, Mietverlängerung)"
+            ]},
+            {h:"§ 75 AO – Freistellung", p:"Verkäufer stellt Erwerber von bekannten Alt-Steuerschulden frei. Höhe und Dauer vertraglich definieren."},
+            {h:"Retaxationsgarantie", p:"Verkäufer haftet für vor Closing entstandene, nicht offengelegte Abrechnungsrisiken – oft mit Kaufpreisdepot (Escrow)."},
+            {h:"Closing-Checkliste", list:[
+                "Neue Betriebserlaubnis erteilt",
+                "Apothekerkammer informiert",
+                "Krankenkassen-/Abrechnungsübernahme",
+                "Mitarbeiterinformation § 613a BGB",
+                "Stichtagsinventur protokolliert",
+                "Notarielle Beurkundung / Übergabeprotokoll"
+            ]},
+            {h:"Kaufpreisdepot (Escrow)", p:"Teil des Kaufpreises wird einbehalten – Auszahlung an Verkäufer nach Ablauf der Garantiefrist oder bei Erfüllung von Bedingungen."},
+            {h:"Bank-Covenants", p:"Finanzielle Verpflichtungen gegenüber der Bank (z. B. Mindest-EBITDA, Schuldendienstdeckungsgrad) – Verletzung kann zur Kreditkündigung führen."}
         ]}
     ];
 
@@ -1165,7 +1665,7 @@
                 { k: "AMNOG", v: "Arzneimittelmarktneuordnungsgesetz", p: "Ein Gesetzungsverfahren, das die Preise für komplett neue, innovative Medikamente in Deutschland reguliert." },
                 { k: "BtM", v: "Betäubungsmittel", p: "Stark regulierte, rezeptpflichtige Medikamente (z. B. starke Schmerzmittel). Sie erfordern eine lückenlose Dokumentation und Spezialtresore." },
                 { k: "Defektur", v: "Eigenherstellung auf Vorrat", p: "Die Herstellung von Arzneimitteln im Labor der Apotheke im Voraus (bis zu 100 Packungen an einem Tag) auf Basis einer bewährten Rezeptur." },
-                { k: "Fixum", v: "Packungsfixum", p: "Der feste Euro-Betrag (Honorar), den eine Apotheke pro abgegebener Rx-Packung von den Krankenkassen erhält (wurde im Juni 2026 reformiert)." },
+                { k: "Fixum", v: "Packungsfixum", p: "Der feste Euro-Betrag (Honorar) pro Rx-Packung. Reform: 9,00 € ab 1.7.2026, 9,50 € ab 1.1.2027 (AMPreisV)." },
                 { k: "Freiverkäuflich", v: "Freiverkäufliche Arzneimittel", p: "Produkte mit medizinischer Wirkung, die aber nicht apothekenpflichtig sind (z. B. Kamillentee oder Hustenbonbons aus dem Drogeriemarkt)." },
                 { k: "Freiwahl", v: "Freiwahl-Sortiment", p: "Der kundenzugängliche Verkaufsraum für Kosmetik, Pflegemittel und Nahrungsergänzungsmittel (meist höchste Margen)." },
                 { k: "GKV", v: "Gesetzliche Krankenversicherung", p: "Die gesetzlichen Krankenkassen (z. B. AOK, TK, Barmer), mit denen die Apotheke den Großteil ihrer Rezepte abrechnet." },
@@ -1214,7 +1714,7 @@
     ];
 
     // --- APP LOGIK ---
-    const APP_VERSION = "2.6";
+    const APP_VERSION = "3.3";
     const EXAM_MAX_ERRORS = 3;
     const MODULE_PASS_PERCENT = 70;
     const STORAGE_LOGS = "apo_logs";
@@ -1223,8 +1723,115 @@
     const STORAGE_PWA_DISMISS = "apo_pwa_dismiss";
     const STORAGE_THEME = "apo_theme";
     const STORAGE_SOUND = "apo_sound";
+    // Apo-Guru Erweiterung
+    const STORAGE_PASS_HASH = "apo_pass_hash";
+    const STORAGE_APP_MODE = "apo_app_mode";
+    const STORAGE_PROVISION = "apo_provision_data";
+    const STORAGE_RADAR = "apo_radar_data";
+    const STORAGE_GEMINI_KEY = "apo_gemini_api_key";
+    const STORAGE_CHAT_HISTORY = "apo_chat_history";
+    const STORAGE_DEALS = "apo_deals_data";
+
+    const DEAL_PHASES = [
+        { id: "nda", label: "NDA", hint: "Vertraulichkeitsvereinbarung" },
+        { id: "loi", label: "LOI", hint: "Absichtserklärung (Letter of Intent)" },
+        { id: "dd", label: "DD", hint: "Due Diligence – Risikoprüfung" },
+        { id: "bank", label: "Bank", hint: "Finanzierung & Kreditprüfung" },
+        { id: "closing", label: "Closing", hint: "Vertragsabschluss & Übergabe" },
+        { id: "done", label: "Abgeschlossen", hint: "Deal beendet" }
+    ];
+
+    const DD_CHECKLIST = [
+        { cat: "Recht & Erlaubnis", items: [
+            { id: "dd-erlaubnis", label: "Betriebserlaubnis & Inhaberwechsel behördlich geklärt" },
+            { id: "dd-filialen", label: "Filialstruktur (1+3) und Verantwortliche geprüft" },
+            { id: "dd-versand", label: "§ 11a ApoG (Versanderlaubnis) – falls relevant vorhanden" },
+            { id: "dd-apobetro", label: "ApBetrO (Betriebsordnung) – Mindestfläche & Betriebsräume dokumentiert" },
+            { id: "dd-wiwa", label: "Wirtschaftlichkeits-/Standortprüfung (landesrechtlich) eingeschätzt" }
+        ]},
+        { cat: "Finanzen & BWA", items: [
+            { id: "dd-bwa3", label: "BWA (Betriebsauswertung) / Jahresabschlüsse der letzten 3 Jahre vollständig" },
+            { id: "dd-ebitda", label: "EBITDA (Ertrag vor Zinsen/Steuern) bereinigt – Einmaleffekte, Privatentnahmen" },
+            { id: "dd-retax", label: "Retaxation (Kassenrückforderung) – Quote und Rückstellungen geprüft" },
+            { id: "dd-inventur", label: "Stichtagsinventur / Lagerbewertung vereinbart" },
+            { id: "dd-steuer75", label: "Steuer-DD & § 75 AO (Käuferhaftung für Steuerschulden) bewertet" },
+            { id: "dd-bank", label: "Kapitaldienstfähigkeit / Bankindikation eingeholt" }
+        ]},
+        { cat: "Standort & Miete", items: [
+            { id: "dd-miet", label: "Mietvertrag: Laufzeit, Optionen, Indexmiete geprüft" },
+            { id: "dd-konk", label: "Konkurrenzschutzklausel vorhanden / verhandelt" },
+            { id: "dd-schriftform", label: "Schriftformheilungsklausel geprüft" },
+            { id: "dd-standort", label: "Standortanalyse (Frequenz, Wettbewerb, Demografie)" },
+            { id: "dd-raum", label: "Raumkostenquote plausibilisiert" }
+        ]},
+        { cat: "Verträge & Umsatz", items: [
+            { id: "dd-heim", label: "Heim- / Pflegeheimverträge: Bindung & Kündigungsfristen" },
+            { id: "dd-umsatz", label: "Umsatzsegmentierung (Rx/OTC, GKV/PKV = Rezept/frei, gesetzlich/privat) analysiert" },
+            { id: "dd-hochpreiser", label: "Hochpreiser-Anteil und Rohertragsquote erklärt" },
+            { id: "dd-nda-loi", label: "NDA (Vertraulichkeit) & LOI (Absichtserklärung) unterzeichnet, Exklusivität geprüft" },
+            { id: "dd-goodwill", label: "Goodwill (Firmenwert) / Ertragswert vs. Substanzwert diskutiert" }
+        ]},
+        { cat: "Personal & Arbeitsrecht", items: [
+            { id: "dd-613a", label: "§ 613a BGB (Mitarbeiterübernahme) – Information & Widerspruchsrechte geklärt" },
+            { id: "dd-pk", label: "Personalkostenquote und Sonderzahlungen umgelegt" },
+            { id: "dd-kuend", label: "Keine ungeplanten Kündigungen vor Übergang" },
+            { id: "dd-betriebsrat", label: "Betriebsrat / Interessenausgleich (falls vorhanden)" }
+        ]},
+        { cat: "IT & Abrechnung", items: [
+            { id: "dd-waren", label: "Warenwirtschaft / Kassensystem funktionsfähig" },
+            { id: "dd-abrech", label: "Abrechnungsqualität & Retaxationshistorie ausgewertet" },
+            { id: "dd-erezept", label: "E-Rezept-Fähigkeit und DVO (Datenschutz-Auftragsverarbeitung) geprüft" },
+            { id: "dd-it", label: "IT-Verträge und Übernahme geregelt" }
+        ]},
+        { cat: "Kaufvertrag & Closing", items: [
+            { id: "dd-kv", label: "Kaufvertragsentwurf: Garantien & Freistellungen" },
+            { id: "dd-allok", label: "Kaufpreisallokation (GWG = Geldwäschegesetz, Goodwill, Lager)" },
+            { id: "dd-escrow", label: "Kaufpreisdepot / Earn-out (falls vereinbart)" },
+            { id: "dd-kammer", label: "Apothekerkammer / Gesundheitsamt informiert" },
+            { id: "dd-kasse", label: "Krankenkassen- / Abrechnungsübernahme organisiert" },
+            { id: "dd-protokoll", label: "Übergabeprotokoll & Notartermin geplant" }
+        ]}
+    ];
+
+    let currentDealId = null;
+    const GEMINI_SYSTEM_EINARBEITUNG = "Du bist ein M&A-Dozent für den Apothekenmarkt. Erkläre Konzepte verständlich für die Einarbeitung. Keine Mandatsberatung – nur Lerninhalte.";
+    const GEMINI_SYSTEM_CLOSING = "Du bist ein M&A-Sparringpartner für den Apothekenmarkt. Antworte allgemein und methodisch. Der Nutzer gibt bewusst keine Mandatsdaten ein – erfinde keine Kundennamen oder Zahlen.";
+
+    const VIEWS_EINARBEITUNG = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-radar", "view-chat"];
+    const VIEWS_CLOSING = ["view-menu", "view-deals", "view-deal", "view-objections", "view-provision", "view-chat"];
+
+    const NEXT_ACTIONS = [
+        { id: "", label: "— Keine Auswahl —" },
+        { id: "bank", label: "Banktermin" },
+        { id: "dd", label: "DD-Review", hint: "Due Diligence – Risikoprüfung" },
+        { id: "seller", label: "Gespräch Verkäuferseite" },
+        { id: "buyer", label: "Gespräch Käuferseite" },
+        { id: "notar", label: "Notar / Vertrag" },
+        { id: "behoerde", label: "Behörde / Kammer" },
+        { id: "internal", label: "Interne Abstimmung" }
+    ];
+    const GEMINI_MODEL = "gemini-2.0-flash";
+
+    const OBJECTIONS = [
+        { tag: "Preis", q: "Der Kaufpreis ist zu hoch – ich bekomme das woanders günstiger.", r: "Verständlich. Lassen Sie uns den Ertragswert transparent aufschlüsseln: EBITDA-Multiple, bereinigte BWA, Substanzwert. Der Preis reflektiert den nachhaltigen Kundenstamm und die Standortqualität – nicht nur Inventarwert." },
+        { tag: "Preis", q: "Ich will nur den Substanzwert zahlen, kein Goodwill.", r: "Substanzwert deckt nur Sachwerte ab. Der Firmenwert (Goodwill) ist der ökonomische Kern bei Apotheken: Kundenstamm, Standort, Heimverträge, Erlaubnis. Banken finanzieren primär nach Ertragswert – nicht nach Buchwert." },
+        { tag: "Finanzierung", q: "Die Bank wird das nie finanzieren.", r: "Kapitaldienstfähigkeit ist die Schlüsselkennzahl: EBITDA minus kalkulatorischem Unternehmerlohn muss Zins+Tilgung tragen. Mit KfW-Programmen und sauberer DD-Dokumentation sind 70–80% Fremdfinanzierung bei soliden Objekten realistisch." },
+        { tag: "Finanzierung", q: "Die Zinsen sind zu hoch, das rechnet sich nicht.", r: "Sensitivitätsanalyse: Bei +1% Zins sinkt der maximal finanzierbare Kaufpreis um ca. 8–12%. Optionen: höhere Anzahlung, längere Zinsbindung, Tilgungsaussetzung oder KfW-Refinanzierung." },
+        { tag: "Recht", q: "Ich kenne mich mit ApoG und Erlaubnis nicht aus.", r: "Genau deshalb begleiten wir den Prozess: Asset Deal, neue Betriebserlaubnis, § 613a BGB (Mitarbeiter), § 75 AO (Steuerhaftung). Unser Netzwerk aus Anwälten und Kammer-Beratern sichert die Compliance." },
+        { tag: "Recht", q: "Was passiert mit den Mitarbeitern?", r: "Bei Betriebsübergang greift § 613a BGB automatisch – Arbeitsverhältnisse gehen auf den Erwerber über. Frühzeitige, transparente Kommunikation minimiert Fluktuation." },
+        { tag: "Standort", q: "Die Lage ist nicht mehr zeitgemäß.", r: "Standortanalyse: Einzugsgebiet, Arzt-Dichte, Demografie, Wettbewerb im 1-km-Radius. Viele scheinbar schlechte Lagen haben stabile Heimverträge und hohe PKV-Quoten." },
+        { tag: "Standort", q: "Der Mietvertrag läuft bald aus.", r: "Mietvertragsanalyse in der DD: Laufzeit, Verlängerungsoptionen, Konkurrenzschutzklausel, Schriftformheilung. Banken verlangen mindestens 5 Jahre Planungssicherheit." },
+        { tag: "Operativ", q: "Die Retaxationen machen mir Sorgen.", r: "Retaxationsquote in der BWA prüfen: >2% vom Rx-Umsatz ist ein Warnsignal. Rückstellungen und Abrechnungsqualität zeigen das reale Risiko." },
+        { tag: "Operativ", q: "Der Umsatz ist rückläufig.", r: "Umsatztrend der letzten 3 Jahre segmentieren: Rx vs. OTC, GKV vs. PKV, Heimverträge. Kaufpreisanpassung oder Earn-out-Struktur als Lösung." },
+        { tag: "Timing", q: "Jetzt ist der falsche Zeitpunkt – ich warte noch.", r: "Gute Objekte sind selten. Zinswende kann Finanzierungskosten erhöhen. Lassen Sie uns eine konkrete Entscheidungsmatrix erstellen." },
+        { tag: "Timing", q: "Ich brauche noch mehr Zeit zum Nachdenken.", r: "Strukturierter Zeitplan: DD-Frist, Finanzierungsvoranfrage, Notartermin. Ein LOI mit Exklusivitätsklausel schützt beide Seiten." },
+        { tag: "Vertrauen", q: "Wie kann ich sicher sein, dass die Zahlen stimmen?", r: "Due Diligence mit Stichtags-BWA, Inventurprotokoll, Steuerberater-Bestätigung. Datenraum mit 3-Jahres-Zahlen und Retaxationsübersicht." },
+        { tag: "Vertrauen", q: "Der Verkäufer will zu schnell verkaufen – was ist los?", r: "Verkaufsmotivationen sind vielfältig: Ruhestand, Gesundheit, Filialisierung. DD und Kaufvertragsgestaltung schützen den Käufer unabhängig vom Motiv." }
+    ];
 
     let soundEnabled = true;
+    let chatHistory = [];
+    let lockFirstSetup = false;
     let audioCtx = null;
 
     const ICONS = {
@@ -1240,7 +1847,12 @@
         moon: '<svg viewBox="0 0 24 24"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>',
         sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
         "sound-on": '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8 8 0 0 1 0 12"/></svg>',
-        "sound-off": '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>'
+        "sound-off": '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>',
+        speech: '<svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>',
+        radar: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><path d="M12 3v4M12 17v4"/></svg>',
+        chat: '<svg viewBox="0 0 24 24"><path d="M12 3a7 7 0 0 0-7 7v4l-2 2h4a7 7 0 0 0 14 0 7 7 0 0 0-7-7z"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>',
+        deal: '<svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M9 3h6M9 21h6M12 7v10"/></svg>',
+        briefcase: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>'
     };
 
     function injectIcons() {
@@ -1359,15 +1971,22 @@
         "Aktiva, Passiva, Warenlager-Logik.",
         "Asset Deal, Due Diligence, § 613a BGB.",
         "AMPreisV, Skonti, Fixhonorar-Reform.",
-        "EBITDA, Unternehmerlohn, Rating."
+        "EBITDA, Unternehmerlohn, Rating.",
+        "Bewertung, Kaufvertrag, Closing."
     ];
 
     function normalizeUserKey(name) {
         return (name || "").trim().toLowerCase();
     }
 
+    function padModuleArr(arr, fill) {
+        const a = Array.isArray(arr) ? arr.slice() : [];
+        while (a.length < MODULE_COUNT) a.push(fill);
+        return a.slice(0, MODULE_COUNT);
+    }
+
     function emptyUserProgress() {
-        return { modules: [false, false, false, false, false], modulesBest: [0, 0, 0, 0, 0], examPassed: false, updated: null };
+        return { modules: Array(MODULE_COUNT).fill(false), modulesBest: Array(MODULE_COUNT).fill(0), examPassed: false, updated: null };
     }
 
     function loadAllProgress() {
@@ -1385,8 +2004,8 @@
         if (!all[key]) return emptyUserProgress();
         const p = all[key];
         return {
-            modules: Array.isArray(p.modules) ? p.modules.slice(0, 5) : [false, false, false, false, false],
-            modulesBest: Array.isArray(p.modulesBest) ? p.modulesBest.slice(0, 5) : [0, 0, 0, 0, 0],
+            modules: padModuleArr(p.modules, false),
+            modulesBest: padModuleArr(p.modulesBest, 0),
             examPassed: !!p.examPassed,
             updated: p.updated || null
         };
@@ -1422,14 +2041,9 @@
     function refreshMenuProgress() {
         const displayName = document.getElementById("username").value.trim();
         const panel = document.getElementById("progress-panel");
-        const passedCount = [0, 1, 2, 3, 4].filter(i => {
-            const p = getUserProgress(displayName);
-            return p.modules[i];
-        }).length;
-
         if (!displayName) {
             panel.classList.remove("visible");
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < MODULE_COUNT; i++) {
                 document.getElementById("badge-mod-" + i).innerText = "";
                 document.getElementById("badge-mod-" + i).className = "mod-badge open";
                 document.getElementById("sub-mod-" + i).innerText = MODULE_SUBTITLES[i];
@@ -1444,13 +2058,13 @@
         const modulesPassed = p.modules.filter(Boolean).length;
         panel.classList.add("visible");
         document.getElementById("progress-overall-text").innerText =
-            modulesPassed + " / 5 Module geschafft" + (p.examPassed ? " · Selbsttest ✅" : "");
-        document.getElementById("progress-overall-bar").style.width = (modulesPassed / 5 * 100) + "%";
+            modulesPassed + " / " + MODULE_COUNT + " Module geschafft" + (p.examPassed ? " · Selbsttest ✅" : "");
+        document.getElementById("progress-overall-bar").style.width = (modulesPassed / MODULE_COUNT * 100) + "%";
         document.getElementById("progress-hint").innerText = p.examPassed
             ? "Alle Module ab 70 % · Selbsttest bereits geschafft."
             : "Modul gilt ab " + MODULE_PASS_PERCENT + " % als geschafft · danach Selbsttest.";
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < MODULE_COUNT; i++) {
             const badge = document.getElementById("badge-mod-" + i);
             const card = document.getElementById("menu-mod-" + i);
             const sub = document.getElementById("sub-mod-" + i);
@@ -1476,12 +2090,12 @@
             document.getElementById("sub-exam").innerText = "Selbsttest geschafft.";
             document.getElementById("menu-exam").classList.add("module-done");
         } else {
-            examBadge.innerText = modulesPassed >= 5 ? "!" : "—";
+            examBadge.innerText = modulesPassed >= MODULE_COUNT ? "!" : "—";
             examBadge.className = "mod-badge open";
             document.getElementById("menu-exam").classList.remove("module-done");
-            document.getElementById("sub-exam").innerText = modulesPassed >= 5
+            document.getElementById("sub-exam").innerText = modulesPassed >= MODULE_COUNT
                 ? "Alle Module geschafft – Selbsttest starten."
-                : "25 Zufallsfragen · max. 3 Fehler (" + modulesPassed + "/5 Module).";
+                : "25 Zufallsfragen · max. 3 Fehler (" + modulesPassed + "/" + MODULE_COUNT + " Module).";
         }
     }
 
@@ -1506,9 +2120,24 @@
         }
     }
 
-    const VIEW_IDS = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin"];
+    const VIEW_IDS = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-objections", "view-provision", "view-radar", "view-chat", "view-deals", "view-deal"];
+    let currentViewId = "view-menu";
+
+    function getAppMode() {
+        return document.body.getAttribute("data-app-mode") || "einarbeitung";
+    }
+    function isViewAllowedInMode(viewId, mode) {
+        const allowed = mode === "closing" ? VIEWS_CLOSING : VIEWS_EINARBEITUNG;
+        return allowed.includes(viewId);
+    }
 
     function showView(viewId) {
+        const mode = getAppMode();
+        if (!isViewAllowedInMode(viewId, mode)) {
+            showView("view-menu");
+            return;
+        }
+        if (currentViewId === "view-provision" && viewId !== "view-provision") clearProvisionSession();
         VIEW_IDS.forEach(id => {
             const el = document.getElementById(id);
             el.classList.remove("view-active");
@@ -1517,6 +2146,7 @@
         const target = document.getElementById(viewId);
         target.style.display = "block";
         target.classList.add("view-active");
+        currentViewId = viewId;
         void target.offsetWidth;
         target.style.animation = "none";
         target.offsetHeight;
@@ -1529,6 +2159,7 @@
         showView("view-menu");
         refreshMenuProgress();
         maybeShowInstallBanner();
+        updateModeUI();
     }
 
     function hideAll() {
@@ -1540,6 +2171,10 @@
     }
 
     function prepGame(idx) {
+        if (getAppMode() !== "einarbeitung") {
+            alert("Quiz-Module sind nur im Einarbeitungs-Modus verfügbar.");
+            return;
+        }
         name = document.getElementById("username").value.trim();
         if(!name) return alert("Bitte zuerst deinen Namen eintragen – so wird dein Fortschritt gespeichert.");
         activeModulIdx = idx;
@@ -1856,7 +2491,7 @@
             const mods = u.modules || [];
             const bests = u.modulesBest || [];
             let cells = "";
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < MODULE_COUNT; i++) {
                 const txt = mods[i] ? "✅" : (bests[i] ? bests[i] + "%" : "—");
                 const cls = mods[i] ? "cell-pass" : "cell-fail";
                 cells += `<td class="${cls}">${txt}</td>`;
@@ -1930,9 +2565,10 @@
     }
 
     function clearAllData() {
-        if (!confirm("Wirklich ALLE lokalen Daten löschen? (Läufe + Lernfortschritt)")) return;
+        if (!confirm("Wirklich ALLE lokalen Daten löschen? (Läufe + Lernfortschritt + Mandate)")) return;
         localStorage.removeItem(STORAGE_LOGS);
         localStorage.removeItem(STORAGE_PROGRESS);
+        localStorage.removeItem(STORAGE_DEALS);
         showAdmin();
         refreshMenuProgress();
     }
@@ -1970,6 +2606,661 @@
         maybeShowInstallBanner();
     });
 
+    // ═══ Apo-Guru: Passwort, Mode, Consultant-Module ═══
+    async function hashPassword(pw) {
+        const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function initLockScreen() {
+        const stored = localStorage.getItem(STORAGE_PASS_HASH);
+        const title = document.getElementById("lock-title");
+        const sub = document.getElementById("lock-sub");
+        const input = document.getElementById("lock-input");
+        const btn = document.getElementById("lock-btn");
+        const err = document.getElementById("lock-error");
+
+        if (!stored) {
+            lockFirstSetup = true;
+            title.textContent = "Passwort festlegen";
+            sub.textContent = "Lege ein Passwort für Apo-Guru fest (wird lokal gespeichert).";
+            btn.textContent = "Passwort speichern";
+        }
+
+        async function attempt() {
+            const pw = input.value.trim();
+            if (!pw) { err.textContent = "Bitte Passwort eingeben."; err.style.display = "block"; return; }
+            const h = await hashPassword(pw);
+            if (lockFirstSetup) {
+                localStorage.setItem(STORAGE_PASS_HASH, h);
+                unlockApp();
+            } else if (h === stored) {
+                unlockApp();
+            } else {
+                err.textContent = "Falsches Passwort.";
+                err.style.display = "block";
+                input.value = "";
+            }
+        }
+        btn.addEventListener("click", attempt);
+        input.addEventListener("keydown", e => { if (e.key === "Enter") attempt(); });
+    }
+
+    function unlockApp() {
+        document.getElementById("lock-screen").classList.add("hidden");
+        document.getElementById("app").style.display = "";
+        initApp();
+    }
+
+    function updateModeUI() {
+        const mode = getAppMode();
+        const banner = document.getElementById("mode-banner");
+        const heroBadge = document.getElementById("hero-badge");
+        const heroTitle = document.getElementById("hero-title");
+        const heroSub = document.getElementById("hero-sub");
+        if (mode === "closing") {
+            heroBadge.textContent = "Consultant · Closing";
+            heroTitle.textContent = "Apo-Guru Closing";
+            heroSub.textContent = "Tools für den Einsatz – ohne Mandatsdaten in der App.";
+            banner.innerHTML = "<strong>Closing-Modus</strong> Einwand-Bibliothek, DD-Checkliste (Risikoprüfung), Rechner. Keine Kundennamen oder Umsätze – arbeitsrelevante Details extern führen.";
+        } else {
+            heroBadge.textContent = "Apotheke · M&A";
+            heroTitle.textContent = "M&A Lern-Trainer";
+            heroSub.textContent = "Wiki, Quiz und Glossar – alles für deine Einarbeitung.";
+            banner.innerHTML = "<strong>Einarbeitungs-Modus</strong> Lernen, üben, nachschlagen. Kein Closing-Tool – Fokus auf Wissensaufbau.";
+        }
+    }
+
+    function setAppMode(mode) {
+        document.body.setAttribute("data-app-mode", mode);
+        localStorage.setItem(STORAGE_APP_MODE, mode);
+        document.getElementById("btn-mode-closing").classList.toggle("active", mode === "closing");
+        document.getElementById("btn-mode-einarbeitung").classList.toggle("active", mode === "einarbeitung");
+        updateModeUI();
+        if (!isViewAllowedInMode(currentViewId, mode)) goHome();
+        else if (currentViewId === "view-chat") initChatUI();
+    }
+
+    function showObjections() {
+        renderObjections();
+        showView("view-objections");
+    }
+    function showProvision() {
+        document.getElementById("prov-umsatz").value = "";
+        document.getElementById("prov-result").style.display = "none";
+        showView("view-provision");
+    }
+    function clearProvisionSession() {
+        document.getElementById("prov-umsatz").value = "";
+        document.getElementById("prov-result").style.display = "none";
+        localStorage.removeItem(STORAGE_PROVISION);
+    }
+    function showRadar() {
+        loadRadarUI();
+        showView("view-radar");
+    }
+    function showChat() {
+        initChatUI();
+        showView("view-chat");
+    }
+
+    // ═══ Deal-Cockpit & DD-Checkliste ═══
+    function migrateDeal(deal, index) {
+        return {
+            id: deal.id,
+            code: deal.code || ("M-" + String(index + 1).padStart(2, "0")),
+            phase: deal.phase || "nda",
+            nextDate: deal.nextDate || "",
+            nextAction: deal.nextAction || "",
+            ddChecked: deal.ddChecked || {},
+            createdAt: deal.createdAt || new Date().toISOString(),
+            updatedAt: deal.updatedAt || new Date().toISOString()
+        };
+    }
+    function loadDealsData() {
+        try {
+            const data = JSON.parse(localStorage.getItem(STORAGE_DEALS) || '{"deals":[]}');
+            data.deals = (data.deals || []).map((d, i) => migrateDeal(d, i));
+            return data;
+        } catch (e) {
+            return { deals: [] };
+        }
+    }
+    function nextDealCode(deals) {
+        let max = 0;
+        deals.forEach(d => {
+            const m = (d.code || "").match(/^M-(\d+)$/);
+            if (m) max = Math.max(max, parseInt(m[1], 10));
+        });
+        return "M-" + String(max + 1).padStart(2, "0");
+    }
+    function getNextActionLabel(id) {
+        const a = NEXT_ACTIONS.find(x => x.id === id);
+        return a ? labelWithHint(a) : "";
+    }
+    function saveDealsData(data) {
+        data.deals = (data.deals || []).map((d, i) => migrateDeal(d, i));
+        localStorage.setItem(STORAGE_DEALS, JSON.stringify(data));
+    }
+    function genDealId() {
+        return "d" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    }
+    function getDealById(id) {
+        return loadDealsData().deals.find(d => d.id === id) || null;
+    }
+    function labelWithHint(entry) {
+        if (!entry) return "";
+        return entry.hint ? entry.label + " – " + entry.hint : entry.label;
+    }
+    function getPhaseLabel(phaseId) {
+        const p = DEAL_PHASES.find(x => x.id === phaseId);
+        return p ? labelWithHint(p) : phaseId;
+    }
+    function getPhaseClass(phaseId) {
+        if (phaseId === "dd") return "phase-dd";
+        if (phaseId === "bank") return "phase-bank";
+        if (phaseId === "closing") return "phase-closing";
+        if (phaseId === "done") return "phase-done";
+        return "";
+    }
+    function countDDTotal() {
+        return DD_CHECKLIST.reduce((s, c) => s + c.items.length, 0);
+    }
+    function getDDProgress(deal) {
+        const total = countDDTotal();
+        const checked = DD_CHECKLIST.reduce((s, c) =>
+            s + c.items.filter(i => deal.ddChecked && deal.ddChecked[i.id]).length, 0);
+        return { checked, total, pct: total ? Math.round(checked / total * 100) : 0 };
+    }
+    function formatDealDate(iso) {
+        if (!iso) return "–";
+        try {
+            return new Date(iso + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+        } catch (e) { return iso; }
+    }
+
+    function showDeals() {
+        currentDealId = null;
+        renderDealsList();
+        showView("view-deals");
+    }
+
+    function renderDealsList() {
+        const data = loadDealsData();
+        const list = document.getElementById("deals-list");
+        if (!data.deals.length) {
+            list.innerHTML = '<div class="deal-empty">Noch keine Slots.<br>Lege einen anonymen Mandats-Slot an (M-01 …).</div>';
+            return;
+        }
+        const sorted = data.deals.slice().sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
+        list.innerHTML = sorted.map(d => {
+            const prog = getDDProgress(d);
+            const phaseCls = getPhaseClass(d.phase);
+            const action = getNextActionLabel(d.nextAction);
+            return `
+            <div class="deal-card" onclick="openDeal('${d.id}')">
+                <div class="deal-card-top">
+                    <div class="deal-card-title">${escapeHtml(d.code || "M-??")}</div>
+                    <span class="deal-phase ${phaseCls}">${escapeHtml(getPhaseLabel(d.phase))}</span>
+                </div>
+                <div class="deal-meta">
+                    ${d.nextDate ? "Termin: " + formatDealDate(d.nextDate) + "<br>" : ""}
+                    ${action ? "Aktion: " + escapeHtml(action) : "Keine Aktion gewählt"}
+                </div>
+                <div class="deal-dd-bar">
+                    <div class="deal-dd-label"><span>DD-Checkliste <span class="tab-hint">(Risikoprüfung)</span></span><span>${prog.pct} %</span></div>
+                    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${prog.pct}%"></div></div>
+                </div>
+            </div>`;
+        }).join("");
+    }
+
+    function createNewDeal() {
+        const data = loadDealsData();
+        const deal = {
+            id: genDealId(),
+            code: nextDealCode(data.deals),
+            phase: "nda",
+            nextDate: "",
+            nextAction: "",
+            ddChecked: {},
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        data.deals.unshift(deal);
+        saveDealsData(data);
+        openDeal(deal.id);
+    }
+
+    function openDeal(id) {
+        currentDealId = id;
+        const deal = getDealById(id);
+        if (!deal) { showDeals(); return; }
+
+        document.getElementById("deal-nav-title").textContent = "Slot";
+        document.getElementById("deal-detail-name").textContent = deal.code || "M-??";
+        document.getElementById("deal-code-display").textContent = deal.code || "M-??";
+        const pill = document.getElementById("deal-detail-phase-pill");
+        pill.textContent = getPhaseLabel(deal.phase);
+        pill.className = "deal-phase " + getPhaseClass(deal.phase);
+
+        const phaseSel = document.getElementById("deal-phase");
+        phaseSel.innerHTML = DEAL_PHASES.map(p =>
+            `<option value="${p.id}"${deal.phase === p.id ? " selected" : ""}>${escapeHtml(labelWithHint(p))}</option>`
+        ).join("");
+        const actionSel = document.getElementById("deal-next-action");
+        actionSel.innerHTML = NEXT_ACTIONS.map(a =>
+            `<option value="${a.id}"${deal.nextAction === a.id ? " selected" : ""}>${escapeHtml(labelWithHint(a))}</option>`
+        ).join("");
+
+        document.getElementById("deal-next-date").value = deal.nextDate || "";
+
+        renderDealDD(deal);
+        switchDealTab("stamm");
+        showView("view-deal");
+    }
+
+    function switchDealTab(tab) {
+        document.querySelectorAll(".deal-tab").forEach(t => t.classList.toggle("active", t.dataset.tab === tab));
+        document.querySelectorAll(".deal-pane").forEach(p => p.classList.remove("active"));
+        document.getElementById("deal-pane-" + tab).classList.add("active");
+        if (tab === "dd" && currentDealId) {
+            const deal = getDealById(currentDealId);
+            if (deal) renderDealDD(deal);
+        }
+    }
+
+    function saveCurrentDeal() {
+        if (!currentDealId) return;
+        const data = loadDealsData();
+        const deal = data.deals.find(d => d.id === currentDealId);
+        if (!deal) return;
+
+        deal.phase = document.getElementById("deal-phase").value;
+        deal.nextDate = document.getElementById("deal-next-date").value;
+        deal.nextAction = document.getElementById("deal-next-action").value;
+        deal.updatedAt = new Date().toISOString();
+
+        saveDealsData(data);
+        document.getElementById("deal-detail-name").textContent = deal.code || "M-??";
+        const pill = document.getElementById("deal-detail-phase-pill");
+        pill.textContent = getPhaseLabel(deal.phase);
+        pill.className = "deal-phase " + getPhaseClass(deal.phase);
+        renderDealDD(deal);
+    }
+
+    function deleteCurrentDeal() {
+        if (!currentDealId) return;
+        const deal = getDealById(currentDealId);
+        const name = deal ? (deal.code || "Slot") : "Slot";
+        if (!confirm('Slot "' + name + '" wirklich löschen?')) return;
+        const data = loadDealsData();
+        data.deals = data.deals.filter(d => d.id !== currentDealId);
+        saveDealsData(data);
+        showDeals();
+    }
+
+    function renderDealDD(deal) {
+        const prog = getDDProgress(deal);
+        document.getElementById("deal-dd-pct").textContent = prog.pct + " % (" + prog.checked + "/" + prog.total + ")";
+        document.getElementById("deal-dd-bar").style.width = prog.pct + "%";
+
+        const cont = document.getElementById("deal-dd-checklist");
+        cont.innerHTML = DD_CHECKLIST.map(cat => {
+            const catDone = cat.items.filter(i => deal.ddChecked && deal.ddChecked[i.id]).length;
+            const items = cat.items.map(item => {
+                const done = !!(deal.ddChecked && deal.ddChecked[item.id]);
+                return `
+                <div class="dd-item${done ? " done" : ""}">
+                    <div class="dd-check${done ? " done" : ""}" onclick="toggleDDItem('${item.id}')">${done ? "✓" : ""}</div>
+                    <div class="dd-label">${escapeHtml(item.label)}</div>
+                </div>`;
+            }).join("");
+            return `
+            <div class="dd-category">
+                <div class="dd-cat-header">${escapeHtml(cat.cat)}<span class="dd-cat-count">${catDone}/${cat.items.length}</span></div>
+                ${items}
+            </div>`;
+        }).join("");
+    }
+
+    function toggleDDItem(itemId) {
+        if (!currentDealId) return;
+        saveCurrentDeal();
+        const data = loadDealsData();
+        const deal = data.deals.find(d => d.id === currentDealId);
+        if (!deal) return;
+        if (!deal.ddChecked) deal.ddChecked = {};
+        deal.ddChecked[itemId] = !deal.ddChecked[itemId];
+        deal.updatedAt = new Date().toISOString();
+        saveDealsData(data);
+        renderDealDD(deal);
+    }
+
+    function buildDDReportText(deal) {
+        const prog = getDDProgress(deal);
+        const action = getNextActionLabel(deal.nextAction);
+        let lines = [
+            "DD-REPORT – Apo-Guru Mandat-Tracker (anonym)",
+            "Erstellt: " + new Date().toLocaleString("de-DE"),
+            "",
+            "SLOT: " + (deal.code || "–"),
+            "Phase: " + getPhaseLabel(deal.phase),
+            "Nächster Termin: " + formatDealDate(deal.nextDate),
+            "Nächste Aktion: " + (action || "–"),
+            "DD-Fortschritt: " + prog.pct + "% (" + prog.checked + "/" + prog.total + ")",
+            "",
+            "Hinweis: Keine Mandatsidentifikation in diesem Report.",
+            "",
+            "DUE DILIGENCE CHECKLISTE",
+            "─────────────────────────"
+        ];
+        DD_CHECKLIST.forEach(cat => {
+            lines.push("");
+            lines.push("[" + cat.cat + "]");
+            cat.items.forEach(item => {
+                const ok = deal.ddChecked && deal.ddChecked[item.id];
+                lines.push((ok ? "[x]" : "[ ]") + " " + item.label);
+            });
+        });
+        const open = [];
+        DD_CHECKLIST.forEach(cat => {
+            cat.items.forEach(item => {
+                if (!deal.ddChecked || !deal.ddChecked[item.id]) open.push(cat.cat + ": " + item.label);
+            });
+        });
+        lines.push("");
+        lines.push("OFFENE PUNKTE (" + open.length + ")");
+        lines.push("─────────────────────────");
+        if (!open.length) lines.push("Alle DD-Punkte abgehakt.");
+        else open.forEach((o, i) => lines.push((i + 1) + ". " + o));
+        return lines.join("\n");
+    }
+
+    function exportDDReport() {
+        if (!currentDealId) return;
+        saveCurrentDeal();
+        const deal = getDealById(currentDealId);
+        if (!deal) return;
+        const text = buildDDReportText(deal);
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "DD-Report_" + (deal.code || "Slot") + "_" + new Date().toISOString().slice(0, 10) + ".txt";
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+
+    function printDDReport() {
+        if (!currentDealId) return;
+        saveCurrentDeal();
+        const deal = getDealById(currentDealId);
+        if (!deal) return;
+        const prog = getDDProgress(deal);
+        let html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>DD-Report</title>
+        <style>body{font-family:system-ui,sans-serif;padding:24px;max-width:720px;margin:0 auto;color:#111}
+        h1{font-size:20px}h2{font-size:14px;margin-top:20px;border-bottom:1px solid #ddd;padding-bottom:4px}
+        .meta{font-size:13px;color:#444;line-height:1.6}.bar{background:#e5e7eb;height:8px;border-radius:4px;margin:8px 0}
+        .fill{background:#059669;height:100%;border-radius:4px;width:${prog.pct}%}
+        .item{font-size:13px;padding:4px 0}.done{color:#888;text-decoration:line-through}
+        @media print{body{padding:12px}}</style></head><body>
+        <h1>DD-Report: ${escapeHtml(deal.code || "Slot")}</h1>
+        <div class="meta">
+        <p>Phase: ${escapeHtml(getPhaseLabel(deal.phase))}<br>
+        Termin: ${escapeHtml(formatDealDate(deal.nextDate))}<br>
+        Aktion: ${escapeHtml(getNextActionLabel(deal.nextAction) || "–")}<br>
+        Fortschritt: ${prog.pct}% (${prog.checked}/${prog.total})</p>
+        <div class="bar"><div class="fill"></div></div>
+        <p><em>Anonymer Report – keine Mandatsidentifikation.</em></p></div>`;
+        DD_CHECKLIST.forEach(cat => {
+            html += `<h2>${escapeHtml(cat.cat)}</h2>`;
+            cat.items.forEach(item => {
+                const done = deal.ddChecked && deal.ddChecked[item.id];
+                html += `<div class="item${done ? " done" : ""}">${done ? "☑" : "☐"} ${escapeHtml(item.label)}</div>`;
+            });
+        });
+        html += `<p style="margin-top:24px;font-size:11px;color:#888">Apo-Guru · ${new Date().toLocaleString("de-DE")}</p></body></html>`;
+        const w = window.open("", "_blank");
+        if (!w) { exportDDReport(); return; }
+        w.document.write(html);
+        w.document.close();
+        w.focus();
+        setTimeout(() => w.print(), 400);
+    }
+
+    function renderObjections() {
+        const cont = document.getElementById("objections-content");
+        cont.innerHTML = OBJECTIONS.map((o, i) => `
+            <div class="objection-item">
+                <div class="objection-header" onclick="toggleObjection(${i})">
+                    <span>${escapeHtml(o.q)}</span>
+                    <span class="objection-tag">${escapeHtml(o.tag)}</span>
+                </div>
+                <div class="objection-body" id="obj-body-${i}">
+                    <div class="objection-response"><strong>Antwort</strong><br>${escapeHtml(o.r)}</div>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    function filterObjections() {
+        const q = document.getElementById("obj-search").value.toLowerCase();
+        const filtered = OBJECTIONS.filter(o =>
+            !q || o.q.toLowerCase().includes(q) || o.r.toLowerCase().includes(q) || o.tag.toLowerCase().includes(q)
+        );
+        const cont = document.getElementById("objections-content");
+        cont.innerHTML = filtered.map((o) => {
+            const i = OBJECTIONS.indexOf(o);
+            return `
+            <div class="objection-item">
+                <div class="objection-header" onclick="toggleObjection(${i})">
+                    <span>${escapeHtml(o.q)}</span>
+                    <span class="objection-tag">${escapeHtml(o.tag)}</span>
+                </div>
+                <div class="objection-body" id="obj-body-${i}">
+                    <div class="objection-response"><strong>Antwort</strong><br>${escapeHtml(o.r)}</div>
+                </div>
+            </div>`;
+        }).join("");
+    }
+
+    function toggleObjection(i) {
+        const el = document.getElementById("obj-body-" + i);
+        if (el) el.classList.toggle("open");
+    }
+
+    function fmtEuro(n) {
+        return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(n);
+    }
+
+    function calcProvision() {
+        const umsatz = parseFloat(document.getElementById("prov-umsatz").value) || 0;
+        const resultEl = document.getElementById("prov-result");
+        if (!umsatz) {
+            resultEl.style.display = "none";
+            return;
+        }
+        const honorar = umsatz * 0.02;
+        const provision = honorar * 0.15;
+        const umsatzFmt = fmtEuro(umsatz);
+        document.getElementById("prov-formula-honorar").textContent = `${umsatzFmt} × 2%`;
+        document.getElementById("prov-formula-provision").textContent = `${fmtEuro(honorar)} × 15%`;
+        document.getElementById("prov-honorar-val").textContent = fmtEuro(honorar);
+        document.getElementById("prov-provision-val").textContent = fmtEuro(provision);
+        document.getElementById("prov-total-val").textContent = fmtEuro(provision);
+        resultEl.style.display = "flex";
+    }
+
+    function loadRadarData() {
+        return JSON.parse(localStorage.getItem(STORAGE_RADAR) || "{}");
+    }
+    function saveRadarData(data) {
+        localStorage.setItem(STORAGE_RADAR, JSON.stringify(data));
+    }
+    function radarToday() {
+        return new Date().toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" });
+    }
+
+    function switchRadarTab(tab) {
+        document.querySelectorAll(".radar-tab").forEach(t => t.classList.toggle("active", t.dataset.tab === tab));
+        document.querySelectorAll(".radar-pane").forEach(p => p.classList.remove("active"));
+        document.getElementById("radar-pane-" + tab).classList.add("active");
+    }
+
+    function loadRadarUI() {
+        const data = loadRadarData();
+        document.getElementById("radar-focus").value = data.focus || "";
+        drawRadarTasks(data);
+        drawReflections(data);
+    }
+
+    function saveRadarFocus() {
+        const data = loadRadarData();
+        data.focus = document.getElementById("radar-focus").value;
+        data.focusDate = radarToday();
+        saveRadarData(data);
+    }
+
+    function drawRadarTasks(data) {
+        const list = document.getElementById("task-list");
+        list.innerHTML = (data.tasks || []).map((t, i) => `
+            <div class="task-item">
+                <div class="task-check ${t.done ? "done" : ""}" onclick="toggleRadarTask(${i})">${t.done ? "✓" : ""}</div>
+                <div class="task-text ${t.done ? "done" : ""}" style="flex:1;font-size:14px;">${escapeHtml(t.text)}</div>
+                <button type="button" class="task-del" onclick="deleteRadarTask(${i})">×</button>
+            </div>
+        `).join("");
+    }
+
+    function addRadarTask() {
+        const inp = document.getElementById("task-input");
+        const text = inp.value.trim();
+        if (!text) return;
+        const data = loadRadarData();
+        if (!data.tasks) data.tasks = [];
+        data.tasks.unshift({ text, done: false, created: radarToday() });
+        saveRadarData(data);
+        inp.value = "";
+        drawRadarTasks(data);
+    }
+
+    function toggleRadarTask(i) {
+        const data = loadRadarData();
+        data.tasks[i].done = !data.tasks[i].done;
+        saveRadarData(data);
+        drawRadarTasks(data);
+    }
+
+    function deleteRadarTask(i) {
+        const data = loadRadarData();
+        data.tasks.splice(i, 1);
+        saveRadarData(data);
+        drawRadarTasks(data);
+    }
+
+    function drawReflections(data) {
+        document.getElementById("refl-list").innerHTML = (data.reflections || []).map(r => `
+            <div class="reflection-entry">
+                <div class="reflection-date">${escapeHtml(r.date)}</div>
+                <div class="reflection-text">${escapeHtml(r.text)}</div>
+            </div>
+        `).join("");
+    }
+
+    function addReflection() {
+        const text = document.getElementById("refl-input").value.trim();
+        if (!text) return;
+        const data = loadRadarData();
+        if (!data.reflections) data.reflections = [];
+        data.reflections.unshift({ text, date: radarToday() });
+        saveRadarData(data);
+        document.getElementById("refl-input").value = "";
+        drawReflections(data);
+    }
+
+    function saveGeminiKey() {
+        localStorage.setItem(STORAGE_GEMINI_KEY, document.getElementById("gemini-key").value.trim());
+        appendChatMsg("system", "API-Key gespeichert.");
+    }
+
+    function getChatStorageKey() {
+        return getAppMode() === "closing" ? "apo_chat_history_closing" : "apo_chat_history_einarbeitung";
+    }
+    function getGeminiSystemPrompt() {
+        return getAppMode() === "closing" ? GEMINI_SYSTEM_CLOSING : GEMINI_SYSTEM_EINARBEITUNG;
+    }
+
+    function initChatUI() {
+        const mode = getAppMode();
+        document.getElementById("gemini-key").value = localStorage.getItem(STORAGE_GEMINI_KEY) || "";
+        document.getElementById("chat-nav-title").textContent = mode === "closing" ? "KI-Sparring" : "KI-Tutor";
+        document.getElementById("chat-privacy-hint").innerHTML = mode === "closing"
+            ? "<strong>Closing-Chat:</strong> Nur allgemeine Methodik – keine Mandatsnamen, Umsätze oder Kundendaten eingeben."
+            : "<strong>Lern-Chat:</strong> Fragen zu Wiki, Glossar und Quiz – kein Mandats-Coaching.";
+        document.getElementById("chat-input").placeholder = mode === "closing"
+            ? "Allgemeine Frage (z. B. Einwand, DD, LOI)…"
+            : "Lernfrage zum Apotheken-M&A…";
+        chatHistory = JSON.parse(localStorage.getItem(getChatStorageKey()) || "[]");
+        const msgs = document.getElementById("chat-msgs");
+        msgs.innerHTML = "";
+        chatHistory.forEach(m => appendChatMsg(m.role, m.text, false));
+        if (!chatHistory.length) {
+            const welcome = mode === "closing"
+                ? "Sparring-Modus: Ich helfe bei Methodik, Einwänden und Prozess – ohne Mandatsdaten. Was möchtest du durchspielen?"
+                : "Lern-Modus: Ich erkläre M&A-Konzepte für die Einarbeitung. Womit soll ich anfangen?";
+            appendChatMsg("assistant", welcome, false);
+        }
+    }
+
+    function appendChatMsg(role, text, save) {
+        if (save !== false && role !== "system") {
+            chatHistory.push({ role, text });
+            localStorage.setItem(getChatStorageKey(), JSON.stringify(chatHistory.slice(-50)));
+        }
+        const div = document.createElement("div");
+        div.className = "chat-bubble " + (role === "user" ? "user" : role === "system" ? "system" : "assistant");
+        div.textContent = text;
+        document.getElementById("chat-msgs").appendChild(div);
+        document.getElementById("chat-msgs").scrollTop = document.getElementById("chat-msgs").scrollHeight;
+    }
+
+    async function sendGeminiChat() {
+        const input = document.getElementById("chat-input");
+        const text = input.value.trim();
+        if (!text) return;
+        const key = localStorage.getItem(STORAGE_GEMINI_KEY);
+        if (!key) { appendChatMsg("system", "Bitte zuerst einen Gemini API-Key hinterlegen."); return; }
+
+        input.value = "";
+        appendChatMsg("user", text);
+        document.getElementById("chat-typing").style.display = "block";
+
+        try {
+            const contents = [
+                { role: "user", parts: [{ text: getGeminiSystemPrompt() }] },
+                { role: "model", parts: [{ text: getAppMode() === "closing"
+                    ? "Verstanden. Ich sparre methodisch – ohne Mandatsdaten."
+                    : "Verstanden. Ich erkläre Lerninhalte für die Einarbeitung." }] },
+                ...chatHistory.filter(m => m.role === "user" || m.role === "assistant").map(m => ({
+                    role: m.role === "user" ? "user" : "model",
+                    parts: [{ text: m.text }]
+                }))
+            ];
+            const res = await fetch(
+                `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`,
+                { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents }) }
+            );
+            if (!res.ok) throw new Error("API " + res.status);
+            const data = await res.json();
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Keine Antwort erhalten.";
+            appendChatMsg("assistant", reply);
+        } catch (err) {
+            appendChatMsg("system", "Fehler: " + err.message);
+        } finally {
+            document.getElementById("chat-typing").style.display = "none";
+        }
+    }
+
     function initApp() {
         const savedTheme = localStorage.getItem(STORAGE_THEME);
         const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -1977,6 +3268,14 @@
         applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
         soundEnabled = localStorage.getItem(STORAGE_SOUND) !== "0";
         updateSoundButton();
+
+        const savedMode = localStorage.getItem(STORAGE_APP_MODE) || "einarbeitung";
+        setAppMode(savedMode);
+        saveDealsData(loadDealsData());
+        localStorage.removeItem(STORAGE_PROVISION);
+        localStorage.removeItem(STORAGE_CHAT_HISTORY);
+        document.getElementById("btn-mode-closing").addEventListener("click", () => setAppMode("closing"));
+        document.getElementById("btn-mode-einarbeitung").addEventListener("click", () => setAppMode("einarbeitung"));
 
         const savedUser = localStorage.getItem(STORAGE_LAST_USER);
         if (savedUser) document.getElementById("username").value = savedUser;
@@ -1991,7 +3290,7 @@
         }, { once: true });
     }
 
-    initApp();
+    initLockScreen();
 
     // --- PWA: Manifest, Icon & Service Worker (Single-File) ---
     (function initPWA() {
@@ -2032,7 +3331,7 @@
 
         if (!("serviceWorker" in navigator)) return;
 
-        const cacheName = "apo-trainer-v2.6";
+        const cacheName = "apo-trainer-v3.3";
         const pageToCache = startUrl.href;
         const swSource = `
             const CACHE = ${JSON.stringify(cacheName)};
