@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#064e3b" id="meta-theme-color">
-    <meta name="description" content="Persönliches Lern-Tool für Apotheken-M&A – Quiz, Wiki und Selbsttest.">
+    <meta name="description" content="Apotheken-Guro – Lernen und Nachschlagen zur Apothekenübernahme.">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="M&A Trainer">
-    <link rel="apple-touch-icon" id="pwa-apple-icon" href="">
-    <title>M&A Lern-Trainer · Apotheke</title>
+    <meta name="apple-mobile-web-app-title" content="Apotheken-Guro">
+    <link rel="icon" type="image/png" href="apotheken-guro-icon.png">
+    <link rel="apple-touch-icon" id="pwa-apple-icon" href="apotheken-guro-icon.png">
+    <title>Apotheken-Guro</title>
     <script>
         (function () {
             var t = localStorage.getItem("apo_theme");
@@ -155,13 +156,26 @@
             margin-bottom: 10px;
             backdrop-filter: blur(8px);
         }
+        .hero-top {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 10px; position: relative; z-index: 1;
+        }
+        .brand-logo {
+            width: 52px; height: 52px; border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            flex-shrink: 0; object-fit: cover;
+        }
+        .hero-text { flex: 1; min-width: 0; }
         .hero h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
-            margin: 0 0 8px 0;
+            margin: 0 0 4px 0;
             letter-spacing: -0.02em;
             position: relative;
             z-index: 1;
+        }
+        .brand-tagline {
+            font-size: 11px; font-weight: 600; opacity: 0.85; margin: 0;
         }
         .hero-sub {
             font-size: 14px;
@@ -767,13 +781,12 @@
         }
         #lock-screen.hidden { display: none; }
         .lock-logo {
-            width: 72px; height: 72px; border-radius: 20px;
-            background: var(--success-bg); border: 1px solid var(--border-strong);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; font-weight: 800; color: var(--primary-dark);
-            margin-bottom: 18px;
+            width: 88px; height: 88px; border-radius: 22px;
+            margin-bottom: 16px; object-fit: cover;
+            box-shadow: var(--shadow-md);
         }
-        .lock-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+        .lock-title { font-size: 24px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.02em; }
+        .lock-tagline { font-size: 12px; color: var(--text-muted); margin: -2px 0 20px; }
         .lock-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; text-align: center; }
 
         .mode-toggle {
@@ -994,24 +1007,212 @@
             font-size: 14px; line-height: 1.5;
         }
 
-        .chat-wrap { display: flex; flex-direction: column; min-height: 55vh; }
-        .chat-messages {
-            flex: 1; overflow-y: auto; overscroll-behavior-y: contain;
-            display: flex; flex-direction: column; gap: 10px;
-            padding: 8px 0 12px; min-height: 200px; max-height: 50vh;
+        .weakness-panel {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 14px; margin-bottom: 14px;
+            display: none;
         }
-        .chat-bubble {
-            max-width: 88%; padding: 11px 14px; border-radius: 16px;
-            font-size: 14px; line-height: 1.5; word-break: break-word;
+        .weakness-panel.visible { display: block; }
+        .weakness-item {
+            display: flex; gap: 10px; align-items: flex-start; justify-content: space-between;
+            padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
         }
-        .chat-bubble.user { align-self: flex-end; background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
-        .chat-bubble.assistant { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
-        .chat-bubble.system { align-self: flex-start; background: var(--danger-bg); color: var(--danger); font-size: 13px; }
-        .chat-input-row { display: flex; gap: 8px; margin-top: 10px; }
-        .chat-input-row .input-field { flex: 1; }
-        .chat-input-row .btn-main { width: auto; padding: 12px 16px; margin-top: 0; }
-        .api-hint { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.45; }
-        .api-hint a { color: var(--primary-dark); }
+        .weakness-item:last-child { border-bottom: none; }
+        .weakness-item-text { flex: 1; line-height: 1.45; color: var(--text-main); }
+        .weakness-item-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+        .weakness-count {
+            font-size: 11px; font-weight: 700; color: var(--danger);
+            background: var(--danger-bg); padding: 3px 8px; border-radius: var(--radius-pill);
+            flex-shrink: 0;
+        }
+        .weakness-actions { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
+        .weakness-act-btn {
+            width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+            background: var(--surface-2); font-size: 14px; cursor: pointer; line-height: 1;
+        }
+        .weakness-act-btn.del { color: var(--danger); border-color: rgba(220,38,38,0.25); }
+        .weakness-act-btn.ok { color: var(--primary-dark); border-color: rgba(5,150,105,0.25); }
+        .weakness-mastered-toggle {
+            font-size: 12px; color: var(--primary-dark); background: none; border: none;
+            padding: 8px 0 0; cursor: pointer; text-decoration: underline;
+        }
+        .weakness-mastered-section { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+        .weakness-item.mastered .weakness-count { color: var(--primary-dark); background: var(--success-bg); }
+        .weakness-empty { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .btn-resume-quiz {
+            padding: 8px 12px; border-radius: var(--radius-pill); border: 1px solid rgba(5,150,105,0.35);
+            background: var(--success-bg); color: var(--primary-dark); font-size: 12px; font-weight: 700;
+            cursor: pointer; white-space: nowrap;
+        }
+        .btn-weakness {
+            width: 100%; margin-top: 12px; padding: 12px 16px; border-radius: var(--radius-pill);
+            border: 1px solid rgba(220,38,38,0.25); background: var(--danger-bg);
+            color: var(--danger); font-weight: 700; font-size: 14px; cursor: pointer;
+        }
+        .learn-links {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        .learn-link-btn {
+            padding: 7px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border);
+            background: var(--surface-2); color: var(--primary-dark); font-size: 12px;
+            font-weight: 600; cursor: pointer;
+        }
+        .learn-link-btn:active { transform: scale(0.98); }
+        .term-link {
+            color: var(--primary-dark); text-decoration: underline; cursor: pointer;
+            font-weight: 600; text-underline-offset: 2px;
+        }
+        .wiki-body h4.wiki-highlight {
+            background: var(--accent-gold-soft); border-radius: 6px;
+            padding: 4px 6px; margin-left: -6px;
+        }
+        .objection-links {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding-top: 10px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .game-stats-hud {
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+            margin-bottom: 10px; font-size: 12px; font-weight: 700;
+        }
+        .game-stat-pill {
+            padding: 5px 10px; border-radius: var(--radius-pill);
+            background: var(--surface-2); border: 1px solid var(--border); color: var(--text-muted);
+        }
+        .game-stat-pill.accent { background: var(--accent-gold-soft); color: var(--accent-gold); border-color: rgba(212,168,83,0.35); }
+        .result-actions { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+        .result-actions .btn-main { margin-top: 0; }
+        .result-actions .btn-secondary {
+            padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border);
+            background: var(--surface-2); font-weight: 700; font-size: 14px; cursor: pointer; width: 100%;
+        }
+        .dd-filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .dd-filter-chip {
+            padding: 7px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border);
+            background: var(--surface-2); font-size: 12px; font-weight: 600; cursor: pointer;
+        }
+        .dd-filter-chip.active { background: var(--success-bg); border-color: rgba(5,150,105,0.35); color: var(--primary-dark); }
+        .dd-cat-header { cursor: pointer; user-select: none; }
+        .dd-cat-header .dd-cat-chevron { opacity: 0.6; font-size: 11px; }
+        .dd-category.collapsed .dd-cat-body { display: none; }
+        .deal-sort-row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; font-size: 12px; }
+        .deal-sort-row select { flex: 1; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); }
+        .global-search-wrap { position: relative; margin-bottom: 16px; }
+        .global-search-label {
+            display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+        }
+        .global-search-input {
+            width: 100%; padding: 12px 14px; border: 2px solid transparent;
+            border-radius: var(--radius-sm); background: var(--surface-2);
+            font-size: 15px; color: var(--text-main); box-shadow: var(--shadow-sm);
+        }
+        .global-search-input:focus {
+            outline: none; border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+        .global-search-results {
+            display: none; position: absolute; left: 0; right: 0; top: calc(100% + 6px);
+            max-height: min(60vh, 340px); overflow-y: auto; z-index: 50;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); box-shadow: var(--shadow-lg);
+        }
+        .global-search-results.open { display: block; }
+        .global-search-meta {
+            padding: 8px 12px; font-size: 11px; color: var(--text-muted);
+            border-bottom: 1px solid var(--border); background: var(--surface-2);
+        }
+        .global-search-hit {
+            display: block; width: 100%; text-align: left; border: none; background: transparent;
+            padding: 10px 12px; cursor: pointer; border-bottom: 1px solid var(--border);
+            font-family: inherit;
+        }
+        .global-search-hit:last-child { border-bottom: none; }
+        .global-search-hit:hover, .global-search-hit:focus {
+            background: var(--surface-2); outline: none;
+        }
+        .global-search-hit-top {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+        }
+        .global-search-badge {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.04em; padding: 2px 7px; border-radius: var(--radius-pill);
+            flex-shrink: 0;
+        }
+        .global-search-badge.glossary {
+            background: #eef2ff; color: #4338ca;
+        }
+        [data-theme="dark"] .global-search-badge.glossary {
+            background: #312e81; color: #c7d2fe;
+        }
+        .global-search-badge.wiki {
+            background: var(--success-bg); color: var(--primary-dark);
+        }
+        .global-search-hit-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .global-search-hit-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+        .global-search-hit-snippet { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        .global-search-empty {
+            padding: 14px 12px; font-size: 13px; color: var(--text-muted);
+        }
+        .global-search-hit-row { display: flex; align-items: stretch; border-bottom: 1px solid var(--border); }
+        .global-search-hit-row:last-child { border-bottom: none; }
+        .global-search-hit-row .global-search-hit { border-bottom: none; flex: 1; }
+        .global-search-star {
+            border: none; background: transparent; cursor: pointer;
+            padding: 0 12px; font-size: 16px; line-height: 1; color: var(--text-muted);
+            opacity: 0.5; flex-shrink: 0;
+        }
+        .global-search-star.on { opacity: 1; color: var(--accent-gold); }
+        .global-search-quick {
+            display: flex; gap: 8px; margin-top: 8px;
+        }
+        .global-search-quick button {
+            flex: 1; padding: 8px 10px; border-radius: var(--radius-sm);
+            border: 1px solid var(--border); background: var(--surface-2);
+            font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-main);
+        }
+        .knowledge-quick-panel {
+            background: var(--surface-2); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 12px; margin-bottom: 16px;
+        }
+        .kq-block { margin-bottom: 10px; }
+        .kq-block:last-child { margin-bottom: 0; }
+        .kq-title {
+            font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+        }
+        .kq-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .kq-chip {
+            display: inline-flex; align-items: center; gap: 4px; max-width: 100%;
+            padding: 3px 6px 3px 3px; border-radius: var(--radius-pill);
+            border: 1px solid var(--border); background: var(--surface);
+            font-size: 12px; font-weight: 600; color: var(--text-main);
+        }
+        .kq-chip:hover { border-color: var(--primary); background: var(--success-bg); }
+        .kq-chip-main {
+            display: inline-flex; align-items: center; gap: 6px; border: none; background: transparent;
+            font: inherit; font-weight: 600; cursor: pointer; color: inherit; padding: 4px 6px;
+            border-radius: var(--radius-pill); max-width: 220px;
+        }
+        .kq-chip-main:hover { background: transparent; }
+        .kq-chip-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px; }
+        .kq-chip-badge {
+            font-size: 9px; font-weight: 800; text-transform: uppercase;
+            color: var(--primary-dark); opacity: 0.8;
+        }
+        .kq-star {
+            border: none; background: transparent; cursor: pointer; padding: 0 2px;
+            font-size: 14px; line-height: 1; opacity: 0.45;
+        }
+        .kq-star.on { opacity: 1; color: var(--accent-gold); }
+        .kq-empty { font-size: 12px; color: var(--text-muted); }
+        .backup-panel {
+            margin-top: 20px; padding: 14px; border-radius: var(--radius-md);
+            border: 1px solid var(--border); background: var(--surface-2);
+        }
+        .backup-panel h3 { margin: 0 0 8px; font-size: 15px; }
+        .backup-hint { font-size: 12px; color: var(--text-muted); margin: 0 0 12px; line-height: 1.45; }
 
         @media (min-width: 420px) {
             body { padding: 24px; align-items: center; }
@@ -1020,10 +1221,11 @@
 </head>
 <body data-app-mode="einarbeitung">
 
-<!-- Passwortschutz (Apo-Guru) -->
+<!-- Passwortschutz Apotheken-Guro -->
 <div id="lock-screen">
-    <div class="lock-logo">AG</div>
-    <div class="lock-title" id="lock-title">Apo-Guru</div>
+    <img src="apotheken-guro-icon.png" alt="" class="lock-logo" width="88" height="88">
+    <div class="lock-title" id="lock-title">Apotheken-Guro</div>
+    <p class="lock-tagline">Lernen &amp; Nachschlagen zur Apothekenübernahme</p>
     <div class="lock-sub" id="lock-sub">Passwort eingeben, um fortzufahren</div>
     <div class="input-group" style="width:100%;max-width:320px;">
         <input type="password" class="input-field" id="lock-input" placeholder="Passwort" autocomplete="current-password">
@@ -1035,9 +1237,15 @@
 <div class="container" id="app" style="display:none;">
     <div id="view-menu" class="view view-active">
         <header class="hero">
-            <span class="hero-badge" id="hero-badge">Apotheke · M&A</span>
-            <h1 id="hero-title">M&A Lern-Trainer</h1>
-            <p class="hero-sub" id="hero-sub">Dein persönliches Üben für den Apotheken-M&A-Alltag – in deinem Tempo.</p>
+            <div class="hero-top">
+                <img src="apotheken-guro-icon.png" alt="" class="brand-logo" width="52" height="52">
+                <div class="hero-text">
+                    <span class="hero-badge" id="hero-badge">Apotheke · Übernahme</span>
+                    <h1 id="hero-title">Apotheken-Guro</h1>
+                    <p class="brand-tagline">Dein Begleiter zur Apothekenübernahme</p>
+                </div>
+            </div>
+            <p class="hero-sub" id="hero-sub">Lern-Trainer für Apothekenübernahmen – Fachhandbuch, Quiz und Glossar in deinem Tempo.</p>
         </header>
         <div class="mode-banner" id="mode-banner"></div>
         <div class="settings-bar">
@@ -1054,8 +1262,25 @@
                 <button type="button" class="mode-btn active" data-mode="einarbeitung" id="btn-mode-einarbeitung">Einarbeitung</button>
             </div>
         </div>
+        <div class="global-search-wrap" id="global-search-wrap-menu">
+            <label class="global-search-label" for="global-search-menu">Wissen durchsuchen</label>
+            <input type="search" id="global-search-menu" class="global-search-input"
+                placeholder="Begriff oder Thema (Glossar &amp; Wiki)…"
+                autocomplete="off" oninput="onGlobalSearchInput(this)" onfocus="onGlobalSearchInput(this)">
+            <div class="global-search-results" id="global-search-results-menu"></div>
+            <div class="global-search-quick mode-closing-only">
+                <button type="button" onclick="showWiki(null, null, false)">Wiki öffnen</button>
+                <button type="button" onclick="showGlossary()">Glossar öffnen</button>
+            </div>
+        </div>
+        <div id="knowledge-quick-panel" class="knowledge-quick-panel">
+            <div class="kq-block" id="knowledge-favorites-block">
+                <div class="kq-title">Favoriten</div>
+                <div id="knowledge-favorites-list" class="kq-chips"></div>
+            </div>
+        </div>
         <div id="pwa-install-banner" class="pwa-install-banner">
-            <strong>📲 Als App installieren</strong>
+            <strong>📲 Apotheken-Guro installieren</strong>
             <p style="margin:6px 0 0 0;color:var(--text-muted);">Für schnellen Zugriff auf dem Handy – einmal installieren, dann direkt vom Startbildschirm.</p>
             <div class="pwa-install-actions">
                 <button type="button" class="btn-pwa btn-pwa-primary" onclick="installPWA()">Jetzt installieren</button>
@@ -1072,6 +1297,13 @@
             <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-overall-bar"></div></div>
             <p class="progress-hint" id="progress-hint">Modul gilt ab 70 % als geschafft · Selbsttest separat</p>
         </div>
+        <div id="weakness-panel" class="weakness-panel mode-einarbeitung-only">
+            <div class="progress-panel-title">DEINE SCHWACHSTELLEN</div>
+            <div id="weakness-list"></div>
+            <button type="button" class="btn-weakness" id="btn-weakness-train" onclick="prepWeaknessGame()" style="display:none;">Schwächen üben (max. 15 Fragen)</button>
+            <button type="button" class="weakness-mastered-toggle" id="btn-weakness-mastered-toggle" onclick="toggleMasteredWeaknessList()" style="display:none;"></button>
+            <button type="button" class="weakness-mastered-toggle" id="btn-weakness-reset-mastered" onclick="resetAllMasteredWeaknesses()" style="display:none;">Alle erledigten zurücksetzen</button>
+        </div>
         <p class="menu-section-label mode-closing-only">Closing · Arbeitsmodus</p>
         <div class="menu-grid mode-closing-only">
             <div class="menu-card consultant-card" onclick="showDeals()">
@@ -1086,10 +1318,6 @@
                 <div class="menu-card-icon" data-icon="finance"></div>
                 <div><h3>Provision-Rechner</h3><p>Sitzungsrechner – speichert keine Zahlen.</p></div>
             </div>
-            <div class="menu-card consultant-card" onclick="showChat()">
-                <div class="menu-card-icon" data-icon="chat"></div>
-                <div><h3>KI-Sparring</h3><p>Allgemeine M&amp;A-Fragen – keine Mandatsdaten.</p></div>
-            </div>
         </div>
         <p class="menu-section-label mode-einarbeitung-only">Einarbeitung · Lernen</p>
         <div class="menu-grid mode-einarbeitung-only">
@@ -1097,16 +1325,12 @@
                 <div class="menu-card-icon" data-icon="radar"></div>
                 <div><h3>Personal Radar</h3><p>Eigene Lern-Routine – Focus &amp; Reflexion.</p></div>
             </div>
-            <div class="menu-card consultant-card" onclick="showChat()">
-                <div class="menu-card-icon" data-icon="chat"></div>
-                <div><h3>KI-Tutor</h3><p>Erklärt Konzepte aus Wiki &amp; Modulen.</p></div>
-            </div>
         </div>
         <p class="menu-section-label mode-einarbeitung-only">Lernen &amp; Wissen</p>
         <div class="menu-grid mode-einarbeitung-only">
             <div class="menu-card wiki-main-card" onclick="showWiki()">
                 <div class="menu-card-icon" data-icon="wiki"></div>
-                <div><h3>M&A Wissensdatenbank</h3><p>Dein Nachschlage-Handbuch für den Job.</p></div>
+                <div><h3>Fachhandbuch Apothekenübernahme</h3><p>Dein Nachschlagewerk für Beratung, Due Diligence und Übergabe.</p></div>
             </div>
             <div class="menu-card glossary-card" onclick="showGlossary()">
                 <div class="menu-card-icon" data-icon="glossary"></div>
@@ -1138,23 +1362,44 @@
             </div>
             <div class="menu-card exam-card" id="menu-exam" onclick="prepGame('exam')">
                 <div class="menu-card-icon" data-icon="target"></div>
-                <div><h3>Selbsttest <span class="mod-badge open" id="badge-exam"></span></h3><p id="sub-exam">25 Zufallsfragen · max. 3 Fehler erlaubt.</p></div>
+                <div><h3>Selbsttest <span class="mod-badge open" id="badge-exam"></span></h3><p id="sub-exam">25 Fragen · max. 3 Fehler erlaubt.</p></div>
             </div>
         </div>
         <button class="admin-btn-small mode-einarbeitung-only" onclick="showAdmin()">📊 Meine Statistik</button>
-        <p class="app-version">Apo-Guru v3.3 · Einarbeitung &amp; Closing getrennt</p>
+        <p class="app-version">Apotheken-Guro v4.1</p>
     </div>
 
     <div id="view-wiki" class="view">
-        <div class="nav-bar"><h2>Dein Handbuch</h2><button class="btn-home" onclick="goHome()">Menü</button></div>
+        <div class="nav-bar">
+            <h2>Fachhandbuch</h2>
+            <div class="nav-actions">
+                <button type="button" class="btn-resume-quiz" id="btn-resume-quiz-wiki" style="display:none;" onclick="resumeQuiz()">Zurück zum Quiz</button>
+                <button class="btn-home" type="button" onclick="goHome()">Menü</button>
+            </div>
+        </div>
+        <div class="global-search-wrap" id="global-search-wrap-wiki">
+            <input type="search" id="global-search-wiki" class="global-search-input"
+                placeholder="Begriff oder Thema (Glossar &amp; Wiki)…"
+                autocomplete="off" oninput="onGlobalSearchInput(this)" onfocus="onGlobalSearchInput(this)">
+            <div class="global-search-results" id="global-search-results-wiki"></div>
+        </div>
         <div id="wiki-content"></div>
     </div>
 
     <div id="view-glossary" class="view">
-        <div class="nav-bar"><h2>Glossar</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <div class="nav-bar">
+            <h2>Glossar</h2>
+            <div class="nav-actions">
+                <button type="button" class="btn-resume-quiz" id="btn-resume-quiz-glossary" style="display:none;" onclick="resumeQuiz()">Zurück zum Quiz</button>
+                <button class="btn-home" type="button" onclick="goHome()">Menü</button>
+            </div>
+        </div>
         <p class="glossary-intro"><strong>Das große Apotheken- &amp; BWA-Gesamtglossar</strong> – schnell nachschlagen im Alltag und bei der Vermittlung.</p>
-        <div class="glossary-search-wrap">
-            <input type="search" id="glossary-search" class="glossary-search" placeholder="Begriff suchen (z. B. EBITDA, Fixum, PTA)…" oninput="filterGlossary()">
+        <div class="global-search-wrap glossary-search-wrap" id="global-search-wrap-glossary">
+            <input type="search" id="global-search-glossary" class="global-search-input"
+                placeholder="Begriff oder Thema (Glossar &amp; Wiki)…"
+                autocomplete="off" oninput="onGlobalSearchInput(this)" onfocus="onGlobalSearchInput(this)">
+            <div class="global-search-results" id="global-search-results-glossary"></div>
             <p class="glossary-count" id="glossary-count"></p>
         </div>
         <div id="glossary-content"></div>
@@ -1164,7 +1409,7 @@
         <div class="nav-bar">
             <span id="game-title" class="game-title-pill">MODUL</span>
             <div class="nav-actions">
-                <button class="btn-wiki-nav" type="button" onclick="showWiki()">Wiki</button>
+                <button class="btn-wiki-nav" type="button" onclick="openWikiForCurrentQuestion()">Wiki</button>
                 <button class="btn-home" type="button" onclick="confirmExit()">Abbruch</button>
             </div>
         </div>
@@ -1172,6 +1417,9 @@
             <div class="exam-hud-title">🎯 Selbsttest – Fehlerkonto</div>
             <div class="exam-lives" id="exam-lives"></div>
             <p class="exam-hud-hint">Max. 3 Fehler · beim 4. Fehler endet der Test.</p>
+        </div>
+        <div class="game-stats-hud" id="game-stats-hud">
+            <span class="game-stat-pill accent" id="game-q-progress">Frage 1/15</span>
         </div>
         <div class="live-tracker" id="tracker"></div>
         <div class="progress-container"><div class="progress-bar" id="pbar"></div></div>
@@ -1191,6 +1439,8 @@
         <div class="score-circle" id="final-score">0/0</div>
         <p id="time-stat" style="font-size:13px; color:var(--text-muted);"></p>
         <p id="exam-detail" style="font-size:12px; color:var(--text-muted); display:none;"></p>
+        <div id="result-learn-hint" style="display:none; margin:14px 0; font-size:13px; line-height:1.5;"></div>
+        <div class="result-actions" id="result-actions" style="display:none;"></div>
         <button class="btn-main primary" type="button" onclick="goHome()">Zurück zum Menü</button>
     </div>
 
@@ -1218,6 +1468,15 @@
         <div class="admin-actions">
             <button type="button" class="btn-admin-action" onclick="exportAdminCSV()">📥 CSV exportieren</button>
         </div>
+        <div class="backup-panel">
+            <h3>Backup &amp; Wiederherstellen</h3>
+            <p class="backup-hint">Fortschritt, Schwächen, Favoriten und anonyme Mandat-Slots als JSON sichern – z.&nbsp;B. für Gerätewechsel. Keine Passwörter oder Umsätze.</p>
+            <div class="admin-actions">
+                <button type="button" class="btn-admin-action" onclick="exportAppBackup()">📥 Backup exportieren</button>
+                <button type="button" class="btn-admin-action" onclick="document.getElementById('backup-import-input').click()">📤 Backup importieren</button>
+            </div>
+            <input type="file" id="backup-import-input" accept="application/json,.json" style="display:none;" onchange="importAppBackup(this)">
+        </div>
         <button class="admin-btn-small" style="color:red; margin-top:20px;" onclick="clearAllData()">ALLE DATEN LÖSCHEN</button>
     </div>
 
@@ -1239,7 +1498,10 @@
             <label class="input-label" for="prov-umsatz">Umsatz Vorjahr (€)</label>
             <input type="number" class="input-field" id="prov-umsatz" inputmode="decimal" placeholder="z.B. 3.500.000" oninput="calcProvision()">
         </div>
-        <button class="btn-main primary" type="button" onclick="calcProvision()">Berechnen</button>
+        <div style="display:flex;gap:8px;">
+            <button class="btn-main primary" type="button" style="flex:1;" onclick="calcProvision()">Berechnen</button>
+            <button class="btn-main" type="button" style="flex:0 0 auto;width:auto;margin-top:0;padding:12px 16px;" onclick="clearProvisionFields()">Leeren</button>
+        </div>
         <div class="provision-flow" id="prov-result" style="display:none;">
             <div class="provision-step">
                 <div class="provision-step-num">1</div>
@@ -1272,6 +1534,7 @@
 
     <div id="view-radar" class="view">
         <div class="nav-bar"><h2>Personal Radar</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
+        <p class="privacy-hint">Nur für deine <strong>Lern-Routine</strong> – keine Mandats- oder Kundendaten eintragen.</p>
         <div class="radar-tabs">
             <button type="button" class="radar-tab active" data-tab="focus" onclick="switchRadarTab('focus')">Daily Focus</button>
             <button type="button" class="radar-tab" data-tab="tasks" onclick="switchRadarTab('tasks')">Aufgaben</button>
@@ -1304,6 +1567,15 @@
         <div class="nav-bar"><h2>Mandat-Tracker</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
         <p class="privacy-hint">Anonyme Mandats-Slots (M-01, M-02 …). <strong>Keine Namen, Umsätze oder Notizen</strong> – nur Phase, Termin und DD-Fortschritt (Due Diligence = Risikoprüfung). Details führst du extern (CRM, Notizen-App).</p>
         <button class="btn-main primary" type="button" onclick="createNewDeal()" style="margin-bottom:14px;">+ Neuer Slot</button>
+        <div class="deal-sort-row">
+            <label for="deal-sort">Sortieren</label>
+            <select id="deal-sort" onchange="renderDealsList()">
+                <option value="updated">Zuletzt bearbeitet</option>
+                <option value="dd">DD-Fortschritt</option>
+                <option value="phase">Phase</option>
+                <option value="date">Nächster Termin</option>
+            </select>
+        </div>
         <div id="deals-list" class="deal-list"></div>
     </div>
 
@@ -1347,6 +1619,10 @@
                 <div class="deal-dd-label"><span>DD-Fortschritt <span class="tab-hint">(Due Diligence)</span></span><span id="deal-dd-pct">0 %</span></div>
                 <div class="progress-bar-wrap"><div class="progress-bar-fill" id="deal-dd-bar" style="width:0%"></div></div>
             </div>
+            <div class="dd-filter-row">
+                <button type="button" class="dd-filter-chip active" id="dd-filter-all" onclick="setDDFilter('all')">Alle Punkte</button>
+                <button type="button" class="dd-filter-chip" id="dd-filter-open" onclick="setDDFilter('open')">Nur offene</button>
+            </div>
             <div id="deal-dd-checklist"></div>
             <div class="deal-actions-row" style="margin-top:16px;">
                 <button type="button" class="btn-inline" onclick="exportDDReport()">📥 Als Text exportieren</button>
@@ -1355,23 +1631,6 @@
         </div>
     </div>
 
-    <div id="view-chat" class="view">
-        <div class="nav-bar"><h2 id="chat-nav-title">KI-Assistent</h2><button class="btn-home" type="button" onclick="goHome()">Menü</button></div>
-        <p class="privacy-hint" id="chat-privacy-hint"></p>
-        <p class="api-hint">Gemini API-Key von <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> (Free Tier). Wird nur lokal gespeichert.</p>
-        <div style="display:flex;gap:8px;margin-bottom:12px;">
-            <input type="password" class="input-field" id="gemini-key" placeholder="Gemini API-Key" style="flex:1;">
-            <button class="btn-main primary" type="button" style="width:auto;margin-top:0;padding:12px 14px;" onclick="saveGeminiKey()">OK</button>
-        </div>
-        <div class="chat-wrap">
-            <div class="chat-messages" id="chat-msgs"></div>
-            <p id="chat-typing" style="display:none;font-size:12px;color:var(--text-muted);">Analysiere…</p>
-            <div class="chat-input-row">
-                <input type="text" class="input-field" id="chat-input" placeholder="Frage zum Apotheken-M&A…">
-                <button class="btn-main primary" type="button" onclick="sendGeminiChat()">→</button>
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>
@@ -1491,7 +1750,7 @@
     // --- WIKI DATEN ---
     const wikiData = [
         {t:"📌 Hinweise & Quellen", c:[
-            {h:"Zweck dieses Handbuchs", p:"Kurzreferenz für Einarbeitung, Quiz und Apotheken-M&A-Alltag. Ersetzt keine Rechts- oder Steuerberatung."},
+            {h:"Zweck dieses Handbuchs", p:"Kurzreferenz für Einarbeitung, Quiz und den Alltag bei Apothekenübernahmen. Ersetzt keine Rechts- oder Steuerberatung."},
             {h:"Rechtsstand (Orientierung)", p:"Angaben beziehen sich auf ApoG, ApBetrO, AMPreisV, BGB und gängige Branchenpraxis. Gesetze ändern sich – bei Verträgen und Erlaubnissen immer aktuelle Fassung und Landesrecht prüfen."},
             {h:"Typische Gesetzesquellen", list:[
                 "ApoG – Erlaubnis, Filialen, Versand, Apothekenpflicht",
@@ -1714,7 +1973,8 @@
     ];
 
     // --- APP LOGIK ---
-    const APP_VERSION = "3.3";
+    const APP_VERSION = "4.1";
+    const BRAND_NAME = "Apotheken-Guro";
     const EXAM_MAX_ERRORS = 3;
     const MODULE_PASS_PERCENT = 70;
     const STORAGE_LOGS = "apo_logs";
@@ -1728,9 +1988,40 @@
     const STORAGE_APP_MODE = "apo_app_mode";
     const STORAGE_PROVISION = "apo_provision_data";
     const STORAGE_RADAR = "apo_radar_data";
-    const STORAGE_GEMINI_KEY = "apo_gemini_api_key";
-    const STORAGE_CHAT_HISTORY = "apo_chat_history";
     const STORAGE_DEALS = "apo_deals_data";
+    const STORAGE_WEAKNESSES = "apo_weaknesses";
+    const STORAGE_FAVORITES = "apo_knowledge_favorites";
+    const EXAM_WEAKNESS_COUNT = 15;
+    const EXAM_TOTAL_COUNT = 25;
+
+    const MODULE_WIKI_CHAPTER = [1, 2, 3, 4, 5, 6];
+    const MODULE_TITLES = [
+        "Modul 1: Recht", "Modul 2: Bilanz", "Modul 3: Übergabe",
+        "Modul 4: BWA", "Modul 5: Wirtschaft", "Modul 6: Closing"
+    ];
+    const WIKI_TERM_LINKS = {
+        "LOI": { c: 3, h: "NDA" },
+        "DD": { c: 3, h: "Due Diligence" },
+        "Due Diligence": { c: 3, h: "Due Diligence" },
+        "GWG": { c: 7, h: "Kaufpreisallokation" },
+        "DVO": { c: 3, h: "Due Diligence" },
+        "Escrow": { c: 7, h: "Kaufpreisdepot" },
+        "Goodwill": { c: 3, h: "Goodwill" },
+        "Retaxation": { c: 4, h: "Retaxation" },
+        "§ 75 AO": { c: 3, h: "§ 75 AO" },
+        "§ 613a BGB": { c: 3, h: "§ 613a BGB" },
+        "§ 11a ApoG": { c: 1, h: "Versandhandel" }
+    };
+    const OBJECTION_WIKI = {
+        "Preis": { c: 6, h: "Ertragswert" },
+        "Finanzierung": { c: 5, h: "Kapitaldienst" },
+        "Recht": { c: 1, h: "Fremdbesitz" },
+        "Standort": { c: 3, h: "Mietvertrag" },
+        "Operativ": { c: 4, h: "Retaxation" },
+        "Timing": { c: 3, h: "NDA" },
+        "Vertrauen": { c: 3, h: "Due Diligence" }
+    };
+    let glossaryTermIndex = [];
 
     const DEAL_PHASES = [
         { id: "nda", label: "NDA", hint: "Vertraulichkeitsvereinbarung" },
@@ -1794,11 +2085,10 @@
     ];
 
     let currentDealId = null;
-    const GEMINI_SYSTEM_EINARBEITUNG = "Du bist ein M&A-Dozent für den Apothekenmarkt. Erkläre Konzepte verständlich für die Einarbeitung. Keine Mandatsberatung – nur Lerninhalte.";
-    const GEMINI_SYSTEM_CLOSING = "Du bist ein M&A-Sparringpartner für den Apothekenmarkt. Antworte allgemein und methodisch. Der Nutzer gibt bewusst keine Mandatsdaten ein – erfinde keine Kundennamen oder Zahlen.";
 
-    const VIEWS_EINARBEITUNG = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-radar", "view-chat"];
-    const VIEWS_CLOSING = ["view-menu", "view-deals", "view-deal", "view-objections", "view-provision", "view-chat"];
+    const VIEWS_EINARBEITUNG = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-radar"];
+    const VIEWS_CLOSING = ["view-menu", "view-wiki", "view-glossary", "view-deals", "view-deal", "view-objections", "view-provision"];
+    const GLOBAL_SEARCH_SLOTS = ["menu", "wiki", "glossary"];
 
     const NEXT_ACTIONS = [
         { id: "", label: "— Keine Auswahl —" },
@@ -1810,8 +2100,6 @@
         { id: "behoerde", label: "Behörde / Kammer" },
         { id: "internal", label: "Interne Abstimmung" }
     ];
-    const GEMINI_MODEL = "gemini-2.0-flash";
-
     const OBJECTIONS = [
         { tag: "Preis", q: "Der Kaufpreis ist zu hoch – ich bekomme das woanders günstiger.", r: "Verständlich. Lassen Sie uns den Ertragswert transparent aufschlüsseln: EBITDA-Multiple, bereinigte BWA, Substanzwert. Der Preis reflektiert den nachhaltigen Kundenstamm und die Standortqualität – nicht nur Inventarwert." },
         { tag: "Preis", q: "Ich will nur den Substanzwert zahlen, kein Goodwill.", r: "Substanzwert deckt nur Sachwerte ab. Der Firmenwert (Goodwill) ist der ökonomische Kern bei Apotheken: Kundenstamm, Standort, Heimverträge, Erlaubnis. Banken finanzieren primär nach Ertragswert – nicht nach Buchwert." },
@@ -1830,7 +2118,6 @@
     ];
 
     let soundEnabled = true;
-    let chatHistory = [];
     let lockFirstSetup = false;
     let audioCtx = null;
 
@@ -1850,7 +2137,6 @@
         "sound-off": '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>',
         speech: '<svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>',
         radar: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><path d="M12 3v4M12 17v4"/></svg>',
-        chat: '<svg viewBox="0 0 24 24"><path d="M12 3a7 7 0 0 0-7 7v4l-2 2h4a7 7 0 0 0 14 0 7 7 0 0 0-7-7z"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>',
         deal: '<svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M9 3h6M9 21h6M12 7v10"/></svg>',
         briefcase: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>'
     };
@@ -1963,7 +2249,9 @@
     }
 
     let curQ = [], curIdx = 0, score = 0, name = "", startTime = 0, totalTime = 0, timerInterval, wasInGame = false, activeModulIdx = 0;
-    let examWrong = 0, isExamMode = false;
+    let examWrong = 0, isExamMode = false, isWeaknessMode = false;
+    let quizPaused = false, quizPauseSnapshot = null, showMasteredWeaknesses = false;
+    let ddFilterMode = "all", ddCollapsedCats = {};
     let deferredInstallPrompt = null;
 
     const MODULE_SUBTITLES = [
@@ -1986,7 +2274,12 @@
     }
 
     function emptyUserProgress() {
-        return { modules: Array(MODULE_COUNT).fill(false), modulesBest: Array(MODULE_COUNT).fill(0), examPassed: false, updated: null };
+        return {
+            modules: Array(MODULE_COUNT).fill(false),
+            modulesBest: Array(MODULE_COUNT).fill(0),
+            examPassed: false,
+            updated: null
+        };
     }
 
     function loadAllProgress() {
@@ -2026,7 +2319,7 @@
     }
 
     function recordProgressAfterFinish(perc, examPassed) {
-        if (!name) return;
+        if (!name || isWeaknessMode || activeModulIdx === "weak") return;
         const p = getUserProgress(name);
         if (isExamMode) {
             if (examPassed) p.examPassed = true;
@@ -2036,6 +2329,425 @@
             if (perc >= MODULE_PASS_PERCENT) p.modules[i] = true;
         }
         saveUserProgress(name, p);
+    }
+
+    function buildGlossaryTermIndex() {
+        const terms = [];
+        glossaryData.forEach(sec => sec.e.forEach(e => terms.push({ k: e.k })));
+        Object.keys(WIKI_TERM_LINKS).forEach(k => {
+            if (!terms.some(t => t.k.toLowerCase() === k.toLowerCase())) terms.push({ k });
+        });
+        terms.sort((a, b) => b.k.length - a.k.length);
+        glossaryTermIndex = terms;
+    }
+
+    function escapeRegex(s) {
+        return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function findTermsInText(text) {
+        const found = [];
+        const lower = text.toLowerCase();
+        glossaryTermIndex.forEach(t => {
+            const re = new RegExp("\\b" + escapeRegex(t.k) + "\\b", "i");
+            if (re.test(text) || lower.includes(t.k.toLowerCase())) found.push(t.k);
+        });
+        return [...new Set(found)].slice(0, 3);
+    }
+
+    function canPauseQuizForLearn() {
+        return wasInGame && currentViewId === "view-game";
+    }
+
+    function isQuizAnsweredState() {
+        return document.getElementById("insight").style.display !== "none";
+    }
+
+    function clearQuizPause() {
+        quizPaused = false;
+        quizPauseSnapshot = null;
+        updateLearnNavBars();
+    }
+
+    function pauseQuizForLearnLink() {
+        if (!canPauseQuizForLearn()) return;
+        clearInterval(timerInterval);
+        const btnNext = document.getElementById("btn-next");
+        const answered = isQuizAnsweredState();
+        const d = curQ[curIdx];
+        quizPauseSnapshot = {
+            curIdx,
+            unanswered: !answered,
+            qTextHtml: document.getElementById("q-text").innerHTML,
+            pbarWidth: document.getElementById("pbar").style.width,
+            timerText: document.getElementById("timer").innerText,
+            dotClass: document.getElementById("dot-" + curIdx) ? document.getElementById("dot-" + curIdx).className : "",
+            options: [...document.querySelectorAll(".option-item")].map(el => ({
+                className: el.className,
+                text: el.innerText,
+                origI: d ? d.a.indexOf(el.innerText) : -1
+            }))
+        };
+        if (answered) {
+            quizPauseSnapshot.insightHtml = document.getElementById("insight").innerHTML;
+            quizPauseSnapshot.btnNextVisible = btnNext.style.display !== "none";
+            quizPauseSnapshot.btnNextText = btnNext.innerText;
+            quizPauseSnapshot.examHardFailPending = btnNext.innerText.indexOf("beenden") >= 0;
+        }
+        quizPaused = true;
+        updateLearnNavBars();
+    }
+
+    function updateLearnNavBars() {
+        const show = quizPaused && !!quizPauseSnapshot;
+        ["btn-resume-quiz-wiki", "btn-resume-quiz-glossary"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = show ? "inline-block" : "none";
+        });
+    }
+
+    function resumeQuiz() {
+        if (!quizPaused || !quizPauseSnapshot) return;
+        const s = quizPauseSnapshot;
+        showView("view-game");
+        curIdx = s.curIdx;
+        document.getElementById("q-text").innerHTML = s.qTextHtml;
+        document.getElementById("pbar").style.width = s.pbarWidth;
+        document.getElementById("timer").innerText = s.timerText;
+        const box = document.getElementById("options-box");
+        box.innerHTML = "";
+        s.options.forEach(opt => {
+            const div = document.createElement("div");
+            div.className = opt.className;
+            div.innerText = opt.text;
+            box.appendChild(div);
+        });
+        const dot = document.getElementById("dot-" + curIdx);
+        if (dot) dot.className = s.dotClass;
+        if (s.unanswered) {
+            document.getElementById("insight").style.display = "none";
+            document.getElementById("btn-next").style.display = "none";
+            const d = curQ[curIdx];
+            const box = document.getElementById("options-box");
+            box.innerHTML = "";
+            s.options.forEach(opt => {
+                const div = document.createElement("div");
+                div.className = opt.className || "option-item";
+                div.innerText = opt.text;
+                if (opt.origI >= 0 && d) div.onclick = () => check(div, opt.origI, d.c);
+                box.appendChild(div);
+            });
+            startTime = Date.now();
+            timerInterval = setInterval(() => {
+                document.getElementById("timer").innerText = "⏱️ " + ((Date.now() - startTime)/1000).toFixed(1) + "s";
+            }, 100);
+        } else {
+            document.getElementById("insight").innerHTML = s.insightHtml;
+            document.getElementById("insight").style.display = "block";
+            const btn = document.getElementById("btn-next");
+            btn.style.display = s.btnNextVisible ? "block" : "none";
+            btn.innerText = s.btnNextText;
+            if (s.examHardFailPending) btn.onclick = () => finish({ examHardFail: true });
+            else btn.onclick = nextQuestion;
+            clearInterval(timerInterval);
+        }
+        updateGameHud();
+        quizPaused = false;
+        quizPauseSnapshot = null;
+        updateLearnNavBars();
+    }
+
+    function openTermLink(term) {
+        pauseQuizForLearnLink();
+        if (glossaryData.some(s => s.e.some(e => e.k.toLowerCase() === term.toLowerCase()))) {
+            openGlossaryTerm(term, false);
+            return;
+        }
+        const wiki = WIKI_TERM_LINKS[term];
+        if (wiki) showWiki(wiki.c, wiki.h, false);
+        else openGlossaryTerm(term, false);
+    }
+
+    function linkifyTerms(text) {
+        let html = escapeHtml(text);
+        glossaryTermIndex.forEach(t => {
+            const re = new RegExp("\\b(" + escapeRegex(t.k) + ")\\b", "gi");
+            html = html.replace(re, (match) =>
+                `<span class="term-link" data-term="${escapeHtml(match)}" onclick="openTermLink(this.getAttribute('data-term'))">${match}</span>`
+            );
+        });
+        return html;
+    }
+
+    function openGlossaryTerm(term, doPause) {
+        if (doPause !== false) pauseQuizForLearnLink();
+        showView("view-glossary");
+        document.getElementById("global-search-glossary").value = term;
+        syncGlobalSearchInputs(term);
+        renderGlossary();
+        updateLearnNavBars();
+        setTimeout(() => {
+            const rows = document.querySelectorAll(".glossary-table td.term");
+            for (const cell of rows) {
+                if (cell.textContent.toLowerCase() === term.toLowerCase()) {
+                    cell.closest("tr").style.background = "var(--accent-gold-soft)";
+                    cell.scrollIntoView({ behavior: "smooth", block: "center" });
+                    break;
+                }
+            }
+        }, 80);
+    }
+
+    function openWikiForModule(modIdx, doPause) {
+        if (doPause !== false) pauseQuizForLearnLink();
+        const chapter = MODULE_WIKI_CHAPTER[modIdx];
+        if (chapter != null) showWiki(chapter, null, false);
+        else showWiki(null, null, false);
+    }
+
+    function openWikiForCurrentQuestion() {
+        const q = curQ[curIdx];
+        const modIdx = q && q._srcM != null ? q._srcM : (typeof activeModulIdx === "number" ? activeModulIdx : null);
+        pauseQuizForLearnLink();
+        if (modIdx != null) openWikiForModule(modIdx, false);
+        else showWiki(null, null, false);
+    }
+
+    function buildLearnLinksHtml(q) {
+        const modIdx = q._srcM != null ? q._srcM : (typeof activeModulIdx === "number" ? activeModulIdx : null);
+        const terms = findTermsInText((q.q || "") + " " + (q.exp || ""));
+        let html = '<div class="learn-links">';
+        if (modIdx != null) {
+            html += `<button type="button" class="learn-link-btn" onclick="openWikiForModule(${modIdx})">📖 Wiki: ${escapeHtml(MODULE_TITLES[modIdx] || "Modul")}</button>`;
+            html += `<button type="button" class="learn-link-btn" onclick="prepGame(${modIdx})">🎯 Modul üben</button>`;
+        }
+        terms.forEach(t => {
+            html += `<button type="button" class="learn-link-btn" onclick="openTermLink('${t.replace(/'/g, "\\'")}')">📗 ${escapeHtml(t)}</button>`;
+        });
+        html += "</div>";
+        return html;
+    }
+
+    function loadAllWeaknesses() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_WEAKNESSES) || "{}");
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function weaknessEntryId(modIdx, qIdx) {
+        return modIdx + "-" + qIdx;
+    }
+
+    function saveWeaknessBag(key, bag) {
+        const all = loadAllWeaknesses();
+        all[key] = bag;
+        localStorage.setItem(STORAGE_WEAKNESSES, JSON.stringify(all));
+    }
+
+    function recordWeakness(displayName, modIdx, qIdx) {
+        const key = normalizeUserKey(displayName);
+        if (!key || modIdx == null || qIdx == null) return;
+        const all = loadAllWeaknesses();
+        if (!all[key]) all[key] = {};
+        const id = weaknessEntryId(modIdx, qIdx);
+        if (!all[key][id]) all[key][id] = { m: modIdx, q: qIdx, n: 0 };
+        all[key][id].n++;
+        all[key][id].last = Date.now();
+        all[key][id].mastered = false;
+        delete all[key][id].masteredAt;
+        localStorage.setItem(STORAGE_WEAKNESSES, JSON.stringify(all));
+    }
+
+    function getWeaknessList(displayName, opts) {
+        opts = opts || {};
+        const key = normalizeUserKey(displayName);
+        if (!key) return [];
+        const all = loadAllWeaknesses();
+        const bag = all[key] || {};
+        return Object.values(bag)
+            .filter(w => db[w.m] && db[w.m][w.q])
+            .filter(w => opts.masteredOnly ? !!w.mastered : !w.mastered)
+            .sort((a, b) => b.n - a.n || b.last - a.last)
+            .slice(0, opts.limit || 99);
+    }
+
+    function getUserWeaknesses(displayName, limit) {
+        return getWeaknessList(displayName, { limit, masteredOnly: false });
+    }
+
+    function masterWeakness(modIdx, qIdx) {
+        const key = normalizeUserKey(document.getElementById("username").value.trim());
+        if (!key) return;
+        const all = loadAllWeaknesses();
+        const id = weaknessEntryId(modIdx, qIdx);
+        if (!all[key] || !all[key][id]) return;
+        all[key][id].mastered = true;
+        all[key][id].masteredAt = Date.now();
+        saveWeaknessBag(key, all[key]);
+        refreshWeaknessPanel();
+    }
+
+    function deleteWeakness(modIdx, qIdx) {
+        const key = normalizeUserKey(document.getElementById("username").value.trim());
+        if (!key) return;
+        if (!confirm("Schwachstelle entfernen? Bei erneutem Fehler wird sie neu erfasst.")) return;
+        const all = loadAllWeaknesses();
+        const id = weaknessEntryId(modIdx, qIdx);
+        if (!all[key] || !all[key][id]) return;
+        delete all[key][id];
+        saveWeaknessBag(key, all[key]);
+        refreshWeaknessPanel();
+    }
+
+    function restoreWeakness(modIdx, qIdx) {
+        const key = normalizeUserKey(document.getElementById("username").value.trim());
+        if (!key) return;
+        const all = loadAllWeaknesses();
+        const id = weaknessEntryId(modIdx, qIdx);
+        if (!all[key] || !all[key][id]) return;
+        all[key][id].mastered = false;
+        delete all[key][id].masteredAt;
+        saveWeaknessBag(key, all[key]);
+        refreshWeaknessPanel();
+    }
+
+    function toggleMasteredWeaknessList() {
+        showMasteredWeaknesses = !showMasteredWeaknesses;
+        refreshWeaknessPanel();
+    }
+
+    function resetAllMasteredWeaknesses() {
+        const key = normalizeUserKey(document.getElementById("username").value.trim());
+        if (!key) return;
+        if (!confirm("Alle erledigten Schwachstellen wieder aktivieren?")) return;
+        const all = loadAllWeaknesses();
+        if (!all[key]) return;
+        Object.keys(all[key]).forEach(id => {
+            if (all[key][id].mastered) {
+                all[key][id].mastered = false;
+                delete all[key][id].masteredAt;
+            }
+        });
+        saveWeaknessBag(key, all[key]);
+        showMasteredWeaknesses = false;
+        refreshWeaknessPanel();
+    }
+
+    function renderWeaknessItem(w, i, mastered) {
+        const qText = db[w.m][w.q].q;
+        const short = qText.length > 72 ? qText.slice(0, 72) + "…" : qText;
+        const actions = mastered
+            ? `<button type="button" class="weakness-act-btn ok" title="Wieder aktivieren" onclick="restoreWeakness(${w.m}, ${w.q})">↩</button>`
+            : `<button type="button" class="weakness-act-btn ok" title="Beherrsche ich" onclick="masterWeakness(${w.m}, ${w.q})">✓</button>
+               <button type="button" class="weakness-act-btn del" title="Entfernen" onclick="deleteWeakness(${w.m}, ${w.q})">🗑</button>`;
+        return `<div class="weakness-item${mastered ? " mastered" : ""}">
+            <div class="weakness-item-text">
+                <strong>${i + 1}. ${escapeHtml(short)}</strong>
+                <div class="weakness-item-meta">${escapeHtml(MODULE_TITLES[w.m] || "Modul")} · ${w.n}× falsch${mastered ? " · erledigt" : ""}</div>
+            </div>
+            <div class="weakness-actions">
+                <span class="weakness-count">${w.n}×</span>
+                ${actions}
+            </div>
+        </div>`;
+    }
+
+    function refreshWeaknessPanel() {
+        const panel = document.getElementById("weakness-panel");
+        const list = document.getElementById("weakness-list");
+        const btn = document.getElementById("btn-weakness-train");
+        const toggle = document.getElementById("btn-weakness-mastered-toggle");
+        const displayName = document.getElementById("username").value.trim();
+        if (!displayName) {
+            panel.classList.remove("visible");
+            return;
+        }
+        const weak = getUserWeaknesses(displayName, 99);
+        const mastered = getWeaknessList(displayName, { masteredOnly: true, limit: 99 });
+        panel.classList.add("visible");
+        let html = "";
+        if (!weak.length && !mastered.length) {
+            list.innerHTML = '<p class="weakness-empty">Noch keine Fehler erfasst. Starte ein Modul – falsche Antworten erscheinen hier als Top-Lücken.</p>';
+            btn.style.display = "none";
+            toggle.style.display = "none";
+            return;
+        }
+        if (weak.length) {
+            html += weak.slice(0, 5).map((w, i) => renderWeaknessItem(w, i, false)).join("");
+        } else {
+            html += '<p class="weakness-empty">Keine offenen Schwachstellen – alles erledigt oder entfernt.</p>';
+        }
+        if (mastered.length && showMasteredWeaknesses) {
+            html += '<div class="weakness-mastered-section"><div class="progress-panel-title" style="margin-bottom:8px;">ERLEDIGT</div>';
+            html += mastered.map((w, i) => renderWeaknessItem(w, i, true)).join("");
+            html += "</div>";
+        }
+        list.innerHTML = html;
+        btn.style.display = weak.length ? "block" : "none";
+        const resetBtn = document.getElementById("btn-weakness-reset-mastered");
+        if (mastered.length) {
+            toggle.style.display = "block";
+            toggle.textContent = showMasteredWeaknesses
+                ? "Erledigte ausblenden (" + mastered.length + ")"
+                : "Erledigte anzeigen (" + mastered.length + ")";
+            resetBtn.style.display = "block";
+        } else {
+            toggle.style.display = "none";
+            resetBtn.style.display = "none";
+        }
+    }
+
+    function updateGameHud() {
+        const hud = document.getElementById("game-stats-hud");
+        if (!wasInGame || currentViewId !== "view-game") {
+            hud.style.display = "none";
+            return;
+        }
+        hud.style.display = "flex";
+        document.getElementById("game-q-progress").textContent =
+            "Frage " + (curIdx + 1) + "/" + curQ.length;
+    }
+
+    function renderResultActions(opts) {
+        const box = document.getElementById("result-actions");
+        box.innerHTML = "";
+        box.style.display = "none";
+        if (!opts || !opts.length) return;
+        box.style.display = "flex";
+        opts.forEach(o => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = o.primary ? "btn-main primary" : "btn-secondary";
+            btn.textContent = o.label;
+            btn.onclick = o.fn;
+            box.appendChild(btn);
+        });
+    }
+
+    function prepWeaknessGame() {
+        if (getAppMode() !== "einarbeitung") return;
+        clearQuizPause();
+        name = document.getElementById("username").value.trim();
+        if (!name) return alert("Bitte zuerst deinen Namen eintragen.");
+        const weak = getUserWeaknesses(name, 30);
+        if (!weak.length) return alert("Noch keine Schwächen erfasst – starte zuerst ein Modul.");
+        const pool = weak.map(w => ({ ...db[w.m][w.q], _srcM: w.m, _srcQ: w.q }));
+        curQ = pool.sort(() => Math.random() - 0.5).slice(0, 15);
+        activeModulIdx = "weak";
+        isExamMode = false;
+        isWeaknessMode = true;
+        examWrong = 0;
+        curIdx = 0;
+        score = 0;
+        totalTime = 0;
+        wasInGame = true;
+        document.getElementById("game-title").innerText = "SCHWÄCHEN-TRAINING";
+        showView("view-game");
+        updateExamHud();
+        buildTracker();
+        loadQ();
     }
 
     function refreshMenuProgress() {
@@ -2050,11 +2762,15 @@
                 document.getElementById("menu-mod-" + i).classList.remove("module-done");
             }
             document.getElementById("badge-exam").innerText = "";
-            document.getElementById("sub-exam").innerText = "25 Zufallsfragen · Hard-Limit: max. 3 Fehler erlaubt.";
+            document.getElementById("sub-exam").innerText = "25 Fragen · max. 3 Fehler erlaubt.";
+            refreshWeaknessPanel();
+            refreshKnowledgeQuickPanel();
             return;
         }
 
         const p = getUserProgress(displayName);
+        const weakCount = getUserWeaknesses(displayName, 1).length;
+        const examWeakHint = weakCount ? " · bis zu 15 Fragen aus deinen Schwächen" : "";
         const modulesPassed = p.modules.filter(Boolean).length;
         panel.classList.add("visible");
         document.getElementById("progress-overall-text").innerText =
@@ -2094,9 +2810,11 @@
             examBadge.className = "mod-badge open";
             document.getElementById("menu-exam").classList.remove("module-done");
             document.getElementById("sub-exam").innerText = modulesPassed >= MODULE_COUNT
-                ? "Alle Module geschafft – Selbsttest starten."
-                : "25 Zufallsfragen · max. 3 Fehler (" + modulesPassed + "/" + MODULE_COUNT + " Module).";
+                ? "Alle Module geschafft – Selbsttest starten" + examWeakHint + "."
+                : "25 Fragen · max. 3 Fehler (" + modulesPassed + "/" + MODULE_COUNT + " Module)" + examWeakHint + ".";
         }
+        refreshWeaknessPanel();
+        refreshKnowledgeQuickPanel();
     }
 
     function isExam() { return activeModulIdx === 'exam'; }
@@ -2120,7 +2838,7 @@
         }
     }
 
-    const VIEW_IDS = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-objections", "view-provision", "view-radar", "view-chat", "view-deals", "view-deal"];
+    const VIEW_IDS = ["view-menu", "view-wiki", "view-glossary", "view-game", "view-result", "view-admin", "view-objections", "view-provision", "view-radar", "view-deals", "view-deal"];
     let currentViewId = "view-menu";
 
     function getAppMode() {
@@ -2147,6 +2865,7 @@
         target.style.display = "block";
         target.classList.add("view-active");
         currentViewId = viewId;
+        if (viewId !== "view-menu") closeGlobalSearchResults();
         void target.offsetWidth;
         target.style.animation = "none";
         target.offsetHeight;
@@ -2155,7 +2874,9 @@
 
     function goHome() {
         wasInGame = false;
+        clearQuizPause();
         clearInterval(timerInterval);
+        closeGlobalSearchResults();
         showView("view-menu");
         refreshMenuProgress();
         maybeShowInstallBanner();
@@ -2175,19 +2896,23 @@
             alert("Quiz-Module sind nur im Einarbeitungs-Modus verfügbar.");
             return;
         }
+        if (quizPaused && !confirm("Aktuelles Quiz verlassen? Der Fortschritt dieser Frage geht verloren.")) return;
+        clearQuizPause();
         name = document.getElementById("username").value.trim();
         if(!name) return alert("Bitte zuerst deinen Namen eintragen – so wird dein Fortschritt gespeichert.");
         activeModulIdx = idx;
         isExamMode = idx === 'exam';
+        isWeaknessMode = false;
         examWrong = 0;
         
         if(isExamMode) {
-            let pool = [];
-            db.forEach(m => pool = pool.concat(m));
-            curQ = pool.sort(() => Math.random() - 0.5).slice(0, 25);
-            document.getElementById("game-title").innerText = "SELBSTTEST · PRÜFUNGSSIMULATION";
+            const weakN = getUserWeaknesses(name, 1).length;
+            curQ = buildExamQuestionSet(name);
+            document.getElementById("game-title").innerText = weakN
+                ? "SELBSTTEST · SCHWÄCHEN-GEWICHTET"
+                : "SELBSTTEST · PRÜFUNGSSIMULATION";
         } else {
-            curQ = JSON.parse(JSON.stringify(db[idx])).sort(() => Math.random() - 0.5);
+            curQ = db[idx].map((q, qi) => ({ ...q, _srcM: idx, _srcQ: qi })).sort(() => Math.random() - 0.5);
             document.getElementById("game-title").innerText = "LERNMODUL " + (idx+1);
         }
 
@@ -2212,7 +2937,7 @@
         document.getElementById("insight").style.display="none";
         
         const d = curQ[curIdx];
-        document.getElementById("q-text").innerText = d.q;
+        document.getElementById("q-text").innerHTML = linkifyTerms(d.q);
         document.getElementById("pbar").style.width = (curIdx / curQ.length * 100) + "%";
         
         const box = document.getElementById("options-box");
@@ -2234,6 +2959,7 @@
         timerInterval = setInterval(() => {
             document.getElementById("timer").innerText = "⏱️ " + ((Date.now() - startTime)/1000).toFixed(1) + "s";
         }, 100);
+        updateGameHud();
     }
 
     function check(el, sel, cor) {
@@ -2255,6 +2981,8 @@
             el.classList.add("selected-wrong");
             dots[curIdx].classList.add("wrong", "pop");
             playFeedback("wrong");
+            const wrongQ = curQ[curIdx];
+            if (wrongQ._srcM != null && wrongQ._srcQ != null) recordWeakness(name, wrongQ._srcM, wrongQ._srcQ);
             options.forEach(opt => {
                 if(curQ[curIdx].a[cor] === opt.innerText) opt.classList.add("selected-correct");
             });
@@ -2267,7 +2995,9 @@
             }
         }
 
-        document.getElementById("insight").innerHTML = `<strong>💡 Insight:</strong> ${curQ[curIdx].exp}`;
+        const qNow = curQ[curIdx];
+        document.getElementById("insight").innerHTML =
+            `<strong>💡 Insight:</strong> ${escapeHtml(qNow.exp)}` + buildLearnLinksHtml(qNow);
         document.getElementById("insight").style.display = "block";
         options.forEach(o => o.onclick = null);
 
@@ -2282,6 +3012,7 @@
         document.getElementById("btn-next").innerText = "Weiter →";
         document.getElementById("btn-next").onclick = nextQuestion;
         document.getElementById("btn-next").style.display = "block";
+        updateGameHud();
     }
 
     function nextQuestion() {
@@ -2319,14 +3050,32 @@
         banner.style.display = "none";
         examDetail.style.display = "none";
 
-        if (wasExam) {
+        const learnHint = document.getElementById("result-learn-hint");
+        learnHint.style.display = "none";
+        learnHint.innerHTML = "";
+
+        const resultActions = [];
+
+        if (isWeaknessMode) {
+            resultTitle.innerText = "Schwächen-Training beendet";
+            circle.innerText = `${score} / ${answered}`;
+            document.getElementById("rank-label").innerText = perc >= 70 ? "Guter Fortschritt" : "Wiki-Links nutzen und wiederholen";
+            if (perc < 80) {
+                learnHint.style.display = "block";
+                const top = getUserWeaknesses(name, 3);
+                learnHint.innerHTML = "<strong>Deine Top-Lücken:</strong><br>" + top.map((w, i) =>
+                    (i + 1) + ". " + escapeHtml(MODULE_TITLES[w.m]) + " – " + escapeHtml(db[w.m][w.q].q.slice(0, 60)) + "…"
+                ).join("<br>");
+            }
+            if (getUserWeaknesses(name, 1).length) resultActions.push({ label: "Nochmal Schwächen üben", fn: prepWeaknessGame, primary: true });
+        } else if (wasExam) {
             resultTitle.innerText = examPassed ? "Selbsttest geschafft" : "Selbsttest nicht geschafft";
             circle.innerText = `${score} / ${answered}`;
             if (examPassed) {
                 circle.classList.add("pass-exam");
                 banner.className = "result-banner pass";
                 banner.innerText = "✅ Stark! Du hast den Selbsttest mit höchstens 3 Fehlern geschafft.";
-                document.getElementById("rank-label").innerText = "🎯 Bereit für den Praxis-Check";
+                document.getElementById("rank-label").innerText = "Bereit für den Praxis-Check";
                 playFeedback("success");
             } else {
                 circle.classList.add("fail");
@@ -2334,47 +3083,396 @@
                 banner.innerText = examHardFail
                     ? `⛔ Hard-Limit: ${examWrong} Fehler (max. ${EXAM_MAX_ERRORS} erlaubt). Test vorzeitig beendet.`
                     : `❌ Zu viele Fehler (${examWrong} von max. ${EXAM_MAX_ERRORS}) oder Test unvollständig.`;
-                document.getElementById("rank-label").innerText = "📚 Nochmal üben – Wiki & Module";
+                document.getElementById("rank-label").innerText = "Nochmal üben – Wiki und Module";
             }
             banner.style.display = "block";
             examDetail.style.display = "block";
             examDetail.innerText = `Beantwortet: ${answered} von ${totalQ} · Fehler: ${examWrong} / ${EXAM_MAX_ERRORS} erlaubt`;
+            if (!examPassed && getUserWeaknesses(name, 1).length) {
+                resultActions.push({ label: "Schwächen üben", fn: prepWeaknessGame, primary: true });
+            }
         } else {
             resultTitle.innerText = "Dein Modul-Ergebnis";
             circle.innerText = `${score} / ${totalQ}`;
-            document.getElementById("rank-label").innerText = perc >= 90 ? "🏆 Sehr sicher" : perc >= 70 ? "🥈 Gut auf Kurs" : "🥉 Weiter üben";
+            document.getElementById("rank-label").innerText = perc >= 90 ? "Sehr sicher" : perc >= 70 ? "Gut auf Kurs" : "Weiter üben";
+            if (typeof finishedModuleIdx === "number") {
+                if (perc < MODULE_PASS_PERCENT) {
+                    resultActions.push({ label: "Wiki: " + MODULE_TITLES[finishedModuleIdx], fn: () => openWikiForModule(finishedModuleIdx), primary: false });
+                    if (getUserWeaknesses(name, 1).length) resultActions.push({ label: "Schwächen üben", fn: prepWeaknessGame, primary: true });
+                } else {
+                    resultActions.push({ label: "Modul wiederholen", fn: () => prepGame(finishedModuleIdx), primary: false });
+                }
+            }
         }
 
         const timeDivisor = wasExam ? answered : totalQ;
         document.getElementById("time-stat").innerText = `Gesamtzeit: ${totalTime.toFixed(1)}s (Ø ${(totalTime / timeDivisor).toFixed(1)}s / Frage)`;
 
-        if (!wasExam && typeof finishedModuleIdx === "number" && perc >= MODULE_PASS_PERCENT) {
-            document.getElementById("rank-label").innerText += " · In deinem Fortschritt gespeichert ✅";
+        if (!wasExam && !isWeaknessMode && typeof finishedModuleIdx === "number" && perc >= MODULE_PASS_PERCENT) {
+            document.getElementById("rank-label").innerText += " · In deinem Fortschritt gespeichert";
             playFeedback("success");
         }
 
+        renderResultActions(resultActions);
+
         isExamMode = false;
+        isWeaknessMode = false;
+        clearQuizPause();
         localStorage.setItem(STORAGE_LAST_USER, name);
         refreshMenuProgress();
     }
 
+    function shuffleArr(arr) {
+        const a = arr.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    function knowledgeItemId(item) {
+        if (item.type === "glossary") return "g:" + (item.term || item.title || "").toLowerCase();
+        return "w:" + item.mi + ":" + (item.heading || item.title || "");
+    }
+
+    function loadKnowledgeFavorites() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_FAVORITES) || "[]"); }
+        catch (e) { return []; }
+    }
+    function saveKnowledgeFavorites(arr) {
+        localStorage.setItem(STORAGE_FAVORITES, JSON.stringify(arr.slice(0, 20)));
+    }
+    function openKnowledgeItem(item) {
+        if (!item) return;
+        if (item.type === "glossary") openGlossaryTerm(item.term || item.title, false);
+        else {
+            if (canPauseQuizForLearn()) pauseQuizForLearnLink();
+            showWiki(item.mi, item.heading, false);
+        }
+    }
+
+    function openKnowledgeFromList(idx) {
+        const item = loadKnowledgeFavorites()[idx];
+        if (item) openKnowledgeItem(item);
+    }
+
+    function applyFavoriteToggle(item) {
+        if (!item) return;
+        const id = item.id || knowledgeItemId(item);
+        let favs = loadKnowledgeFavorites();
+        const fi = favs.findIndex(f => f.id === id);
+        if (fi >= 0) favs.splice(fi, 1);
+        else favs.unshift({ id, type: item.type, title: item.title, subtitle: item.subtitle || "", term: item.term || null, mi: item.mi != null ? item.mi : null, heading: item.heading || null });
+        saveKnowledgeFavorites(favs);
+        refreshKnowledgeQuickPanel();
+    }
+
+    function toggleKnowledgeFavorite(idx, ev) {
+        if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+        const item = loadKnowledgeFavorites()[idx];
+        if (item) applyFavoriteToggle(item);
+    }
+
+    function toggleSearchHitFavorite(idx, slot, ev) {
+        if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+        const hit = lastKnowledgeSearchHits[idx];
+        if (hit) applyFavoriteToggle(hit);
+        const value = (document.getElementById("global-search-" + slot) || {}).value || "";
+        renderGlobalSearchResults(slot, lastKnowledgeSearchHits, value);
+    }
+
+    function renderKnowledgeChip(item, idx, favIds) {
+        const badge = item.type === "glossary" ? "Glossar" : "Wiki";
+        const on = favIds.has(item.id);
+        return `<div class="kq-chip">
+            <button type="button" class="kq-chip-main" onclick="openKnowledgeFromList(${idx})">
+                <span class="kq-chip-badge">${badge}</span>
+                <span class="kq-chip-label">${escapeHtml(item.title)}</span>
+            </button>
+            <button type="button" class="kq-star${on ? " on" : ""}" title="Favorit entfernen" onclick="toggleKnowledgeFavorite(${idx}, event)">${on ? "★" : "☆"}</button>
+        </div>`;
+    }
+
+    function refreshKnowledgeQuickPanel() {
+        const favEl = document.getElementById("knowledge-favorites-list");
+        if (!favEl) return;
+        const favs = loadKnowledgeFavorites();
+        const favIds = new Set(favs.map(f => f.id));
+        favEl.innerHTML = favs.length
+            ? favs.map((item, i) => renderKnowledgeChip(item, i, favIds)).join("")
+            : '<span class="kq-empty">Noch keine Favoriten – ☆ in den Suchergebnissen setzen.</span>';
+    }
+
+    function buildExamQuestionSet(displayName) {
+        let all = [];
+        db.forEach((m, mi) => m.forEach((q, qi) => all.push({ ...q, _srcM: mi, _srcQ: qi })));
+        const weak = getUserWeaknesses(displayName, 50);
+        if (!weak.length) return shuffleArr(all).slice(0, EXAM_TOTAL_COUNT);
+
+        const weakMap = {};
+        weak.forEach(w => { weakMap[w.m + ":" + w.q] = w.n; });
+        let weakPool = [];
+        let restPool = [];
+        all.forEach(q => {
+            const key = q._srcM + ":" + q._srcQ;
+            if (weakMap[key]) {
+                const copies = Math.min(weakMap[key], 3);
+                for (let c = 0; c < copies; c++) weakPool.push(q);
+            } else restPool.push(q);
+        });
+        weakPool = shuffleArr(weakPool);
+        restPool = shuffleArr(restPool);
+        let picked = weakPool.slice(0, EXAM_WEAKNESS_COUNT);
+        const used = new Set(picked.map(q => q._srcM + ":" + q._srcQ));
+        for (const q of restPool) {
+            if (picked.length >= EXAM_TOTAL_COUNT) break;
+            const key = q._srcM + ":" + q._srcQ;
+            if (!used.has(key)) { picked.push(q); used.add(key); }
+        }
+        if (picked.length < EXAM_TOTAL_COUNT) {
+            for (const q of shuffleArr(all)) {
+                if (picked.length >= EXAM_TOTAL_COUNT) break;
+                const key = q._srcM + ":" + q._srcQ;
+                if (!used.has(key)) { picked.push(q); used.add(key); }
+            }
+        }
+        return shuffleArr(picked);
+    }
+
+    function exportAppBackup() {
+        const backup = {
+            app: BRAND_NAME,
+            version: APP_VERSION,
+            exportedAt: new Date().toISOString(),
+            data: {}
+        };
+        [STORAGE_PROGRESS, STORAGE_WEAKNESSES, STORAGE_LOGS, STORAGE_FAVORITES,
+            STORAGE_RADAR, STORAGE_DEALS, STORAGE_LAST_USER, STORAGE_APP_MODE].forEach(key => {
+            const v = localStorage.getItem(key);
+            if (v) backup.data[key] = v;
+        });
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "apotheken-guro-backup-" + new Date().toISOString().slice(0, 10) + ".json";
+        a.click();
+        URL.revokeObjectURL(a.href);
+    }
+
+    function importAppBackup(input) {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                const backup = JSON.parse(reader.result);
+                if (!backup || !backup.data) throw new Error("invalid");
+                const label = backup.exportedAt
+                    ? new Date(backup.exportedAt).toLocaleString("de-DE")
+                    : "unbekannt";
+                if (!confirm("Backup vom " + label + " importieren?\n\nBestehende Lern- und Mandat-Daten (anonym) werden überschrieben.")) {
+                    input.value = "";
+                    return;
+                }
+                Object.keys(backup.data).forEach(key => localStorage.setItem(key, backup.data[key]));
+                const savedUser = localStorage.getItem(STORAGE_LAST_USER);
+                if (savedUser) document.getElementById("username").value = savedUser;
+                refreshMenuProgress();
+                refreshKnowledgeQuickPanel();
+                alert("Backup erfolgreich importiert.");
+                goHome();
+            } catch (e) {
+                alert("Backup konnte nicht gelesen werden.");
+            }
+            input.value = "";
+        };
+        reader.readAsText(file);
+    }
+
+    function syncGlobalSearchInputs(value, exceptEl) {
+        GLOBAL_SEARCH_SLOTS.forEach(slot => {
+            const el = document.getElementById("global-search-" + slot);
+            if (el && el !== exceptEl) el.value = value;
+        });
+    }
+
+    function closeGlobalSearchResults() {
+        GLOBAL_SEARCH_SLOTS.forEach(slot => {
+            const panel = document.getElementById("global-search-results-" + slot);
+            if (panel) {
+                panel.classList.remove("open");
+                panel.innerHTML = "";
+            }
+        });
+    }
+
+    function scoreSearchText(text, q) {
+        const t = text.toLowerCase();
+        if (t === q) return 100;
+        if (t.startsWith(q)) return 80;
+        if (t.includes(q)) return 55;
+        return 0;
+    }
+
+    function buildKnowledgeSearchHits(query) {
+        const q = (query || "").trim().toLowerCase();
+        if (q.length < 2) return [];
+        const hits = [];
+        const seen = new Set();
+
+        glossaryData.forEach((sec, si) => {
+            sec.e.forEach((entry, ei) => {
+                const blob = (entry.k + " " + entry.v + " " + entry.p).toLowerCase();
+                if (!blob.includes(q)) return;
+                const score = Math.max(
+                    scoreSearchText(entry.k, q),
+                    scoreSearchText(entry.v, q) - 10,
+                    blob.includes(q) ? 35 : 0
+                );
+                hits.push({
+                    type: "glossary",
+                    score,
+                    title: entry.k,
+                    subtitle: entry.v,
+                    snippet: entry.p,
+                    si,
+                    ei,
+                    term: entry.k
+                });
+            });
+        });
+
+        wikiData.forEach((mod, mi) => {
+            mod.c.forEach(chapter => {
+                const parts = [chapter.h, chapter.p || ""];
+                if (chapter.list) parts.push(...chapter.list);
+                const blob = (mod.t + " " + parts.join(" ")).toLowerCase();
+                if (!blob.includes(q)) return;
+                const key = "wiki-" + mi + "-" + chapter.h;
+                if (seen.has(key)) return;
+                seen.add(key);
+                const score = Math.max(
+                    scoreSearchText(chapter.h, q),
+                    mod.t.toLowerCase().includes(q) ? 40 : 0,
+                    blob.includes(q) ? 30 : 0
+                );
+                hits.push({
+                    type: "wiki",
+                    score,
+                    title: chapter.h,
+                    subtitle: mod.t,
+                    snippet: chapter.p || (chapter.list && chapter.list[0]) || "",
+                    mi,
+                    heading: chapter.h
+                });
+            });
+        });
+
+        hits.sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, "de"));
+        return hits.slice(0, 20);
+    }
+
+    function renderGlobalSearchResults(slot, hits, query) {
+        const panel = document.getElementById("global-search-results-" + slot);
+        if (!panel) return;
+        if (!query || query.trim().length < 2) {
+            panel.classList.remove("open");
+            panel.innerHTML = "";
+            return;
+        }
+        if (!hits.length) {
+            panel.innerHTML = '<div class="global-search-empty">Keine Treffer in Glossar oder Wiki.</div>';
+            panel.classList.add("open");
+            return;
+        }
+        const gloss = hits.filter(h => h.type === "glossary").length;
+        const wiki = hits.filter(h => h.type === "wiki").length;
+        const favIds = new Set(loadKnowledgeFavorites().map(f => f.id));
+        let html = `<div class="global-search-meta">${hits.length} Treffer · Glossar ${gloss} · Wiki ${wiki}</div>`;
+        hits.forEach((hit, idx) => {
+            const badge = hit.type === "glossary" ? "Glossar" : "Wiki";
+            const snippet = hit.snippet.length > 110 ? hit.snippet.slice(0, 110) + "…" : hit.snippet;
+            const on = favIds.has(knowledgeItemId(hit));
+            html += `<div class="global-search-hit-row">
+                <button type="button" class="global-search-hit" onclick="openKnowledgeSearchHit(${idx})">
+                    <div class="global-search-hit-top">
+                        <span class="global-search-badge ${hit.type}">${badge}</span>
+                        <span class="global-search-hit-title">${escapeHtml(hit.title)}</span>
+                    </div>
+                    <div class="global-search-hit-sub">${escapeHtml(hit.subtitle)}</div>
+                    <div class="global-search-hit-snippet">${escapeHtml(snippet)}</div>
+                </button>
+                <button type="button" class="global-search-star${on ? " on" : ""}" title="Favorit" onclick="toggleSearchHitFavorite(${idx}, '${slot}', event)">${on ? "★" : "☆"}</button>
+            </div>`;
+        });
+        lastKnowledgeSearchHits = hits;
+        panel.innerHTML = html;
+        panel.classList.add("open");
+    }
+
+    let lastKnowledgeSearchHits = [];
+
+    function onGlobalSearchInput(el) {
+        const value = el.value;
+        const slot = el.id.replace("global-search-", "");
+        syncGlobalSearchInputs(value, el);
+        const hits = buildKnowledgeSearchHits(value);
+        renderGlobalSearchResults(slot, hits, value);
+        if (slot === "glossary" && currentViewId === "view-glossary") renderGlossary();
+    }
+
+    function openKnowledgeSearchHit(idx) {
+        const hit = lastKnowledgeSearchHits[idx];
+        if (!hit) return;
+        closeGlobalSearchResults();
+        if (hit.type === "glossary") {
+            openGlossaryTerm(hit.term, false);
+            return;
+        }
+        if (canPauseQuizForLearn()) pauseQuizForLearnLink();
+        showWiki(hit.mi, hit.heading, false);
+    }
+
     // --- WIKI FUNKTIONEN ---
-    function showWiki() {
+    function showWiki(openChapter, scrollHeading, doPause) {
+        if (doPause !== false) pauseQuizForLearnLink();
         showView("view-wiki");
         const cont = document.getElementById("wiki-content");
         cont.innerHTML = "";
         wikiData.forEach((mod, i) => {
             let html = `<div class="wiki-chapter"><div class="wiki-header" onclick="toggleWiki(${i})">${mod.t} <span>▼</span></div><div class="wiki-body" id="wb-${i}">`;
             mod.c.forEach(chapter => {
-                html += `<h4>${chapter.h}</h4>`;
-                if (chapter.p) html += `<p>${chapter.p}</p>`;
+                html += `<h4>${linkifyTerms(chapter.h)}</h4>`;
+                if (chapter.p) html += `<p>${linkifyTerms(chapter.p)}</p>`;
                 if (chapter.list && chapter.list.length) {
-                    html += "<ul>" + chapter.list.map(li => `<li>${li}</li>`).join("") + "</ul>";
+                    html += "<ul>" + chapter.list.map(li => `<li>${linkifyTerms(li)}</li>`).join("") + "</ul>";
                 }
             });
             html += `</div></div>`;
             cont.innerHTML += html;
         });
+        if (openChapter != null) {
+            const body = document.getElementById("wb-" + openChapter);
+            if (body) {
+                body.style.display = "block";
+                setTimeout(() => {
+                    if (scrollHeading) {
+                        const headers = body.querySelectorAll("h4");
+                        for (const h of headers) {
+                            if (h.textContent.toLowerCase().includes(scrollHeading.toLowerCase())) {
+                                h.classList.add("wiki-highlight");
+                                h.scrollIntoView({ behavior: "smooth", block: "start" });
+                                setTimeout(() => h.classList.remove("wiki-highlight"), 2500);
+                                return;
+                            }
+                        }
+                    }
+                    body.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 60);
+            }
+        }
+        updateLearnNavBars();
     }
 
     function toggleWiki(i) {
@@ -2404,7 +3502,7 @@
     function renderGlossary() {
         const cont = document.getElementById("glossary-content");
         const countEl = document.getElementById("glossary-count");
-        const q = (document.getElementById("glossary-search").value || "").trim().toLowerCase();
+        const q = (document.getElementById("global-search-glossary").value || "").trim().toLowerCase();
         let html = "";
         let totalShown = 0;
         let totalAll = 0;
@@ -2436,14 +3534,12 @@
     }
 
     function showGlossary() {
+        if (canPauseQuizForLearn()) pauseQuizForLearnLink();
         showView("view-glossary");
         renderGlossary();
-        const search = document.getElementById("glossary-search");
+        updateLearnNavBars();
+        const search = document.getElementById("global-search-glossary");
         setTimeout(() => search && search.focus(), 300);
-    }
-
-    function filterGlossary() {
-        renderGlossary();
     }
 
     function toggleGlossary(i) {
@@ -2537,12 +3633,11 @@
         // Dashboard Stats berechnen
         const statsBox = document.getElementById("admin-stats");
         statsBox.innerHTML = "";
-        const modules = ["Modul 1", "Modul 2", "Modul 3", "Modul 4", "Modul 5"];
-        modules.forEach(m => {
-            const mLogs = logs.filter(l => l.m.includes(m));
+        MODULE_TITLES.forEach((title, mi) => {
+            const mLogs = logs.filter(l => l.m.includes("Modul " + (mi + 1)) || l.m.includes("LERNMODUL " + (mi + 1)) || l.m.includes("SCHWÄCHEN"));
             if(mLogs.length > 0) {
                 const avg = Math.round(mLogs.reduce((s, l) => s + l.p, 0) / mLogs.length);
-                statsBox.innerHTML += `<div class="stat-row"><div class="stat-label"><span>${m}</span><span>${avg}% Ø</span></div><div class="stat-bar"><div class="stat-fill" style="width:${avg}%"></div></div></div>`;
+                statsBox.innerHTML += `<div class="stat-row"><div class="stat-label"><span>${title}</span><span>${avg}% Ø</span></div><div class="stat-bar"><div class="stat-fill" style="width:${avg}%"></div></div></div>`;
             }
         });
 
@@ -2569,11 +3664,18 @@
         localStorage.removeItem(STORAGE_LOGS);
         localStorage.removeItem(STORAGE_PROGRESS);
         localStorage.removeItem(STORAGE_DEALS);
+        localStorage.removeItem(STORAGE_WEAKNESSES);
+        localStorage.removeItem(STORAGE_FAVORITES);
         showAdmin();
         refreshMenuProgress();
     }
 
-    function confirmExit() { if(confirm("Quiz abbrechen? Fortschritt wird nicht gespeichert.")) goHome(); }
+    function confirmExit() {
+        if (confirm("Quiz abbrechen? Fortschritt wird nicht gespeichert.")) {
+            clearQuizPause();
+            goHome();
+        }
+    }
 
     function dismissPWA() {
         localStorage.setItem(STORAGE_PWA_DISMISS, "1");
@@ -2622,8 +3724,7 @@
 
         if (!stored) {
             lockFirstSetup = true;
-            title.textContent = "Passwort festlegen";
-            sub.textContent = "Lege ein Passwort für Apo-Guru fest (wird lokal gespeichert).";
+            sub.textContent = "Lege ein Passwort für Apotheken-Guro fest (wird lokal gespeichert).";
             btn.textContent = "Passwort speichern";
         }
 
@@ -2660,13 +3761,13 @@
         const heroSub = document.getElementById("hero-sub");
         if (mode === "closing") {
             heroBadge.textContent = "Consultant · Closing";
-            heroTitle.textContent = "Apo-Guru Closing";
-            heroSub.textContent = "Tools für den Einsatz – ohne Mandatsdaten in der App.";
+            heroTitle.textContent = "Apotheken-Guro";
+            heroSub.textContent = "Closing-Tools für den Einsatz – ohne Mandatsdaten in der App.";
             banner.innerHTML = "<strong>Closing-Modus</strong> Einwand-Bibliothek, DD-Checkliste (Risikoprüfung), Rechner. Keine Kundennamen oder Umsätze – arbeitsrelevante Details extern führen.";
         } else {
-            heroBadge.textContent = "Apotheke · M&A";
-            heroTitle.textContent = "M&A Lern-Trainer";
-            heroSub.textContent = "Wiki, Quiz und Glossar – alles für deine Einarbeitung.";
+            heroBadge.textContent = "Apotheke · Übernahme";
+            heroTitle.textContent = "Apotheken-Guro";
+            heroSub.textContent = "Lern-Trainer für Apothekenübernahmen – Fachhandbuch, Quiz und Glossar in deinem Tempo.";
             banner.innerHTML = "<strong>Einarbeitungs-Modus</strong> Lernen, üben, nachschlagen. Kein Closing-Tool – Fokus auf Wissensaufbau.";
         }
     }
@@ -2678,7 +3779,6 @@
         document.getElementById("btn-mode-einarbeitung").classList.toggle("active", mode === "einarbeitung");
         updateModeUI();
         if (!isViewAllowedInMode(currentViewId, mode)) goHome();
-        else if (currentViewId === "view-chat") initChatUI();
     }
 
     function showObjections() {
@@ -2695,15 +3795,13 @@
         document.getElementById("prov-result").style.display = "none";
         localStorage.removeItem(STORAGE_PROVISION);
     }
+    function clearProvisionFields() {
+        clearProvisionSession();
+    }
     function showRadar() {
         loadRadarUI();
         showView("view-radar");
     }
-    function showChat() {
-        initChatUI();
-        showView("view-chat");
-    }
-
     // ═══ Deal-Cockpit & DD-Checkliste ═══
     function migrateDeal(deal, index) {
         return {
@@ -2792,7 +3890,14 @@
             list.innerHTML = '<div class="deal-empty">Noch keine Slots.<br>Lege einen anonymen Mandats-Slot an (M-01 …).</div>';
             return;
         }
-        const sorted = data.deals.slice().sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
+        const sortBy = (document.getElementById("deal-sort") || {}).value || "updated";
+        const phaseOrder = p => { const i = DEAL_PHASES.findIndex(x => x.id === p); return i < 0 ? 99 : i; };
+        const sorted = data.deals.slice().sort((a, b) => {
+            if (sortBy === "dd") return getDDProgress(b).pct - getDDProgress(a).pct;
+            if (sortBy === "phase") return phaseOrder(a.phase) - phaseOrder(b.phase);
+            if (sortBy === "date") return (b.nextDate || "").localeCompare(a.nextDate || "");
+            return (b.updatedAt || "").localeCompare(a.updatedAt || "");
+        });
         list.innerHTML = sorted.map(d => {
             const prog = getDDProgress(d);
             const phaseCls = getPhaseClass(d.phase);
@@ -2900,26 +4005,52 @@
         showDeals();
     }
 
+    function setDDFilter(mode) {
+        ddFilterMode = mode;
+        document.getElementById("dd-filter-all").classList.toggle("active", mode === "all");
+        document.getElementById("dd-filter-open").classList.toggle("active", mode === "open");
+        if (currentDealId) {
+            const deal = getDealById(currentDealId);
+            if (deal) renderDealDD(deal);
+        }
+    }
+
+    function toggleDDCategory(ci) {
+        ddCollapsedCats[ci] = !ddCollapsedCats[ci];
+        if (currentDealId) {
+            const deal = getDealById(currentDealId);
+            if (deal) renderDealDD(deal);
+        }
+    }
+
     function renderDealDD(deal) {
         const prog = getDDProgress(deal);
         document.getElementById("deal-dd-pct").textContent = prog.pct + " % (" + prog.checked + "/" + prog.total + ")";
         document.getElementById("deal-dd-bar").style.width = prog.pct + "%";
 
         const cont = document.getElementById("deal-dd-checklist");
-        cont.innerHTML = DD_CHECKLIST.map(cat => {
+        cont.innerHTML = DD_CHECKLIST.map((cat, ci) => {
+            const visibleItems = cat.items.filter(item => {
+                const done = !!(deal.ddChecked && deal.ddChecked[item.id]);
+                return ddFilterMode !== "open" || !done;
+            });
+            if (!visibleItems.length) return "";
             const catDone = cat.items.filter(i => deal.ddChecked && deal.ddChecked[i.id]).length;
-            const items = cat.items.map(item => {
+            const collapsed = !!ddCollapsedCats[ci];
+            const items = visibleItems.map(item => {
                 const done = !!(deal.ddChecked && deal.ddChecked[item.id]);
                 return `
                 <div class="dd-item${done ? " done" : ""}">
                     <div class="dd-check${done ? " done" : ""}" onclick="toggleDDItem('${item.id}')">${done ? "✓" : ""}</div>
-                    <div class="dd-label">${escapeHtml(item.label)}</div>
+                    <div class="dd-label">${linkifyTerms(item.label)}</div>
                 </div>`;
             }).join("");
             return `
-            <div class="dd-category">
-                <div class="dd-cat-header">${escapeHtml(cat.cat)}<span class="dd-cat-count">${catDone}/${cat.items.length}</span></div>
-                ${items}
+            <div class="dd-category${collapsed ? " collapsed" : ""}">
+                <div class="dd-cat-header" onclick="toggleDDCategory(${ci})">${escapeHtml(cat.cat)}
+                    <span><span class="dd-cat-chevron">${collapsed ? "▶" : "▼"}</span> <span class="dd-cat-count">${catDone}/${cat.items.length}</span></span>
+                </div>
+                <div class="dd-cat-body">${items}</div>
             </div>`;
         }).join("");
     }
@@ -2931,7 +4062,8 @@
         const deal = data.deals.find(d => d.id === currentDealId);
         if (!deal) return;
         if (!deal.ddChecked) deal.ddChecked = {};
-        deal.ddChecked[itemId] = !deal.ddChecked[itemId];
+        const nowOn = !deal.ddChecked[itemId];
+        deal.ddChecked[itemId] = nowOn;
         deal.updatedAt = new Date().toISOString();
         saveDealsData(data);
         renderDealDD(deal);
@@ -2941,7 +4073,7 @@
         const prog = getDDProgress(deal);
         const action = getNextActionLabel(deal.nextAction);
         let lines = [
-            "DD-REPORT – Apo-Guru Mandat-Tracker (anonym)",
+            "DD-REPORT – Apotheken-Guro Mandat-Tracker (anonym)",
             "Erstellt: " + new Date().toLocaleString("de-DE"),
             "",
             "SLOT: " + (deal.code || "–"),
@@ -3019,7 +4151,7 @@
                 html += `<div class="item${done ? " done" : ""}">${done ? "☑" : "☐"} ${escapeHtml(item.label)}</div>`;
             });
         });
-        html += `<p style="margin-top:24px;font-size:11px;color:#888">Apo-Guru · ${new Date().toLocaleString("de-DE")}</p></body></html>`;
+        html += `<p style="margin-top:24px;font-size:11px;color:#888">Apotheken-Guro · ${new Date().toLocaleString("de-DE")}</p></body></html>`;
         const w = window.open("", "_blank");
         if (!w) { exportDDReport(); return; }
         w.document.write(html);
@@ -3028,16 +4160,35 @@
         setTimeout(() => w.print(), 400);
     }
 
+    function buildObjectionLinks(o) {
+        const wiki = OBJECTION_WIKI[o.tag];
+        const modMap = { Preis: 5, Finanzierung: 5, Recht: 0, Standort: 2, Operativ: 3, Timing: 2, Vertrauen: 2 };
+        const terms = findTermsInText(o.q + " " + o.r).slice(0, 2);
+        let html = '<div class="objection-links">';
+        if (wiki) {
+            html += `<button type="button" class="learn-link-btn" onclick="showWiki(${wiki.c}, '${wiki.h.replace(/'/g, "\\'")}')">📖 Wiki</button>`;
+        }
+        if (modMap[o.tag] != null) {
+            html += `<button type="button" class="learn-link-btn" onclick="prepGame(${modMap[o.tag]})">🎯 Modul üben</button>`;
+        }
+        terms.forEach(t => {
+            html += `<button type="button" class="learn-link-btn" onclick="openTermLink('${t.replace(/'/g, "\\'")}')">📗 ${escapeHtml(t)}</button>`;
+        });
+        html += "</div>";
+        return html;
+    }
+
     function renderObjections() {
         const cont = document.getElementById("objections-content");
         cont.innerHTML = OBJECTIONS.map((o, i) => `
             <div class="objection-item">
                 <div class="objection-header" onclick="toggleObjection(${i})">
-                    <span>${escapeHtml(o.q)}</span>
+                    <span>${linkifyTerms(o.q)}</span>
                     <span class="objection-tag">${escapeHtml(o.tag)}</span>
                 </div>
                 <div class="objection-body" id="obj-body-${i}">
-                    <div class="objection-response"><strong>Antwort</strong><br>${escapeHtml(o.r)}</div>
+                    <div class="objection-response"><strong>Antwort</strong><br>${linkifyTerms(o.r)}</div>
+                    ${buildObjectionLinks(o)}
                 </div>
             </div>
         `).join("");
@@ -3058,7 +4209,8 @@
                     <span class="objection-tag">${escapeHtml(o.tag)}</span>
                 </div>
                 <div class="objection-body" id="obj-body-${i}">
-                    <div class="objection-response"><strong>Antwort</strong><br>${escapeHtml(o.r)}</div>
+                    <div class="objection-response"><strong>Antwort</strong><br>${linkifyTerms(o.r)}</div>
+                    ${buildObjectionLinks(o)}
                 </div>
             </div>`;
         }).join("");
@@ -3178,93 +4330,11 @@
         drawReflections(data);
     }
 
-    function saveGeminiKey() {
-        localStorage.setItem(STORAGE_GEMINI_KEY, document.getElementById("gemini-key").value.trim());
-        appendChatMsg("system", "API-Key gespeichert.");
-    }
-
-    function getChatStorageKey() {
-        return getAppMode() === "closing" ? "apo_chat_history_closing" : "apo_chat_history_einarbeitung";
-    }
-    function getGeminiSystemPrompt() {
-        return getAppMode() === "closing" ? GEMINI_SYSTEM_CLOSING : GEMINI_SYSTEM_EINARBEITUNG;
-    }
-
-    function initChatUI() {
-        const mode = getAppMode();
-        document.getElementById("gemini-key").value = localStorage.getItem(STORAGE_GEMINI_KEY) || "";
-        document.getElementById("chat-nav-title").textContent = mode === "closing" ? "KI-Sparring" : "KI-Tutor";
-        document.getElementById("chat-privacy-hint").innerHTML = mode === "closing"
-            ? "<strong>Closing-Chat:</strong> Nur allgemeine Methodik – keine Mandatsnamen, Umsätze oder Kundendaten eingeben."
-            : "<strong>Lern-Chat:</strong> Fragen zu Wiki, Glossar und Quiz – kein Mandats-Coaching.";
-        document.getElementById("chat-input").placeholder = mode === "closing"
-            ? "Allgemeine Frage (z. B. Einwand, DD, LOI)…"
-            : "Lernfrage zum Apotheken-M&A…";
-        chatHistory = JSON.parse(localStorage.getItem(getChatStorageKey()) || "[]");
-        const msgs = document.getElementById("chat-msgs");
-        msgs.innerHTML = "";
-        chatHistory.forEach(m => appendChatMsg(m.role, m.text, false));
-        if (!chatHistory.length) {
-            const welcome = mode === "closing"
-                ? "Sparring-Modus: Ich helfe bei Methodik, Einwänden und Prozess – ohne Mandatsdaten. Was möchtest du durchspielen?"
-                : "Lern-Modus: Ich erkläre M&A-Konzepte für die Einarbeitung. Womit soll ich anfangen?";
-            appendChatMsg("assistant", welcome, false);
-        }
-    }
-
-    function appendChatMsg(role, text, save) {
-        if (save !== false && role !== "system") {
-            chatHistory.push({ role, text });
-            localStorage.setItem(getChatStorageKey(), JSON.stringify(chatHistory.slice(-50)));
-        }
-        const div = document.createElement("div");
-        div.className = "chat-bubble " + (role === "user" ? "user" : role === "system" ? "system" : "assistant");
-        div.textContent = text;
-        document.getElementById("chat-msgs").appendChild(div);
-        document.getElementById("chat-msgs").scrollTop = document.getElementById("chat-msgs").scrollHeight;
-    }
-
-    async function sendGeminiChat() {
-        const input = document.getElementById("chat-input");
-        const text = input.value.trim();
-        if (!text) return;
-        const key = localStorage.getItem(STORAGE_GEMINI_KEY);
-        if (!key) { appendChatMsg("system", "Bitte zuerst einen Gemini API-Key hinterlegen."); return; }
-
-        input.value = "";
-        appendChatMsg("user", text);
-        document.getElementById("chat-typing").style.display = "block";
-
-        try {
-            const contents = [
-                { role: "user", parts: [{ text: getGeminiSystemPrompt() }] },
-                { role: "model", parts: [{ text: getAppMode() === "closing"
-                    ? "Verstanden. Ich sparre methodisch – ohne Mandatsdaten."
-                    : "Verstanden. Ich erkläre Lerninhalte für die Einarbeitung." }] },
-                ...chatHistory.filter(m => m.role === "user" || m.role === "assistant").map(m => ({
-                    role: m.role === "user" ? "user" : "model",
-                    parts: [{ text: m.text }]
-                }))
-            ];
-            const res = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${key}`,
-                { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents }) }
-            );
-            if (!res.ok) throw new Error("API " + res.status);
-            const data = await res.json();
-            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Keine Antwort erhalten.";
-            appendChatMsg("assistant", reply);
-        } catch (err) {
-            appendChatMsg("system", "Fehler: " + err.message);
-        } finally {
-            document.getElementById("chat-typing").style.display = "none";
-        }
-    }
-
     function initApp() {
         const savedTheme = localStorage.getItem(STORAGE_THEME);
         const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         injectIcons();
+        buildGlossaryTermIndex();
         applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
         soundEnabled = localStorage.getItem(STORAGE_SOUND) !== "0";
         updateSoundButton();
@@ -3273,7 +4343,10 @@
         setAppMode(savedMode);
         saveDealsData(loadDealsData());
         localStorage.removeItem(STORAGE_PROVISION);
-        localStorage.removeItem(STORAGE_CHAT_HISTORY);
+        localStorage.removeItem("apo_gemini_api_key");
+        localStorage.removeItem("apo_chat_history");
+        localStorage.removeItem("apo_chat_history_closing");
+        localStorage.removeItem("apo_chat_history_einarbeitung");
         document.getElementById("btn-mode-closing").addEventListener("click", () => setAppMode("closing"));
         document.getElementById("btn-mode-einarbeitung").addEventListener("click", () => setAppMode("einarbeitung"));
 
@@ -3283,34 +4356,35 @@
             refreshMenuProgress();
         });
         refreshMenuProgress();
+        refreshKnowledgeQuickPanel();
         maybeShowInstallBanner();
 
         document.body.addEventListener("click", () => {
             if (soundEnabled && audioCtx && audioCtx.state === "suspended") audioCtx.resume();
         }, { once: true });
+
+        document.addEventListener("click", e => {
+            if (!e.target.closest(".global-search-wrap")) closeGlobalSearchResults();
+        });
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") closeGlobalSearchResults();
+        });
     }
 
     initLockScreen();
 
     // --- PWA: Manifest, Icon & Service Worker (Single-File) ---
     (function initPWA() {
-        const PWA_ICON = "data:image/svg+xml," + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">' +
-            '<rect width="512" height="512" rx="96" fill="#064e3b"/>' +
-            '<circle cx="256" cy="256" r="120" fill="none" stroke="#fff" stroke-width="28"/>' +
-            '<path d="M256 160v192M208 208h96" stroke="#fff" stroke-width="28" stroke-linecap="round"/></svg>'
-        );
-
-        document.getElementById("pwa-apple-icon").href = PWA_ICON;
+        const PWA_ICON = "apotheken-guro-icon.png";
 
         const startUrl = new URL(location.href);
         startUrl.search = "";
         startUrl.hash = "";
 
         const manifest = {
-            name: "M&A Lern-Trainer",
-            short_name: "M&A Trainer",
-            description: "Persönliches Lern-Tool für Apotheken-M&A",
+            name: "Apotheken-Guro",
+            short_name: "Apotheken-Guro",
+            description: "Lernen und Nachschlagen zur Apothekenübernahme",
             start_url: startUrl.href,
             scope: startUrl.origin + startUrl.pathname.substring(0, startUrl.pathname.lastIndexOf("/") + 1),
             display: "standalone",
@@ -3319,8 +4393,8 @@
             theme_color: "#0b6623",
             lang: "de",
             icons: [
-                { src: PWA_ICON, sizes: "512x512", type: "image/svg+xml", purpose: "any" },
-                { src: PWA_ICON, sizes: "512x512", type: "image/svg+xml", purpose: "maskable" }
+                { src: PWA_ICON, sizes: "512x512", type: "image/png", purpose: "any" },
+                { src: PWA_ICON, sizes: "512x512", type: "image/png", purpose: "maskable" }
             ]
         };
 
@@ -3331,14 +4405,19 @@
 
         if (!("serviceWorker" in navigator)) return;
 
-        const cacheName = "apo-trainer-v3.3";
+        const cacheName = "apotheken-guro-v4.1";
         const pageToCache = startUrl.href;
+        const iconToCache = new URL("apotheken-guro-icon.png", startUrl).href;
         const swSource = `
             const CACHE = ${JSON.stringify(cacheName)};
             const PAGE = ${JSON.stringify(pageToCache)};
+            const ICON = ${JSON.stringify(iconToCache)};
             self.addEventListener("install", (e) => {
                 e.waitUntil(
-                    caches.open(CACHE).then((c) => c.add(PAGE).catch(() => {})).then(() => self.skipWaiting())
+                    caches.open(CACHE).then((c) => Promise.all([
+                        c.add(PAGE).catch(() => {}),
+                        c.add(ICON).catch(() => {})
+                    ])).then(() => self.skipWaiting())
                 );
             });
             self.addEventListener("activate", (e) => {
